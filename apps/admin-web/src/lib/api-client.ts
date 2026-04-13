@@ -4,26 +4,19 @@ if (!API_BASE_URL) {
   throw new Error("NEXT_PUBLIC_API_BASE_URL is not configured.");
 }
 
-type RequestOptions = RequestInit & {
-  token?: string;
-};
+type RequestOptions = RequestInit;
 
 export async function apiRequest<T>(
   path: string,
   options: RequestOptions = {},
 ): Promise<T> {
-  const { token, headers, body, ...rest } = options;
+  const { headers, body, ...rest } = options;
 
   const isFormData = body instanceof FormData;
-
   const finalHeaders = new Headers(headers || {});
 
   if (!isFormData && !finalHeaders.has("Content-Type")) {
     finalHeaders.set("Content-Type", "application/json");
-  }
-
-  if (token && !finalHeaders.has("Authorization")) {
-    finalHeaders.set("Authorization", `Bearer ${token}`);
   }
 
   const response = await fetch(`${API_BASE_URL}${path}`, {
@@ -33,6 +26,7 @@ export async function apiRequest<T>(
     cache: "no-store",
     credentials: "include",
   });
+
   const contentType = response.headers.get("content-type") || "";
   const isJson = contentType.includes("application/json");
 
