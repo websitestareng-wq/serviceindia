@@ -6,10 +6,7 @@ import type {
   UsersResponse,
 } from "@/types/user";
 import { apiRequest } from "./api-client";
-function getAccessToken() {
-  if (typeof window === "undefined") return "";
-  return window.localStorage.getItem("accessToken") || "";
-}
+
 export async function getUsers(params: {
   search?: string;
   status?: UserStatusFilter;
@@ -25,45 +22,41 @@ export async function getUsers(params: {
   }
 
   const qs = searchParams.toString();
+
   return apiRequest<UsersResponse>(`/users${qs ? `?${qs}` : ""}`, {
-  method: "GET",
-  token: getAccessToken(),
-});
+    method: "GET",
+  });
 }
 
 export async function createUser(payload: CreateUserPayload) {
   return apiRequest<PortalUser>("/users", {
-  method: "POST",
-  body: JSON.stringify(payload),
-  token: getAccessToken(),
-});
+    method: "POST",
+    body: JSON.stringify(payload),
+  });
 }
 
 export async function updateUser(userId: string, payload: UpdateUserPayload) {
- return apiRequest<PortalUser>(`/users/${userId}`, {
-  method: "PATCH",
-  body: JSON.stringify(payload),
-  token: getAccessToken(),
-});
+  return apiRequest<PortalUser>(`/users/${userId}`, {
+    method: "PATCH",
+    body: JSON.stringify(payload),
+  });
 }
+
 export async function deleteUser(userId: string) {
-  return apiRequest<void>(`/users/${userId}`, {
-  method: "DELETE",
-  token: getAccessToken(),
-});
+  return apiRequest<{ success: true }>(`/users/${userId}`, {
+    method: "DELETE",
+  });
 }
 
 export async function toggleUserStatus(userId: string, isActive: boolean) {
-return apiRequest<PortalUser>(`/users/${userId}/status`, {
-  method: "PATCH",
-  body: JSON.stringify({ isActive }),
-  token: getAccessToken(),
-});
+  return apiRequest<PortalUser>(`/users/${userId}/status`, {
+    method: "PATCH",
+    body: JSON.stringify({ isActive }),
+  });
 }
 
 export async function sendUserCredentials(userId: string) {
- return apiRequest<void>(`/users/${userId}/send-credentials`, {
-  method: "POST",
-  token: getAccessToken(),
-});
+  return apiRequest<void>(`/users/${userId}/send-credentials`, {
+    method: "POST",
+  });
 }
