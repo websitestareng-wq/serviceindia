@@ -42,32 +42,32 @@ export async function middleware(request: NextRequest) {
   }
 
   // 🔥 VALIDATE SESSION WITH BACKEND (CRITICAL)
-  if (authToken) {
-    try {
-      const verifyRes = await fetch(
-        "http://localhost:3001/auth/verify",
-        {
-          method: "GET",
-          headers: {
-            cookie: `${AUTH_COOKIE_NAME}=${authToken}`,
-          },
-        }
-      );
+if (authToken) {
+  try {
+    const verifyBaseUrl =
+      process.env.NEXT_PUBLIC_API_BASE_URL || "https://api.stareng.co.in";
 
-      // ❌ invalid session → force logout
-      if (!verifyRes.ok) {
-        const res = NextResponse.redirect(new URL(LOGIN_PATH, request.url));
-        res.cookies.delete(AUTH_COOKIE_NAME);
-        res.cookies.delete(ROLE_COOKIE_NAME);
-        return res;
-      }
-    } catch {
+    const verifyRes = await fetch(`${verifyBaseUrl}/auth/verify`, {
+      method: "GET",
+      headers: {
+        cookie: `${AUTH_COOKIE_NAME}=${authToken}; ${ROLE_COOKIE_NAME}=${userRole ?? ""}`,
+      },
+      cache: "no-store",
+    });
+
+    if (!verifyRes.ok) {
       const res = NextResponse.redirect(new URL(LOGIN_PATH, request.url));
       res.cookies.delete(AUTH_COOKIE_NAME);
       res.cookies.delete(ROLE_COOKIE_NAME);
       return res;
     }
+  } catch {
+    const res = NextResponse.redirect(new URL(LOGIN_PATH, request.url));
+    res.cookies.delete(AUTH_COOKIE_NAME);
+    res.cookies.delete(ROLE_COOKIE_NAME);
+    return res;
   }
+}
 
   // 🔥 LOGIN PAGE BLOCK
   if (isLoginPage && authToken && userRole) {
