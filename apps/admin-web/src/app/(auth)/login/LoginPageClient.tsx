@@ -102,8 +102,9 @@ export default function LoginPageClient() {
   }, [verificationForm, isSubmitting, isAdminVerification]);
 
   useEffect(() => {
-    window.history.replaceState(null, "", window.location.href);
-  }, []);
+  clearStoredSessionUser();
+  window.history.replaceState(null, "", window.location.href);
+}, []);
 
   useEffect(() => {
     const handlePopState = () => {
@@ -150,6 +151,21 @@ async function saveBrowserCredentials() {
     await nav.credentials.store(credential);
   } catch {
     // silently ignore - browser may not support it
+  }
+}
+function clearStoredSessionUser() {
+  if (typeof window === "undefined") return;
+
+  try {
+    window.localStorage.removeItem("currentUser");
+    window.localStorage.removeItem("auth_user");
+    window.localStorage.removeItem("user");
+    window.localStorage.removeItem("accessToken");
+    window.localStorage.removeItem("token");
+    window.localStorage.removeItem("authToken");
+    window.localStorage.removeItem("adminToken");
+  } catch {
+    // ignore storage errors
   }
 }
 function persistSessionUser(user: unknown) {

@@ -7,6 +7,7 @@ import {
   Res,
   UseGuards,
 } from "@nestjs/common";
+import { JwtService } from "@nestjs/jwt";
 import type { Request, Response } from "express";
 import { AuthService } from "./auth.service";
 import { LoginDto } from "./dto/login.dto";
@@ -36,7 +37,10 @@ const roleCookieOptions = {
 
 @Controller("auth")
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(
+  private readonly authService: AuthService,
+  private readonly jwtService: JwtService,
+) {}
 
   @Post("portal/identify")
   async identify(
@@ -102,29 +106,32 @@ async loginAdmin(
     };
   }
 
-@UseGuards(JwtAuthGuard)
 @Post("logout")
 async logout(
   @Req() req: Request,
   @Res({ passthrough: true }) res: Response,
 ) {
-  const user = req.user as { id: string; sessionToken?: string };
+  try {
+    const token =
+      req.cookies?.access_token ||
+      req.headers.authorization?.replace("Bearer ", "");
 
-  await this.authService.logoutUser(user.sessionToken || "");
-
-    res.clearCookie(AUTH_COOKIE_NAME, authCookieOptions);
-    res.clearCookie(ROLE_COOKIE_NAME, roleCookieOptions);
-
-    res.setHeader(
-      "Cache-Control",
-      "no-store, no-cache, must-revalidate, proxy-revalidate",
-    );
-    res.setHeader("Pragma", "no-cache");
-    res.setHeader("Expires", "0");
-    res.setHeader("Surrogate-Control", "no-store");
-
-    return { success: true };
+    if (token) {
+      const decoded: any = this.jwtService.decode(token);
+      if (decoded?.sessionToken) {
+        await this.authService.logoutUser(decoded.sessionToken);
+      }
+    }
+  } catch (err) {
+    // ignore error (important)
   }
+
+  // 🔥 ALWAYS CLEAR COOKIE
+  res.clearCookie(AUTH_COOKIE_NAME, authCookieOptions);
+  res.clearCookie(ROLE_COOKIE_NAME, roleCookieOptions);
+
+  return { success: true };
+}
 
 @UseGuards(JwtAuthGuard)
 @Get("verify")

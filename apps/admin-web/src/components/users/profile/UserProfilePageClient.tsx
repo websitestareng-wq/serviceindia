@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   CheckCircle2,
@@ -45,6 +46,21 @@ function getAccessToken() {
     ""
   );
 }
+function clearStoredAuthTokens() {
+  if (typeof window === "undefined") return;
+
+  window.localStorage.removeItem("accessToken");
+  window.localStorage.removeItem("token");
+  window.localStorage.removeItem("authToken");
+  window.localStorage.removeItem("adminToken");
+}
+function clearStoredSessionUser() {
+  if (typeof window === "undefined") return;
+
+  window.localStorage.removeItem("currentUser");
+  window.localStorage.removeItem("auth_user");
+  window.localStorage.removeItem("user");
+}
 
 async function apiFetch(path: string, options: RequestInit = {}) {
   const token = getAccessToken();
@@ -57,11 +73,18 @@ async function apiFetch(path: string, options: RequestInit = {}) {
     headers.set("Authorization", `Bearer ${token}`);
   }
 
-  return fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}${path}`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}${path}`, {
     ...options,
     credentials: "include",
     headers,
   });
+
+  if (response.status === 401) {
+    clearStoredAuthTokens();
+    clearStoredSessionUser();
+  }
+
+  return response;
 }
 
 function cn(...classes: Array<string | false | null | undefined>) {
@@ -272,6 +295,7 @@ function getPasswordLockInfo(lastPasswordChangedAt?: string | null) {
   };
 }
 export default function UserProfilePageClient() {
+  const router = useRouter();
   const [data, setData] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState(true);
   const [pageError, setPageError] = useState("");
@@ -301,10 +325,26 @@ export default function UserProfilePageClient() {
       const json = await res.json().catch(() => ({}));
 
       if (!res.ok) {
-        setPageError(json?.message || "Failed to load profile.");
-        setData(null);
-        return;
-      }
+  if (res.status === 401) {
+    try {
+      await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/logout`, {
+        method: "POST",
+        credentials: "include",
+      });
+    } catch {
+      // ignore cleanup error
+    }
+
+    clearStoredAuthTokens();
+    clearStoredSessionUser();
+    router.replace("/login");
+    return;
+  }
+
+  setPageError(json?.message || "Failed to load profile.");
+  setData(null);
+  return;
+}
 
       setData(json);
       setAddress(json.address || "");
@@ -460,8 +500,20 @@ setCurrentPassword("");
 setCurrentPasswordCheck("");
 setNewPassword("");
 setConfirmPassword("");
-await fetchProfile();
-setSuccessMessage("Password updated successfully. An email has been sent.");
+
+try {
+  await apiFetch("/auth/logout", {
+    method: "POST",
+  });
+} catch {
+  // ignore logout cleanup error
+}
+
+clearStoredAuthTokens();
+
+setSuccessMessage(
+  "Password updated successfully. Please login again with your new password.",
+);
 setModalStep("success");
   } catch {
     setModalStep("password-new");
@@ -853,13 +905,23 @@ const passwordLockInfo = getPasswordLockInfo(data?.lastPasswordChangedAt);
             <p className="text-sm leading-6 text-slate-700">{successMessage}</p>
           </div>
 
-          <button
-            type="button"
-            onClick={() => setModalStep(null)}
-            className="inline-flex h-11 w-full items-center justify-center rounded-[20px] bg-violet-600 text-sm font-semibold text-white"
-          >
-            Close
-          </button>
+         <button
+  type="button"
+  onClick={() => {
+    const shouldRedirectToLogin =
+      successMessage ===
+      "Password updated successfully. Please login again with your new password.";
+
+    setModalStep(null);
+
+    if (shouldRedirectToLogin) {
+      router.replace("/login");
+    }
+  }}
+  className="inline-flex h-11 w-full items-center justify-center rounded-[20px] bg-violet-600 text-sm font-semibold text-white"
+>
+  Close
+</button>
         </div>
       </ModalShell>
     </>
