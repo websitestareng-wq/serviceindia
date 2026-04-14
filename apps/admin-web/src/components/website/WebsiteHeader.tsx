@@ -27,36 +27,90 @@ export default function WebsiteHeader() {
           right: 0,
           width: "100%",
           zIndex: 9999,
-          background: "rgba(255,255,255,0.92)",
+          background: "rgba(255,255,255,0.94)",
           backdropFilter: "blur(12px)",
           WebkitBackdropFilter: "blur(12px)",
           borderBottom: "1px solid rgba(15,23,42,.08)",
           boxShadow: "0 6px 18px rgba(2,6,23,.05)",
         }}
       >
-        <div className="container headerRow">
-          <div className="headerLeft websiteHeaderLeft">
+        <div
+          className="container headerRow"
+          style={{
+            minHeight: "84px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            gap: "12px",
+          }}
+        >
+          <div
+            className="headerLeft websiteHeaderLeft"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "12px",
+              minWidth: 0,
+              flex: 1,
+            }}
+          >
             <button
               type="button"
               className="hamburger"
               onClick={() => setOpen(true)}
               aria-label="Open menu"
+              style={{
+                width: "54px",
+                height: "54px",
+                minWidth: "54px",
+                minHeight: "54px",
+                borderRadius: "18px",
+                padding: 0,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                boxShadow: "0 4px 14px rgba(2,6,23,.06)",
+              }}
             >
-              <span />
-              <span />
-              <span />
+              <span style={{ width: "22px", margin: "2px 0" }} />
+              <span style={{ width: "22px", margin: "2px 0" }} />
+              <span style={{ width: "22px", margin: "2px 0" }} />
             </button>
 
-            <Link href="/" className="brand brandWithLogo websiteBrand">
+            <Link
+              href="/"
+              className="brand brandWithLogo websiteBrand"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "10px",
+                minWidth: 0,
+                flex: 1,
+              }}
+            >
               <Image
                 className="brandLogo websiteBrandLogo"
                 src="/logo/star-logo.png"
                 alt="STAR Engineering"
-                width={50}
-                height={50}
+                width={42}
+                height={42}
                 priority
+                style={{
+                  width: "42px",
+                  height: "42px",
+                  objectFit: "contain",
+                  flexShrink: 0,
+                }}
               />
-              <span className="brandWord gradText websiteBrandWord">
+              <span
+                className="brandWord gradText websiteBrandWord"
+                style={{
+                  fontSize: "18px",
+                  lineHeight: 1.05,
+                  fontWeight: 800,
+                  display: "block",
+                }}
+              >
                 STAR Engineering
               </span>
             </Link>
@@ -89,31 +143,51 @@ export default function WebsiteHeader() {
             </Link>
           </nav>
 
-          <div className="headerRight websiteHeaderRight">
-  <button
-    type="button"
-    className="btn btnAnim btnLogin websiteLoginBtn"
-    onClick={goLogin}
-    aria-label="Login"
-    title="Login"
-  >
-    <span className="websiteLoginText">Login</span>
-    <span className="websiteLoginIcon" aria-hidden="true">
-      <UserCircle2 size={20} strokeWidth={2.4} />
-    </span>
-  </button>
-</div>
+          <div
+            className="headerRight websiteHeaderRight"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "flex-end",
+              flexShrink: 0,
+            }}
+          >
+            <button
+              type="button"
+              className="btn btnAnim btnLogin websiteLoginBtn"
+              onClick={goLogin}
+              aria-label="Login"
+              title="Login"
+              style={{
+                width: "54px",
+                height: "54px",
+                minWidth: "54px",
+                minHeight: "54px",
+                borderRadius: "18px",
+                padding: 0,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <span className="websiteLoginText" style={{ display: "none" }}>
+                Login
+              </span>
+              <span
+                className="websiteLoginIcon"
+                aria-hidden="true"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <UserCircle2 size={20} strokeWidth={2.4} />
+              </span>
+            </button>
+          </div>
         </div>
       </header>
-
-      <div
-        aria-hidden="true"
-        style={{
-          width: "100%",
-          flexShrink: 0,
-        }}
-      />
-
       <WebsiteMobileMenu open={open} onClose={() => setOpen(false)} />
     </>
   );
