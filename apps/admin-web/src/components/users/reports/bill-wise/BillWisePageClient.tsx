@@ -1325,29 +1325,24 @@ const params = new URLSearchParams({
           ) : null}
         </td>
 
-        <td className="px-2 py-3 text-right align-top">
-          <p className="text-[12px] font-bold leading-4 text-rose-600">
-            {formatCurrency(row.pendingAmount)}
-          </p>
+<td className="px-2 py-3 text-right align-top">
+  <p className="whitespace-nowrap text-[12px] font-bold leading-4 text-rose-600">
+    {formatCurrency(row.pendingAmount)}
+  </p>
 
-          <p className="mt-1 text-[10px] leading-4 text-slate-500">
-            {row.status}
-          </p>
+  <p className="mt-1 whitespace-nowrap text-[10px] leading-4 text-slate-500">
+    {row.status}
+  </p>
 
-          {row.settlementRows.length > 0 ? (
-            <button
-              type="button"
-              onClick={() => {
-                const event = new CustomEvent("open-mobile-settlement", {
-                  detail: row,
-                });
-                window.dispatchEvent(event);
-              }}
-              className="mt-1 text-[11px] font-semibold text-violet-700 underline-offset-4 hover:underline"
-            >
-              View Settlement
-            </button>
-          ) : null}
+{row.settlementRows.length > 0 ? (
+  <button
+    type="button"
+    onClick={() => setSettlementOpen(true)}
+    className="mt-1 ml-auto inline-flex whitespace-nowrap text-right text-[11px] font-semibold text-violet-700 underline-offset-4 transition hover:text-fuchsia-700 hover:underline"
+  >
+    View Settlement
+  </button>
+) : null}
         </td>
       </tr>
     );
@@ -1674,15 +1669,15 @@ function ReportTableRow({
             ₹ {formatCurrency(row.pendingAmount)}
           </span>
 
-          {row.settlementRows.length > 0 ? (
-            <button
-              type="button"
-              onClick={() => setSettlementOpen(true)}
-              className="mt-1 block w-full text-right text-[11px] font-semibold text-violet-700 underline-offset-4 transition hover:text-fuchsia-700 hover:underline"
-            >
-              View Settlement
-            </button>
-          ) : null}
+{row.settlementRows.length > 0 ? (
+  <button
+    type="button"
+    onClick={() => setSettlementOpen(true)}
+    className="mt-1 ml-auto inline-flex whitespace-nowrap text-right text-[11px] font-semibold text-violet-700 underline-offset-4 transition hover:text-fuchsia-700 hover:underline"
+  >
+    View Settlement
+  </button>
+) : null}
         </td>
 
         <td className="px-4 py-3 align-top">
@@ -1714,30 +1709,32 @@ function SettlementDetailsModal({
 }) {
   return createPortal(
     <div className="fixed inset-0 z-[400] flex items-end justify-center bg-black/30 p-2 backdrop-blur-sm sm:items-center sm:p-4">
-      <div className="flex max-h-[88vh] w-full max-w-4xl flex-col overflow-hidden rounded-[24px] border border-slate-200 bg-white shadow-[0_24px_80px_rgba(15,23,42,0.18)]">
-        <div className="flex items-center justify-between border-b border-slate-200 px-4 py-4 sm:px-5">
-          <div>
-            <h3 className="text-base font-bold text-slate-900 sm:text-lg">
+      <div className="flex h-auto w-full max-w-4xl flex-col overflow-hidden rounded-t-[26px] border border-slate-200 bg-white shadow-[0_24px_80px_rgba(15,23,42,0.18)] max-h-[72vh] sm:max-h-[78vh] lg:max-h-[760px] sm:rounded-[24px]">
+        <div className="flex items-start justify-between gap-3 border-b border-slate-200 px-4 py-4 sm:px-5">
+          <div className="min-w-0">
+            <h3 className="text-[15px] font-bold text-slate-900 sm:text-lg">
               Settlement Details
             </h3>
 
             {row.originalAdvanceRefNo ? (
-              <p className="mt-1 text-xs text-cyan-700">
+              <p className="mt-1 text-[11px] leading-5 text-cyan-700 sm:text-xs">
                 Settled through Advance Ref: {row.originalAdvanceRefNo}
               </p>
             ) : null}
           </div>
 
           <button
+            type="button"
             onClick={onClose}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-slate-200 bg-white text-slate-600 transition hover:bg-slate-50 hover:text-slate-900"
+            className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-slate-200 bg-white text-slate-600 transition hover:bg-slate-50 hover:text-slate-900"
           >
             <X className="h-4 w-4" />
           </button>
         </div>
 
-        <div className="min-h-0 flex-1 overflow-auto px-3 py-3 sm:px-5 sm:py-4">
-          <div className="overflow-hidden rounded-[20px] border border-slate-200">
+        <div className="min-h-0 flex-1 overflow-y-auto px-3 py-3 sm:px-5 sm:py-4">
+          {/* Desktop */}
+          <div className="hidden max-h-full overflow-auto rounded-[20px] border border-slate-200 sm:block">
             <table className="w-full table-fixed">
               <colgroup>
                 <col className="w-[16%]" />
@@ -1753,39 +1750,146 @@ function SettlementDetailsModal({
                   <th className="px-4 py-3 font-semibold">Date</th>
                   <th className="px-4 py-3 font-semibold">Voucher No.</th>
                   <th className="px-4 py-3 font-semibold">Particulars</th>
-                  <th className="px-4 py-3 text-right font-semibold">Adjusted Amount</th>
+                  <th className="px-4 py-3 text-right font-semibold">
+                    Adjusted Amount
+                  </th>
                   <th className="px-4 py-3 font-semibold">Dr/Cr</th>
                   <th className="px-4 py-3 text-center font-semibold">Open</th>
                 </tr>
               </thead>
 
               <tbody>
-                {row.settlementRows.map((item, index) => (
-                  <tr
-                    key={item.id}
-                    className={index !== 0 ? "border-t border-slate-100" : ""}
-                  >
-                    <td className="px-4 py-3 text-sm text-slate-700">
-                      {formatDate(item.settlementTransaction?.voucherDate)}
-                    </td>
+                {row.settlementRows.map((item, index) => {
+                  const settlementTxn = item.settlementTransaction;
+                  const openAttachment =
+                    settlementTxn?.attachments?.[0]?.fileUrl ||
+                    row.attachments?.[0]?.fileUrl;
 
-                    <td className="px-4 py-3 text-sm font-semibold text-slate-700">
-                      {item.settlementTransaction?.voucherNo || "—"}
-                    </td>
+                  const openTarget =
+                    settlementTxn?.attachments?.[0] || row.attachments?.[0];
 
-                    <td className="px-4 py-3 text-sm text-slate-700">
-                      {item.settlementTransaction?.particulars || "—"}
-                    </td>
+                  return (
+                    <tr
+                      key={item.id}
+                      className={index !== 0 ? "border-t border-slate-100" : ""}
+                    >
+                      <td className="px-4 py-3 text-sm text-slate-700">
+                        {formatDate(settlementTxn?.voucherDate)}
+                      </td>
 
-                    <td className="px-4 py-3 text-right text-sm font-bold text-slate-900">
-                      ₹ {formatCurrency(item.amount)}
-                    </td>
+                      <td className="px-4 py-3 text-sm font-semibold text-slate-700">
+                        {settlementTxn?.voucherNo || item.refNo || "—"}
+                      </td>
 
-                    <td className="px-4 py-3 text-sm font-semibold text-slate-700">
-                      {item.side || "—"}
-                    </td>
-                  </tr>
-                ))}
+                      <td className="px-4 py-3 text-sm text-slate-700">
+                        {settlementTxn?.particulars || "—"}
+                      </td>
+
+                      <td className="px-4 py-3 text-right text-sm font-bold text-slate-900">
+                        ₹ {formatCurrency(item.amount)}
+                      </td>
+
+                      <td className="px-4 py-3 text-sm font-semibold text-slate-700">
+                        {item.side || "—"}
+                      </td>
+
+                      <td className="px-4 py-3 text-center">
+                        {openAttachment ? (
+                          <button
+                            type="button"
+                            onClick={() => openAttachmentInNewTab(openTarget)}
+                            className="text-sm font-semibold text-violet-700 underline-offset-4 hover:underline"
+                          >
+                            Open
+                          </button>
+                        ) : (
+                          <span className="text-sm text-slate-400">—</span>
+                        )}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Mobile */}
+          <div className="max-h-full overflow-auto rounded-[20px] border border-slate-200 sm:hidden">
+            <table className="w-full table-fixed">
+              <colgroup>
+                <col className="w-[24%]" />
+                <col className="w-[44%]" />
+                <col className="w-[32%]" />
+              </colgroup>
+
+              <thead className="border-b border-slate-200 bg-slate-50/80">
+                <tr className="text-left text-[10px] uppercase tracking-[0.14em] text-slate-500">
+                  <th className="px-3 py-3 font-semibold">Date</th>
+                  <th className="px-3 py-3 font-semibold">Particulars</th>
+                  <th className="px-3 py-3 text-right font-semibold">
+                    Adjusted Amount
+                  </th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {row.settlementRows.map((item, index) => {
+                  const settlementTxn = item.settlementTransaction;
+                  const voucherLabel =
+                    settlementTxn?.voucherNo || item.refNo || "—";
+
+                  const openTarget =
+                    settlementTxn?.attachments?.[0] || row.attachments?.[0];
+
+                  const hasOpen =
+                    !!settlementTxn?.attachments?.[0]?.fileUrl ||
+                    !!row.attachments?.[0]?.fileUrl;
+
+                  return (
+                    <tr
+                      key={item.id}
+                      className={index !== 0 ? "border-t border-slate-100" : ""}
+                    >
+                      <td className="px-3 py-3 align-top">
+                        <p className="text-[12px] font-semibold leading-5 text-slate-900">
+                          {formatDate(settlementTxn?.voucherDate)}
+                        </p>
+                      </td>
+
+                      <td className="px-3 py-3 align-top">
+                        <p className="text-[12px] leading-5 text-slate-800">
+                          {settlementTxn?.particulars || "—"}
+                        </p>
+
+                        <div className="mt-1 space-y-1">
+                          <p className="text-[11px] font-semibold leading-4 text-violet-700">
+                            {voucherLabel}
+                          </p>
+
+                          {hasOpen ? (
+                            <button
+                              type="button"
+                              onClick={() => openAttachmentInNewTab(openTarget)}
+                              className="text-[11px] font-semibold leading-4 text-cyan-700 underline-offset-4 hover:underline"
+                            >
+                              Open Attachment
+                            </button>
+                          ) : null}
+                        </div>
+                      </td>
+
+                      <td className="px-3 py-3 text-right align-top">
+                        <p className="text-[12px] font-bold leading-5 text-slate-900">
+                          ₹ {formatCurrency(item.amount)}
+                        </p>
+
+                        <p className="mt-1 text-[11px] font-semibold leading-4 text-slate-500">
+                          {item.side || "—"}
+                        </p>
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
@@ -1909,15 +2013,20 @@ function RowActionMenu({
               }}
             />
 
-            {row.settlementRows.length > 0 ? (
-              <MenuButton
-                label="View Settlement"
-                onClick={() => {
-                  setOpen(false);
-                  setSettlementOpen(true);
-                }}
-              />
-            ) : null}
+{row.settlementRows.length > 0 ? (
+  <button
+    type="button"
+    onClick={() => {
+      const event = new CustomEvent("open-mobile-settlement", {
+        detail: row,
+      });
+      window.dispatchEvent(event);
+    }}
+    className="mt-1 inline-flex whitespace-nowrap text-[11px] font-semibold leading-none text-violet-700 underline-offset-4 hover:underline"
+  >
+    View Settlement
+  </button>
+) : null}
           </motion.div>,
           document.body,
         )}
