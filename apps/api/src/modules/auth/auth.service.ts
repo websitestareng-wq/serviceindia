@@ -8,6 +8,7 @@ import { PrismaService } from "../../prisma/prisma.service";
 import { LoginDto } from "./dto/login.dto";
 import { CaptchaService } from "../../common/services/captcha.service";
 import * as bcrypt from "bcrypt";
+import { randomUUID } from "crypto";
 
 @Injectable()
 export class AuthService {
@@ -64,8 +65,8 @@ export class AuthService {
 
     const requiresSecretKey =
       user.role === "SUPER_ADMIN" ||
-      user.role === "ADMIN_VIEWER" ||
-      user.role === "ADMIN";
+      user.role === "ADMIN" ||
+      user.role === "ADMIN_VIEWER";
 
     return {
       success: true,
@@ -75,7 +76,10 @@ export class AuthService {
     };
   }
 
-  async loginUser(payload: LoginDto) {
+  async loginUser(
+    payload: LoginDto,
+    meta?: { headers?: Record<string, any>; ip?: string },
+  ) {
     const emailOrPhone = payload.emailOrPhone?.trim();
 
     if (!emailOrPhone) {
@@ -111,10 +115,25 @@ export class AuthService {
       );
     }
 
+    const now = new Date();
+    const sessionToken = randomUUID();
+    const expiresAt = new Date(now.getTime() + 24 * 60 * 60 * 1000);
+
     await this.prisma.user.update({
       where: { id: user.id },
       data: {
-        lastLoginAt: new Date(),
+        lastLoginAt: now,
+      },
+    });
+
+    await this.prisma.userSession.create({
+      data: {
+        userId: user.id,
+        sessionToken,
+        userAgent: meta?.headers?.["user-agent"] || null,
+        ipAddress: meta?.ip || null,
+        isActive: true,
+        expiresAt,
       },
     });
 
@@ -124,10 +143,10 @@ export class AuthService {
         role: user.role,
         email: user.email,
         phone: user.phone,
-        sessionVersion: user.sessionVersion,
+        sessionToken,
       },
       {
-        expiresIn: "30m",
+        expiresIn: "1d",
       },
     );
 
@@ -144,7 +163,10 @@ export class AuthService {
     };
   }
 
-  async loginAdmin(payload: LoginDto) {
+  async loginAdmin(
+    payload: LoginDto,
+    meta?: { headers?: Record<string, any>; ip?: string },
+  ) {
     const emailOrPhone = payload.emailOrPhone?.trim();
 
     if (!emailOrPhone) {
@@ -197,10 +219,25 @@ export class AuthService {
       throw new UnauthorizedException("Invalid secret key.");
     }
 
+    const now = new Date();
+    const sessionToken = randomUUID();
+    const expiresAt = new Date(now.getTime() + 24 * 60 * 60 * 1000);
+
     await this.prisma.user.update({
       where: { id: user.id },
       data: {
-        lastLoginAt: new Date(),
+        lastLoginAt: now,
+      },
+    });
+
+    await this.prisma.userSession.create({
+      data: {
+        userId: user.id,
+        sessionToken,
+        userAgent: meta?.headers?.["user-agent"] || null,
+        ipAddress: meta?.ip || null,
+        isActive: true,
+        expiresAt,
       },
     });
 
@@ -210,10 +247,10 @@ export class AuthService {
         role: user.role,
         email: user.email,
         phone: user.phone,
-        sessionVersion: user.sessionVersion,
+        sessionToken,
       },
       {
-        expiresIn: "30m",
+        expiresIn: "1d",
       },
     );
 
@@ -230,13 +267,16 @@ export class AuthService {
     };
   }
 
-  async logoutUser(userId: string) {
-    await this.prisma.user.update({
-      where: { id: userId },
+  async logoutUser(sessionToken: string) {
+    if (!sessionToken) return;
+
+    await this.prisma.userSession.updateMany({
+      where: {
+        sessionToken,
+        isActive: true,
+      },
       data: {
-        sessionVersion: {
-          increment: 1,
-        },
+        isActive: false,
       },
     });
   }

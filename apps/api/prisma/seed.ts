@@ -51,7 +51,6 @@ async function main() {
       secretKeyHash: superSecretKeyHash,
       role: UserRole.SUPER_ADMIN,
       isActive: true,
-      sessionVersion: 1,
     },
     create: {
       name: superAdminName,
@@ -61,7 +60,6 @@ async function main() {
       secretKeyHash: superSecretKeyHash,
       role: UserRole.SUPER_ADMIN,
       isActive: true,
-      sessionVersion: 1,
     },
   });
 
@@ -74,7 +72,6 @@ async function main() {
       secretKeyHash: viewerSecretKeyHash,
       role: UserRole.ADMIN_VIEWER,
       isActive: true,
-      sessionVersion: 1,
     },
     create: {
       name: viewerName,
@@ -84,7 +81,6 @@ async function main() {
       secretKeyHash: viewerSecretKeyHash,
       role: UserRole.ADMIN_VIEWER,
       isActive: true,
-      sessionVersion: 1,
     },
   });
 

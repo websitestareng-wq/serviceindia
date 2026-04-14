@@ -10,7 +10,7 @@ type JwtPayload = {
   email?: string | null;
   phone?: string | null;
   role?: string;
-  sessionVersion?: number;
+  sessionToken?: string;
 };
 
 function extractJwtFromCookie(req: Request): string | null {
@@ -44,7 +44,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   }
 
   async validate(payload: JwtPayload) {
-    if (!payload?.sub || !payload?.role) {
+    if (!payload?.sub || !payload?.role || !payload?.sessionToken) {
       throw new UnauthorizedException("Invalid token payload.");
     }
 
@@ -56,7 +56,6 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
         phone: true,
         role: true,
         isActive: true,
-        sessionVersion: true,
       },
     });
 
@@ -72,10 +71,31 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       throw new UnauthorizedException("Role mismatch.");
     }
 
-    if (
-      typeof payload.sessionVersion !== "number" ||
-      user.sessionVersion !== payload.sessionVersion
-    ) {
+    const session = await this.prisma.userSession.findUnique({
+      where: {
+        sessionToken: payload.sessionToken,
+      },
+      select: {
+        id: true,
+        userId: true,
+        isActive: true,
+        expiresAt: true,
+      },
+    });
+
+    if (!session) {
+      throw new UnauthorizedException("Session not found.");
+    }
+
+    if (session.userId !== user.id) {
+      throw new UnauthorizedException("Session mismatch.");
+    }
+
+    if (!session.isActive) {
+      throw new UnauthorizedException("Session expired.");
+    }
+
+    if (session.expiresAt.getTime() <= Date.now()) {
       throw new UnauthorizedException("Session expired.");
     }
 
@@ -84,6 +104,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       email: user.email,
       phone: user.phone,
       role: user.role,
+      sessionToken: payload.sessionToken,
     };
   }
 }

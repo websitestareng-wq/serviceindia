@@ -25,7 +25,7 @@ model User {
   createdAt            DateTime  @default(now())
   updatedAt            DateTime  @updatedAt
   lastPasswordChangedAt DateTime?
-  sessionVersion        Int       @default(1)
+  sessions             UserSession[]
 
   transactions          Transaction[]  @relation("TransactionParty")
   createdTransactions   Transaction[]  @relation("TransactionCreatedBy")
@@ -37,7 +37,24 @@ model User {
   @@index([gstin])
   @@index([pan])
 }
+model UserSession {
+  id           String   @id @default(cuid())
+  userId       String
+  sessionToken String   @unique
+  userAgent    String?
+  ipAddress    String?
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  expiresAt    DateTime
 
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([sessionToken])
+  @@index([isActive])
+  @@index([expiresAt])
+}
 model Transaction {
   id          String          @id @default(cuid())
   voucherNo   String

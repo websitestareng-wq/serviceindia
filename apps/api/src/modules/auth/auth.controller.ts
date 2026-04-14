@@ -49,12 +49,42 @@ export class AuthController {
     return this.authService.identify(body);
   }
 
-  @Post("user/login")
-  async loginUser(
-    @Body() body: LoginDto,
-    @Res({ passthrough: true }) res: Response,
-  ) {
-    const result = await this.authService.loginUser(body);
+@Post("user/login")
+async loginUser(
+  @Body() body: LoginDto,
+  @Req() req: Request,
+  @Res({ passthrough: true }) res: Response,
+) {
+  const result = await this.authService.loginUser(body, {
+    headers: req.headers as Record<string, any>,
+    ip: req.ip,
+  });
+
+    res.cookie(AUTH_COOKIE_NAME, result.accessToken, authCookieOptions);
+    res.cookie(ROLE_COOKIE_NAME, result.user.role, roleCookieOptions);
+
+    res.setHeader(
+      "Cache-Control",
+      "no-store, no-cache, must-revalidate, proxy-revalidate",
+    );
+    res.setHeader("Pragma", "no-cache");
+    res.setHeader("Expires", "0");
+    res.setHeader("Surrogate-Control", "no-store");
+
+    return {
+      user: result.user,
+    };
+  }
+@Post("admin/login")
+async loginAdmin(
+  @Body() body: LoginDto,
+  @Req() req: Request,
+  @Res({ passthrough: true }) res: Response,
+) {
+  const result = await this.authService.loginAdmin(body, {
+    headers: req.headers as Record<string, any>,
+    ip: req.ip,
+  });
 
     res.cookie(AUTH_COOKIE_NAME, result.accessToken, authCookieOptions);
     res.cookie(ROLE_COOKIE_NAME, result.user.role, roleCookieOptions);
@@ -72,38 +102,15 @@ export class AuthController {
     };
   }
 
-  @Post("admin/login")
-  async loginAdmin(
-    @Body() body: LoginDto,
-    @Res({ passthrough: true }) res: Response,
-  ) {
-    const result = await this.authService.loginAdmin(body);
+@UseGuards(JwtAuthGuard)
+@Post("logout")
+async logout(
+  @Req() req: Request,
+  @Res({ passthrough: true }) res: Response,
+) {
+  const user = req.user as { id: string; sessionToken?: string };
 
-    res.cookie(AUTH_COOKIE_NAME, result.accessToken, authCookieOptions);
-    res.cookie(ROLE_COOKIE_NAME, result.user.role, roleCookieOptions);
-
-    res.setHeader(
-      "Cache-Control",
-      "no-store, no-cache, must-revalidate, proxy-revalidate",
-    );
-    res.setHeader("Pragma", "no-cache");
-    res.setHeader("Expires", "0");
-    res.setHeader("Surrogate-Control", "no-store");
-
-    return {
-      user: result.user,
-    };
-  }
-
-  @UseGuards(JwtAuthGuard)
-  @Post("logout")
-  async logout(
-    @Req() req: Request,
-    @Res({ passthrough: true }) res: Response,
-  ) {
-    const user = req.user as { id: string };
-
-    await this.authService.logoutUser(user.id);
+  await this.authService.logoutUser(user.sessionToken || "");
 
     res.clearCookie(AUTH_COOKIE_NAME, authCookieOptions);
     res.clearCookie(ROLE_COOKIE_NAME, roleCookieOptions);
@@ -119,9 +126,12 @@ export class AuthController {
     return { success: true };
   }
 
-  @UseGuards(JwtAuthGuard)
-  @Get("verify")
-  verify() {
-    return { valid: true };
-  }
+@UseGuards(JwtAuthGuard)
+@Get("verify")
+verify(@Req() req: Request) {
+  return {
+    valid: true,
+    user: req.user,
+  };
+}
 }
