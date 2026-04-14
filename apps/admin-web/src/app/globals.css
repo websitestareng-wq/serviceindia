@@ -3252,7 +3252,7 @@ summary {
 }
 @media (max-width: 520px){
   .websiteHeader .brandWord{
-    font-size: 17px;
+    font-size: 15px;
     max-width: none;
     line-height: 1;
     white-space: nowrap;
