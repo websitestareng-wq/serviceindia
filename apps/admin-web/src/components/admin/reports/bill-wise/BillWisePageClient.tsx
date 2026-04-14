@@ -1291,77 +1291,26 @@ function applyFilters() {
                 <div className="overflow-hidden rounded-[22px] border border-violet-100/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(250,245,255,0.92))] shadow-[0_12px_28px_rgba(124,58,237,0.08)] lg:hidden">
                   <table className="w-full table-fixed">
                     <colgroup>
-                      <col className="w-[26%]" />
-                      <col className="w-[42%]" />
-                      <col className="w-[22%]" />
-                      <col className="w-[10%]" />
-                    </colgroup>
-                    <thead className="border-b border-violet-100 bg-[linear-gradient(135deg,rgba(168,85,247,0.07),rgba(124,58,237,0.05),rgba(236,72,153,0.04))]">
-                      <tr className="text-left text-[10px] uppercase tracking-[0.16em] text-slate-500">
-                        <th className="px-3 py-2.5 font-semibold">Date / Ref</th>
-                        <th className="px-3 py-2.5 font-semibold">Particulars</th>
-                        <th className="px-3 py-2.5 text-right font-semibold">
-                          Pending
-                        </th>
-                        <th className="px-2 py-2.5 text-center font-semibold">
-                          Act
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {filteredRows.map((row, index) => (
-                        <tr
-                          key={row.id}
-                          className={`${
-                            index !== 0 ? "border-t border-slate-100" : ""
-                          } align-top transition-colors hover:bg-violet-50/30`}
-                        >
-                          <td className="px-3 py-3">
-                            <p className="text-[12px] font-semibold leading-4 text-slate-900">
-                              {formatDate(row.date)}
-                            </p>
-                            <p className="mt-1 text-[11px] leading-4 text-slate-500">
-                              Ref:{" "}
-                              <span className="font-semibold text-slate-700">
-                                {row.refNo}
-                              </span>
-                            </p>
-                          </td>
-
-                          <td className="px-3 py-3">
-  <p className="line-clamp-2 text-[12px] leading-4 text-slate-800">
-    {row.narration || "—"}
-  </p>
-
-  {row.reportBucket === "receivable-settled-from-advance" ||
-  row.reportBucket === "payable-settled-from-advance" ? (
-    <p className="mt-1 text-[10px] font-semibold leading-4 text-cyan-700">
-      From Adv: {row.originalAdvanceRefNo || "—"}
-    </p>
-  ) : null}
-
-  <p className="mt-1 text-[11px] leading-4 text-slate-500">
-    ₹ {formatCurrency(row.billAmount)}
-  </p>
-</td>
-
-                          <td className="px-3 py-3 text-right">
-  <p className="text-[12px] font-bold leading-4 text-rose-600">
-    ₹ {formatCurrency(row.pendingAmount)}
-  </p>
-  {row.status === "Paid" && row.settledAmount > 0 ? (
-    <p className="mt-1 text-[10px] font-semibold leading-4 text-emerald-700">
-      Adj. ₹ {formatCurrency(row.settledAmount)}
-    </p>
-  ) : null}
-</td>
-
-                          <td className="px-2 py-3 text-center">
-                            <RowActionMenu row={row} compact />
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
+  <col className="w-[22%]" />
+  <col className="w-[46%]" />
+  <col className="w-[32%]" />
+</colgroup>
+<thead className="border-b border-violet-100 bg-[linear-gradient(135deg,rgba(168,85,247,0.07),rgba(124,58,237,0.05),rgba(236,72,153,0.04))]">
+  <tr className="text-left text-[10px] uppercase tracking-[0.16em] text-slate-500">
+    <th className="px-2 py-2.5 font-semibold">Date</th>
+    <th className="px-2 py-2.5 font-semibold">Particulars</th>
+    <th className="px-2 py-2.5 text-right font-semibold">Pending</th>
+  </tr>
+</thead>
+<tbody>
+  {filteredRows.map((row, index) => (
+    <AdminMobileBillWiseRow
+      key={row.id}
+      row={row}
+      bordered={index !== 0}
+    />
+  ))}
+</tbody>
                   </table>
                 </div>
               )}
@@ -1735,6 +1684,85 @@ function ReportTableRow({
     </>
   );
 }
+function AdminMobileBillWiseRow({
+  row,
+  bordered,
+}: {
+  row: ReportRow;
+  bordered: boolean;
+}) {
+  const [settlementOpen, setSettlementOpen] = useState(false);
+
+  return (
+    <>
+      <tr
+        className={`${
+          bordered ? "border-t border-slate-100" : ""
+        } align-top transition-colors duration-200 hover:bg-violet-50/30`}
+      >
+        <td className="px-2 py-3 align-top">
+          <p className="text-[12px] font-semibold leading-4 text-slate-900 break-words">
+            {formatDate(row.date)}
+          </p>
+        </td>
+
+        <td className="px-2 py-3 align-top">
+          <p className="line-clamp-2 text-[12px] leading-4 text-slate-800">
+            {row.narration || "—"}
+          </p>
+
+          <div className="mt-1 flex flex-wrap items-center gap-1 text-[11px] leading-4 text-slate-500">
+            {row.attachments?.[0]?.fileUrl ? (
+              <button
+                type="button"
+                onClick={() => openAttachmentInNewTab(row.attachments[0])}
+                className="font-semibold text-violet-700 underline-offset-4 hover:underline"
+              >
+                {row.refNo || "—"}
+              </button>
+            ) : (
+              <span>{row.refNo || "—"}</span>
+            )}
+          </div>
+
+          {row.reportBucket === "receivable-settled-from-advance" ||
+          row.reportBucket === "payable-settled-from-advance" ? (
+            <p className="mt-1 text-[10px] font-semibold leading-4 text-cyan-700">
+              From Adv: {row.originalAdvanceRefNo || "—"}
+            </p>
+          ) : null}
+        </td>
+
+        <td className="px-2 py-3 text-right align-top">
+          <p className="text-[12px] font-bold leading-4 text-rose-600">
+            {formatCurrency(row.pendingAmount)}
+          </p>
+
+          <p className="mt-1 text-[10px] leading-4 text-slate-500">
+            {row.status}
+          </p>
+
+          {row.settlementRows.length > 0 ? (
+            <button
+              type="button"
+              onClick={() => setSettlementOpen(true)}
+              className="mt-1 text-[11px] font-semibold text-violet-700 underline-offset-4 hover:underline"
+            >
+              View Settlement
+            </button>
+          ) : null}
+        </td>
+      </tr>
+
+      {settlementOpen ? (
+        <SettlementDetailsModal
+          row={row}
+          onClose={() => setSettlementOpen(false)}
+        />
+      ) : null}
+    </>
+  );
+}
 function SettlementDetailsModal({
   row,
   onClose,
@@ -1813,24 +1841,6 @@ function SettlementDetailsModal({
 
                     <td className="px-4 py-3 text-sm font-semibold text-slate-700">
                       {item.side || "—"}
-                    </td>
-
-                    <td className="px-4 py-3 text-center">
-                      {item.settlementTransaction?.attachments?.[0]?.fileUrl ? (
-                        <button
-                          type="button"
-                          onClick={() =>
-                            openAttachmentInNewTab(
-                              item.settlementTransaction?.attachments?.[0],
-                            )
-                          }
-                          className="text-xs font-semibold text-violet-700 underline-offset-4 hover:underline"
-                        >
-                          Open
-                        </button>
-                      ) : (
-                        <span className="text-xs text-slate-400">—</span>
-                      )}
                     </td>
                   </tr>
                 ))}

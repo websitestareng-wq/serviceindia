@@ -1315,9 +1315,6 @@ const params = new URLSearchParams({
             ) : (
               <span>{row.refNo || "—"}</span>
             )}
-
-            <span>•</span>
-            <span>Bill {formatCurrency(row.billAmount)}</span>
           </div>
 
           {row.reportBucket === "receivable-settled-from-advance" ||
@@ -1786,24 +1783,6 @@ function SettlementDetailsModal({
 
                     <td className="px-4 py-3 text-sm font-semibold text-slate-700">
                       {item.side || "—"}
-                    </td>
-
-                    <td className="px-4 py-3 text-center">
-                      {item.settlementTransaction?.attachments?.[0]?.fileUrl ? (
-                        <button
-                          type="button"
-                          onClick={() =>
-                            openAttachmentInNewTab(
-                              item.settlementTransaction?.attachments?.[0],
-                            )
-                          }
-                          className="text-xs font-semibold text-violet-700 underline-offset-4 hover:underline"
-                        >
-                          Open
-                        </button>
-                      ) : (
-                        <span className="text-xs text-slate-400">—</span>
-                      )}
                     </td>
                   </tr>
                 ))}

@@ -824,16 +824,6 @@ onChange={(e) => {
         <p className="mt-1 text-[11px] leading-4 text-slate-500">
           {row.debit ? "Debit" : row.credit ? "Credit" : ""}
         </p>
-
-        {row.attachments?.[0]?.fileUrl ? (
-          <button
-            type="button"
-            onClick={() => openAttachmentInNewTab(row.attachments[0])}
-            className="mt-1 text-[11px] font-semibold text-violet-700 underline-offset-4 hover:underline"
-          >
-            Open
-          </button>
-        ) : null}
       </td>
     </motion.tr>
   ))}
