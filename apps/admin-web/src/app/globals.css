@@ -17,14 +17,13 @@
 }
 
 @theme inline {
-  --color-background: rgb(var(--background));
-  --color-foreground: rgb(var(--foreground));
-  --color-border: rgb(var(--border));
+  --color-background: #f4f8ff;
+  --color-foreground: #0f172a;
+  --color-border: rgba(15, 23, 42, 0.10);
 }
 
 * {
   box-sizing: border-box;
-  border-color: rgb(var(--border));
 }
 
 html {
