@@ -47,7 +47,7 @@ body {
     "Segoe UI",
     sans-serif;
   color: rgb(var(--foreground));
-  background: #f8f9fd;
+  background: #f4f8ff;
 }
 
 .auth-page {
@@ -1237,7 +1237,7 @@ button:disabled,
   --line:rgba(15,23,42,.10);
 
   --primary:#2b67f6;
-  --primary2:#7c3aed;
+  --primary2:#2563eb;
   --radius:16px;
 
   --shadow: 0 10px 30px rgba(2,6,23,.08);
@@ -1679,7 +1679,7 @@ a,
   height:8px;
   border-radius:99px;
   background:linear-gradient(90deg,#0ea5e9,#2563eb,#1d4ed8,#0ea5e9);
-  box-shadow:0 10px 24px rgba(124,58,237,.22);
+  box-shadow:0 10px 24px rgba(37,99,235,.22);
 }
 
 .heroTitle{
@@ -1765,7 +1765,7 @@ a,
   content:"";
   position:absolute;
   inset:-2px;
-  background:linear-gradient(135deg, rgba(255,45,85,.16), rgba(124,58,237,.14), rgba(37,99,235,.14));
+  background:linear-gradient(135deg, rgba(14,165,233,.14), rgba(37,99,235,.12), rgba(56,189,248,.12));
   opacity:0;
   transition:opacity .25s ease;
 }
@@ -1861,7 +1861,7 @@ a,
   height:2px;
   width:38%;
   border-radius:99px;
-  background:linear-gradient(90deg, rgba(255,45,85,.9), rgba(124,58,237,.9), rgba(37,99,235,.9));
+  background:linear-gradient(90deg, rgba(14,165,233,.9), rgba(37,99,235,.9), rgba(29,78,216,.9));
   opacity:.55;
   animation:starShift 6s ease-in-out infinite;
   background-size:300% 300%;
@@ -1904,7 +1904,7 @@ a,
   right:-120px;
   bottom:-140px;
   border-radius:999px;
-  background:radial-gradient(circle at 30% 30%, rgba(124,58,237,.25), transparent 62%);
+  background:radial-gradient(circle at 30% 30%, rgba(37,99,235,.22), transparent 62%);
   filter:blur(20px);
   opacity:.8;
   pointer-events:none;
@@ -1929,7 +1929,7 @@ a,
   content:"";
   position:absolute;
   inset:-2px;
-  background:linear-gradient(135deg, rgba(255,45,85,.16), rgba(124,58,237,.14), rgba(37,99,235,.14));
+  background:linear-gradient(135deg, rgba(14,165,233,.16), rgba(37,99,235,.14), rgba(56,189,248,.14));
   opacity:.9;
   filter:blur(28px);
   pointer-events:none;
