@@ -12,7 +12,7 @@ type WebsiteMobileMenuProps = {
 const links = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
-    { href: "/shop", label: "Shop" },
+    { href: "/work", label: "Work" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -39,7 +39,7 @@ export default function WebsiteMobileMenu({
     <div className="mmOverlay" onClick={onClose}>
       <div className="mmDrawer" onClick={(e) => e.stopPropagation()}>
         <div className="mmTop">
-          <div className="brandText gradText">STAR ENGINEERING</div>
+          <div className="brandText gradText">SERVICE INDIA</div>
           <button
             type="button"
             className="mmClose"

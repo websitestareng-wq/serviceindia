@@ -80,37 +80,37 @@ export default function HomePage() {
               <div className="heroLeft" data-reveal>
                 <div className="heroBadge">
                   <span className="dot" />
-                  Trusted Engineering Materials Supplier
+                  Trusted Fabrication & Construction Service Partner
                 </div>
 
                 <h1 className="heroTitle">
-                  Premium <span className="gradText">Steel • Iron • Metals</span>
+                  Professional <span className="gradText">Fabrication • Civil Work • Site Support</span>
                   <br />
-                  Supply for Industrial Projects
+                  Solutions for Residential and Commercial Projects
                 </h1>
 
                 <p className="heroLead">
-                  STAR Engineering supplies engineering materials and industrial
-                  products with consistent quality, reliable sourcing, and
-                  professional documentation — built for contractors,
-                  manufacturers, and large procurement teams.
+                  SERVICE INDIA delivers reliable fabrication and on-site execution
+                  services including gates, grills, ladders, wall painting,
+                  labour support, and building construction work with practical
+                  planning, timely coordination, and dependable workmanship.
                 </p>
 
                 <div className="heroCtas">
                   <button
                     type="button"
                     className="btn btnAnim"
-                    onClick={() => router.push("/shop")}
+                    onClick={() => router.push("/contact")}
                   >
-                    Explore Products
+                    Request Service
                   </button>
 
                   <button
                     type="button"
                     className="btnGhost heroGhost"
-                    onClick={() => router.push("/contact")}
+                    onClick={() => router.push("/about")}
                   >
-                    Request a Quote
+                    Know More
                   </button>
                 </div>
               </div>
@@ -118,29 +118,29 @@ export default function HomePage() {
               <div className="heroRight" data-reveal>
                 <div className="heroPanel">
                   <div className="panelHead">
-                    <div className="panelTitle">What we supply</div>
-                    <div className="panelSub">Industrial-grade categories</div>
+                    <div className="panelTitle">What we do</div>
+                    <div className="panelSub">Practical on-site service categories</div>
                   </div>
 
                   <div className="pillGrid">
-                    <div className="pill">I Section & C Section</div>
-                    <div className="pill">L Section & T Section</div>
-                    <div className="pill">M.S. / S.S. / G.I. Items</div>
-                    <div className="pill">TMT / Rods / Bars</div>
-                    <div className="pill">Sheets & Metal Plates</div>
-                    <div className="pill">Fabrication Materials</div>
-                    <div className="pill">All Construction Materials</div>
-                    <div className="pill">Custom Supply (PO)</div>
+                    <div className="pill">Gate Fabrication Work</div>
+                    <div className="pill">Grill Design & Installation</div>
+                    <div className="pill">Ladder Fabrication</div>
+                    <div className="pill">Wall Painting Services</div>
+                    <div className="pill">Building Construction Work</div>
+                    <div className="pill">Site Labour Support</div>
+                    <div className="pill">Repair & Maintenance Jobs</div>
+                    <div className="pill">Custom Project Work</div>
                   </div>
 
                   <div className="panelFoot">
-                    <div className="muted">Need a specific grade/spec?</div>
+                    <div className="muted">Need work as per site requirement?</div>
                     <button
                       type="button"
                       className="btnLink"
                       onClick={() => router.push("/contact")}
                     >
-                      Talk to Sales →
+                      Talk to Us →
                     </button>
                   </div>
                 </div>
@@ -149,20 +149,20 @@ export default function HomePage() {
 
             <section className="trustStrip trustStrip--underHero" data-reveal>
               <div className="trustItem">
-                <div className="trustBig">Corporate</div>
-                <div className="muted">Professional dealing</div>
+                <div className="trustBig">Execution</div>
+                <div className="muted">Practical site work support</div>
               </div>
               <div className="trustItem">
-                <div className="trustBig">Procurement</div>
-                <div className="muted">Purchase orders & billing</div>
+                <div className="trustBig">Fabrication</div>
+                <div className="muted">Custom metal work solutions</div>
               </div>
               <div className="trustItem">
-                <div className="trustBig">Quality</div>
-                <div className="muted">Consistent supply chain</div>
+                <div className="trustBig">Labour</div>
+                <div className="muted">Reliable manpower assistance</div>
               </div>
               <div className="trustItem">
-                <div className="trustBig">Support</div>
-                <div className="muted">Clear communication</div>
+                <div className="trustBig">Commitment</div>
+                <div className="muted">Clear communication and delivery</div>
               </div>
             </section>
           </div>
@@ -171,38 +171,37 @@ export default function HomePage() {
         <div className="container">
           <section className="section">
             <div className="sectionHead" data-reveal>
-              <h2 className="h2">Industries We Serve</h2>
+              <h2 className="h2">Services We Handle</h2>
               <p className="sub">
-                We support businesses that require timely, dependable materials
-                for critical timelines.
+                We support homes, commercial spaces, renovation sites and project-based work with dependable execution.
               </p>
             </div>
 
             <div className="tiles">
               {[
                 {
-                  t: "Infrastructure & Construction",
-                  s: "Structural steel and project materials",
+                  t: "Gate & Grill Fabrication",
+                  s: "Custom fabrication, fitting and finishing work for residential and commercial needs.",
                 },
                 {
-                  t: "Manufacturing & Fabrication",
-                  s: "MS/SS metals, pipes, and consumables",
+                  t: "Ladder & Metal Structure Work",
+                  s: "Practical fabrication for ladders and utility metal structures.",
                 },
                 {
-                  t: "Mechanical & Maintenance",
-                  s: "Replacement parts and fast supply",
+                  t: "Wall Painting Services",
+                  s: "Neat painting work for fresh sites, repairs and renovation jobs.",
                 },
                 {
-                  t: "Industrial Procurement",
-                  s: "PO based supply with documentation",
+                  t: "Building Construction Support",
+                  s: "Execution support for selected construction and site-based requirements.",
                 },
                 {
-                  t: "Warehousing & Logistics",
-                  s: "Bulk packaging, dispatch coordination",
+                  t: "Skilled & General Labour",
+                  s: "On-site manpower support for fabrication, fitting and related tasks.",
                 },
                 {
-                  t: "Contractors & Vendors",
-                  s: "Regular supply, repeat orders",
+                  t: "Custom Site Requirement",
+                  s: "Work handled as per client requirement, drawing, size and job condition.",
                 },
               ].map((x, i) => (
                 <div className="tile" data-reveal key={i}>
@@ -216,10 +215,9 @@ export default function HomePage() {
 
           <section className="section">
             <div className="sectionHead" data-reveal>
-              <h2 className="h2">Simple, Reliable Supply Process</h2>
+              <h2 className="h2">Simple and Reliable Work Process</h2>
               <p className="sub">
-                Designed for corporate purchasing — quick quotes, clear specs,
-                smooth delivery.
+                Clear discussion, site understanding and proper execution from requirement to completion.
               </p>
             </div>
 
@@ -227,23 +225,23 @@ export default function HomePage() {
               {[
                 {
                   n: "01",
-                  t: "Share requirement",
-                  s: "Material type, size, grade, quantity, delivery location.",
+                  t: "Share your requirement",
+                  s: "Tell us the work type, size, location, quantity or site condition.",
                 },
                 {
                   n: "02",
-                  t: "Quotation & confirmation",
-                  s: "Competitive rates, availability timeline, and terms.",
+                  t: "Inspection & discussion",
+                  s: "We understand scope, measurements and expected work output.",
                 },
                 {
                   n: "03",
-                  t: "Packaging & dispatch",
-                  s: "Proper handling with invoice / GST / challan.",
+                  t: "Execution starts",
+                  s: "Fabrication, labour, painting or site work is carried out properly.",
                 },
                 {
                   n: "04",
-                  t: "Support & repeat supply",
-                  s: "Ongoing material support for project timelines.",
+                  t: "Completion & support",
+                  s: "Work is completed with coordination and follow-up where needed.",
                 },
               ].map((x, i) => (
                 <div className="step" data-reveal key={i}>
@@ -259,11 +257,10 @@ export default function HomePage() {
           <section className="ctaBand" data-reveal>
             <div className="ctaLeft">
               <h2 className="ctaTitle">
-                Ready to source materials for your next project?
+                Planning a fabrication or site work requirement?
               </h2>
               <p className="ctaSub">
-                Tell us your requirement and we’ll respond with a quote and
-                availability.
+                Share your job details and SERVICE INDIA will connect with you for discussion and execution support.
               </p>
             </div>
 
@@ -273,15 +270,15 @@ export default function HomePage() {
                 className="btn btnAnim"
                 onClick={() => router.push("/contact")}
               >
-                Get Quote
+                Contact Now
               </button>
 
               <button
                 type="button"
                 className="btnGhost btnGhost--cta"
-                onClick={() => router.push("/shop")}
+                onClick={() => router.push("/about")}
               >
-                Browse Listing
+                View Company Profile
               </button>
             </div>
           </section>

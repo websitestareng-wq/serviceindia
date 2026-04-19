@@ -1,7 +1,7 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "STAR ENGINEERING",
+  title: "SERVICE INDIA",
 };
 export default function RootLayout({
   children,

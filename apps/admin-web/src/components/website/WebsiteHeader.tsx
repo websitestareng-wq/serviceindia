@@ -37,13 +37,13 @@ export default function WebsiteHeader() {
             <Link href="/" className="brand brandWithLogo">
               <Image
                 className="brandLogo"
-                src="/logo/star-logo.png"
-                alt="STAR ENGINEERING"
+                src="/logo/service-india-logo.png"
+                alt="SERVICE INDIA"
                 width={50}
                 height={50}
                 priority
               />
-              <span className="brandWord gradText">STAR ENGINEERING</span>
+              <span className="brandWord gradText">SERVICE INDIA</span>
             </Link>
           </div>
 
@@ -58,10 +58,10 @@ export default function WebsiteHeader() {
               About
             </Link>
             <Link
-              href="/shop"
-              className={`navLink ${isActive("/shop") ? "active" : ""}`}
+              href="/work"
+              className={`navLink ${isActive("/work") ? "active" : ""}`}
             >
-              Shop
+              Work
             </Link>
             <Link
               href="/contact"

@@ -5,15 +5,15 @@ export default function WebsiteFooter() {
     <footer className="footer">
       <div className="container footerGrid">
         <div>
-          <div className="footerBrand">STAR ENGINEERING</div>
+          <div className="footerBrand">SERVICE INDIA</div>
           <div className="muted">
-            Quality steel, iron, metals, engineering products and construction material support.
+           Fabrication, construction and on-site labour services you can trust.
           </div>
         </div>
 
         <div className="footerLinks">
           <Link href="/about">About</Link>
-          <Link href="/shop">Shop</Link>
+          <Link href="/work">Work</Link>
           <Link href="/contact">Contact</Link>
           <Link href="/privacy">Privacy Policy</Link>
           <Link href="/terms">Terms & Conditions</Link>
@@ -22,7 +22,7 @@ export default function WebsiteFooter() {
 
       <div className="container footBottom">
         <span className="muted">
-          © {new Date().getFullYear()} STAR Engineering
+          © {new Date().getFullYear()} Service India
         </span>
       </div>
     </footer>

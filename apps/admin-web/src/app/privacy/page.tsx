@@ -17,7 +17,7 @@ export default function PrivacyPolicyPage() {
               <div className="legalBadge">Legal</div>
               <h1 className="legalTitle gradText">Privacy Policy</h1>
               <p className="legalSub">
-                STAR ENGINEERING (“we”, “us”, “our”) respects your privacy and is
+                SERVICE INDIA (“we”, “us”, “our”) respects your privacy and is
                 committed to protecting your personal information.
               </p>
               <div className="legalMeta">Last Updated: {lastUpdated}</div>
@@ -28,9 +28,9 @@ export default function PrivacyPolicyPage() {
             <div className="legalCard">
               <h2>1. Scope</h2>
               <p>
-                This Privacy Policy explains how STAR ENGINEERING collects, uses,
+                This Privacy Policy explains how SERVICE INDIA collects, uses,
                 shares, and protects information when you visit our website, use our
-                portals, request quotations, place orders, submit enquiries, or
+                portals, request quotations, execute work, submit enquiries, or
                 otherwise interact with us (collectively, the “Services”).
               </p>
               <p>
@@ -47,11 +47,9 @@ export default function PrivacyPolicyPage() {
                   number, and address when you submit an enquiry, request a quote, or
                   create an account.
                 </li>
-                <li>
-                  <b>Business & order details:</b> purchase order information,
-                  delivery/dispatch details, GST/company details (if applicable),
-                  product specifications, and communications.
-                </li>
+             <b>Business & requirement details:</b> work scope, site information,
+dimensions, drawings, specifications, timelines, project details,
+and related communications.
                 <li>
                   <b>Account/portal information:</b> login verification (OTP or other
                   methods as applicable), and preferences.
@@ -100,12 +98,11 @@ export default function PrivacyPolicyPage() {
               <h2>3. How We Use Your Information</h2>
               <ul>
                 <li>
-                  To provide and operate our Services (quotations, orders, dispatch,
-                  invoices, receipts, ledgers, support).
+                  To provide and operate our Services (quotations, work execution, site services, invoices, receipts, records, support).
                 </li>
                 <li>
-                  To communicate with you regarding enquiries, quotations, orders,
-                  delivery updates, and service notices.
+             To communicate with you regarding requirements, quotations, work scope,
+timelines, updates, and service notices.
                 </li>
                 <li>
                   To maintain accounting records, reconcile payments/collections, and
@@ -131,8 +128,8 @@ export default function PrivacyPolicyPage() {
               </p>
               <ul>
                 <li>
-                  <b>Performance of a contract</b> (e.g., fulfilling orders, providing
-                  quotations and service).
+                <b>Performance of a contract</b> (e.g., handling requirements,
+providing quotations, and delivering work/services).
                 </li>
                 <li>
                   <b>Legitimate interests</b> (e.g., business operations, security,
@@ -162,8 +159,8 @@ export default function PrivacyPolicyPage() {
                   enabled in future, to process online payments.
                 </li>
                 <li>
-                  <b>Logistics/transport partners:</b> for pickup, delivery, and
-                  shipment tracking.
+                 <b>Execution or support partners:</b> where required for site work,
+coordination, labour support, or related service execution.
                 </li>
                 <li>
                   <b>Legal and compliance:</b> if required by law, court order, or to
@@ -183,8 +180,8 @@ export default function PrivacyPolicyPage() {
               </p>
               <ul>
                 <li>
-                  <b>Order, invoice, receipt & accounting records:</b> retained as
-                  required under applicable tax and accounting laws.
+      <b>Quotation, invoice, receipt & accounting records:</b> retained as
+required under applicable tax and accounting laws.
                 </li>
                 <li>
                   <b>Support communications:</b> retained to resolve issues and
@@ -250,22 +247,15 @@ export default function PrivacyPolicyPage() {
               <div className="legalContact">
                 <div className="legalContactRow">
                   <span className="k">Company:</span>
-                  <span className="v">STAR ENGINEERING</span>
+                  <span className="v">SERVICE INDIA</span>
                 </div>
                 <div className="legalContactRow">
                   <span className="k">Email:</span>
-                  <span className="v">corporate@stareng.co.in</span>
+                  <span className="v">corporate@serviceind.co.in</span>
                 </div>
                 <div className="legalContactRow">
                   <span className="k">Phone:</span>
                   <span className="v">+91-9702485922</span>
-                </div>
-                <div className="legalContactRow">
-                  <span className="k">Address:</span>
-                  <span className="v">
-                    Shop No. 5, Chunawala Compound, Opp. BEST Depot / Kanakia
-                    Zillion, LBS Marg, Kurla (W), Mumbai - 400070, Maharashtra.
-                  </span>
                 </div>
               </div>
 
@@ -287,12 +277,11 @@ export default function PrivacyPolicyPage() {
           .legalPage {
             min-height: 100vh;
             color: #0f172a;
-            background:
-              radial-gradient(900px 420px at 15% 0%, rgba(255, 0, 102, 0.10), transparent 60%),
-              radial-gradient(760px 380px at 95% 18%, rgba(0, 102, 255, 0.10), transparent 55%),
-              radial-gradient(920px 520px at 80% 110%, rgba(255, 170, 0, 0.10), transparent 60%),
-              radial-gradient(820px 420px at 52% 105%, rgba(163, 0, 255, 0.08), transparent 65%),
-              linear-gradient(145deg, #ffffff 0%, #f7f8ff 50%, #ffffff 100%);
+background:
+  radial-gradient(900px 420px at 12% 8%, rgba(31,127,232,.10), transparent 60%),
+  radial-gradient(760px 380px at 92% 14%, rgba(20,87,184,.10), transparent 55%),
+  radial-gradient(920px 520px at 84% 108%, rgba(166,124,31,.10), transparent 60%),
+  linear-gradient(145deg, #ffffff 0%, #f6f8fc 55%, #fffaf2 100%);
           }
 
           .legalHero {

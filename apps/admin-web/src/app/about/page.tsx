@@ -83,18 +83,18 @@ export default function AboutPage() {
             <div className="aboutHeroBlock" data-reveal>
               <div className="heroBadge">
                 <span className="dot" />
-                Corporate • Industrial • Procurement Ready
+                Fabrication • Installation • Site Execution
               </div>
 
               <h1 className="aboutH1">
-                About <span className="gradText">STAR ENGINEERING</span>
+                About <span className="gradText">SERVICE INDIA</span>
               </h1>
 
               <p className="aboutLead">
-                STAR Engineering is a trusted supplier of steel, iron, metals
-                and engineering materials — built to support infrastructure,
-                manufacturing, fabrication, and corporate procurement teams with
-                reliable supply and professional documentation.
+                SERVICE INDIA provides fabrication, installation, repair,
+                maintenance and on-site execution services. We support homes,
+                workshops, warehouses and project sites with practical work,
+                skilled labour and reliable coordination.
               </p>
 
               <div className="aboutHeroActions">
@@ -103,35 +103,35 @@ export default function AboutPage() {
                   className="btn btnAnim"
                   onClick={() => router.push("/contact")}
                 >
-                  Request a Quote
+                  Send Requirement
                 </button>
 
                 <button
                   type="button"
                   className="btnGhost btnGhost--cta"
-                  onClick={() => router.push("/shop")}
+                  onClick={() => router.push("/")}
                 >
-                  View Product Listing
+                  View Services
                 </button>
               </div>
             </div>
 
             <div className="aboutStats" data-reveal>
               <div className="statBox">
-                <div className="statK">Industrial Supply</div>
-                <div className="statS">Steel • Iron • Metals</div>
+                <div className="statK">Fabrication Work</div>
+                <div className="statS">Gates • Grills • Structures</div>
               </div>
               <div className="statBox">
-                <div className="statK">Bulk Orders</div>
-                <div className="statS">PO / Tender friendly</div>
+                <div className="statK">Site Execution</div>
+                <div className="statS">Installation • fitting • work</div>
               </div>
               <div className="statBox">
-                <div className="statK">Documentation</div>
-                <div className="statS">Invoice • GST • Challan</div>
+                <div className="statK">Repair Support</div>
+                <div className="statS">Maintenance • modification</div>
               </div>
               <div className="statBox">
-                <div className="statK">Support</div>
-                <div className="statS">Clear communication</div>
+                <div className="statK">Custom Jobs</div>
+                <div className="statS">As per site requirement</div>
               </div>
             </div>
           </div>
@@ -142,9 +142,9 @@ export default function AboutPage() {
             <div className="sectionHead">
               <h2 className="h2">Company Overview</h2>
               <p className="sub">
-                We operate as a dependable sourcing and supply partner for
-                engineering materials — focused on quality consistency, supply
-                reliability, and transparent dealing.
+                We work as a practical execution partner for fabrication and
+                construction-related jobs — focused on proper work, timely
+                completion and clear coordination.
               </p>
             </div>
 
@@ -152,30 +152,26 @@ export default function AboutPage() {
               <div className="aboutCardX">
                 <h3 className="aboutH3">What we do</h3>
                 <p className="aboutP">
-                  We supply structural steel sections, MS/SS/GI materials, rods
-                  & bars, plates & sheets, fabrication essentials, fasteners and
-                  industrial consumables. Our process is designed for corporate
-                  purchasing — quick quotes, clear specifications, and
-                  professional records.
+                  SERVICE INDIA handles gate fabrication, grills, ladders,
+                  metal structures, wall painting, and basic construction work.
+                  We also provide labour support for on-site execution.
                 </p>
                 <p className="aboutP">
-                  Whether you need regular supply for daily operations or bulk
-                  material for project timelines, we support procurement with
-                  clarity and speed.
+                  Work is carried out as per drawing, size, site condition and
+                  requirement — whether small job or full project support.
                 </p>
               </div>
 
               <div className="aboutCardX">
-                <h3 className="aboutH3">Our history (how we work)</h3>
+                <h3 className="aboutH3">Our working approach</h3>
 
                 <div className="timeline">
                   <div className="tlItem">
                     <div className="tlDot" />
                     <div>
-                      <div className="tlTitle">Foundation</div>
+                      <div className="tlTitle">Understanding requirement</div>
                       <div className="tlSub">
-                        Established in 2013. Started with a focus on quality
-                        supply and long-term relationships.
+                        Work is understood based on site condition, size and need.
                       </div>
                     </div>
                   </div>
@@ -183,10 +179,9 @@ export default function AboutPage() {
                   <div className="tlItem">
                     <div className="tlDot" />
                     <div>
-                      <div className="tlTitle">Expansion</div>
+                      <div className="tlTitle">Planning</div>
                       <div className="tlSub">
-                        Extended categories to support fabrication,
-                        construction, and procurement needs.
+                        Execution method, manpower and work flow decided practically.
                       </div>
                     </div>
                   </div>
@@ -194,10 +189,9 @@ export default function AboutPage() {
                   <div className="tlItem">
                     <div className="tlDot" />
                     <div>
-                      <div className="tlTitle">Corporate-ready operations</div>
+                      <div className="tlTitle">Execution</div>
                       <div className="tlSub">
-                        PO-based supply, documentation workflow and dispatch
-                        coordination.
+                        Fabrication, installation or labour work completed properly.
                       </div>
                     </div>
                   </div>
@@ -205,21 +199,12 @@ export default function AboutPage() {
                   <div className="tlItem">
                     <div className="tlDot" />
                     <div>
-                      <div className="tlTitle">Today</div>
+                      <div className="tlTitle">Completion</div>
                       <div className="tlSub">
-                        Reliable sourcing + professional support for industrial
-                        customers.
+                        Work delivered with coordination and follow-up if needed.
                       </div>
                     </div>
                   </div>
-                </div>
-
-                <div className="aboutNote">
-                  <span className="pillMini">Note</span>
-                  <span className="muted">
-                    Exact grades/specs are confirmed as per requirement and
-                    availability.
-                  </span>
                 </div>
               </div>
             </div>
@@ -227,89 +212,46 @@ export default function AboutPage() {
 
           <section className="aboutSection" data-reveal>
             <div className="sectionHead">
-              <h2 className="h2">Why organizations choose us?</h2>
+              <h2 className="h2">Why clients choose us?</h2>
               <p className="sub">
-                We focus on dependable supply for industrial timelines — not
-                just selling products.
+                We focus on actual work execution, not just basic labour supply.
               </p>
             </div>
 
             <div className="aboutGrid3">
               {[
                 {
-                  t: "Specification-first supply",
-                  s: "Grades, sizes and quantities confirmed before dispatch — fewer mismatches.",
+                  t: "Requirement understanding",
+                  s: "Work is planned based on actual site condition and need.",
                 },
                 {
-                  t: "Procurement-ready workflow",
-                  s: "PO-based supply, billing clarity, GST invoices and challans in order.",
+                  t: "Practical execution",
+                  s: "Fabrication and work is done as per real usage requirement.",
                 },
                 {
-                  t: "Predictable timelines",
-                  s: "Availability + dispatch timelines shared upfront with clear confirmations.",
+                  t: "Flexible work type",
+                  s: "Small jobs, repairs or full project work handled.",
                 },
                 {
-                  t: "Bulk & repeat capability",
-                  s: "Supports tenders, projects and monthly procurement cycles.",
+                  t: "Labour support",
+                  s: "Skilled and general labour available for site work.",
                 },
                 {
-                  t: "Transparent communication",
-                  s: "Clear pricing, status updates and practical coordination — no confusion.",
+                  t: "Repair & modification",
+                  s: "Old structures can be repaired or modified.",
                 },
                 {
-                  t: "After-dispatch support",
-                  s: "Documentation, follow-ups and repeat orders handled professionally.",
+                  t: "Clear communication",
+                  s: "Simple and direct discussion throughout the work.",
                 },
               ].map((x, i) => (
                 <div className="whyCard" data-reveal key={i}>
                   <div className="whyTop">
-                    <span className="whyDot" aria-hidden="true" />
+                    <span className="whyDot" />
                     <div className="whyTitle">{x.t}</div>
                   </div>
                   <div className="whySub">{x.s}</div>
-                  <div className="whyBar" aria-hidden="true" />
-                </div>
-              ))}
-            </div>
-          </section>
-
-          <section className="aboutSection" data-reveal>
-            <div className="sectionHead">
-              <h2 className="h2">How supply works</h2>
-              <p className="sub">
-                Simple steps designed for corporate purchasing and project
-                timelines.
-              </p>
-            </div>
-
-            <div className="steps">
-              {[
-                {
-                  n: "01",
-                  t: "Requirement & specification",
-                  s: "Share item list (grade/size/quantity), delivery location, and timeline. We verify feasibility.",
-                },
-                {
-                  n: "02",
-                  t: "Quotation & availability",
-                  s: "We provide pricing, availability window, dispatch plan and documentation checklist (GST/Challan).",
-                },
-                {
-                  n: "03",
-                  t: "PO / confirmation",
-                  s: "Procurement confirmation via PO/approval. We lock specs, packaging requirements and dispatch schedule.",
-                },
-                {
-                  n: "04",
-                  t: "Packaging, billing & dispatch",
-                  s: "Material handling + invoice/GST/challan, dispatch coordination and tracking updates until delivery.",
-                },
-              ].map((x, i) => (
-                <div className="step step--alt" data-reveal key={i}>
-                  <div className="stepNo">{x.n}</div>
-                  <div className="stepTitle">{x.t}</div>
-                  <div className="stepSub">{x.s}</div>
-                  <div className="stepGlow" aria-hidden="true" />
+                  <div className="whyBar" />
                 </div>
               ))}
             </div>
@@ -318,11 +260,10 @@ export default function AboutPage() {
           <section className="ctaBand" data-reveal>
             <div className="ctaLeft">
               <h2 className="ctaTitle">
-                Need materials for your next requirement?
+                Need fabrication or site work?
               </h2>
               <p className="ctaSub">
-                Send your specifications and we’ll respond with a quote and
-                availability.
+                Share your requirement and SERVICE INDIA will connect with you.
               </p>
             </div>
 
@@ -332,15 +273,15 @@ export default function AboutPage() {
                 className="btn btnAnim"
                 onClick={() => router.push("/contact")}
               >
-                Talk to Sales
+                Contact Now
               </button>
 
               <button
                 type="button"
                 className="btnGhost btnGhost--cta"
-                onClick={() => router.push("/shop")}
+                onClick={() => router.push("/")}
               >
-                Browse Listing
+                Back to Home
               </button>
             </div>
           </section>

@@ -95,7 +95,7 @@ model TransactionBillRow {
   updatedAt        DateTime           @updatedAt
 
   transaction    Transaction          @relation(fields: [transactionId], references: [id], onDelete: Cascade)
-  againstBillRow TransactionBillRow?  @relation("BillRowSettlements", fields: [againstBillRowId], references: [id], onDelete: SetNull)
+ againstBillRow TransactionBillRow?  @relation("BillRowSettlements", fields: [againstBillRowId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   settlementRows TransactionBillRow[] @relation("BillRowSettlements")
 
   @@index([transactionId])
@@ -149,7 +149,7 @@ model DocumentFolder {
   updatedAt      DateTime @updatedAt
 
   category     DocumentCategory? @relation(fields: [categoryId], references: [id], onDelete: Cascade)
-  parentFolder DocumentFolder?   @relation("DocumentFolderChildren", fields: [parentFolderId], references: [id], onDelete: Cascade)
+  parentFolder DocumentFolder?   @relation("DocumentFolderChildren", fields: [parentFolderId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   childFolders DocumentFolder[]  @relation("DocumentFolderChildren")
   files        DocumentFile[]
 
@@ -175,7 +175,7 @@ model DocumentFile {
   updatedAt    DateTime @updatedAt
 
   category   DocumentCategory? @relation(fields: [categoryId], references: [id], onDelete: Cascade)
-  folder     DocumentFolder?   @relation(fields: [folderId], references: [id], onDelete: Cascade)
+ folder     DocumentFolder?   @relation(fields: [folderId], references: [id], onDelete: SetNull)
   uploadedBy User?             @relation("DocumentFileUploadedBy", fields: [uploadedById], references: [id], onDelete: SetNull)
 
   @@index([categoryId])

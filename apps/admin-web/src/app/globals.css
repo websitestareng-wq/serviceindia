@@ -1,9 +1,19 @@
 @import "tailwindcss";
 
-:root {
-  --background: 248 249 253;
-  --foreground: 15 23 42;
-  --border: 226 232 240;
+:root{
+  --bg0:#f6f7fb;
+  --bg1:#ffffff;
+  --txt:#0f172a;
+  --muted:#64748b;
+  --line:rgba(15,23,42,.10);
+
+  /* 🔥 NEW SERVICE INDIA COLORS */
+  --primary:#0ea5e9;      /* sky blue */
+  --primary2:#2563eb;    /* deep blue */
+  --radius:16px;
+
+  --shadow: 0 10px 30px rgba(2,6,23,.08);
+  --shadow2: 0 6px 18px rgba(2,6,23,.06);
 }
 
 @theme inline {
@@ -1403,7 +1413,7 @@ a,
 }
 
 .gradText{
-  background:linear-gradient(90deg,#ff2d55,#7c3aed,#2563eb,#ff2d55);
+  background:linear-gradient(90deg,#0ea5e9,#2563eb,#1d4ed8,#0ea5e9);
   background-size:300% 300%;
   animation:starShift 6s ease-in-out infinite;
   -webkit-background-clip:text;
@@ -1413,7 +1423,7 @@ a,
 }
 
 .btnAnim{
-  background-image:linear-gradient(135deg,#ff2d55 0%,#7c3aed 45%,#2563eb 100%);
+  background-image:linear-gradient(90deg,#0ea5e9,#2563eb,#1d4ed8,#0ea5e9);
   background-size:240% 240%;
   animation:starShift 6s ease-in-out infinite;
   box-shadow:0 12px 30px rgba(37,99,235,.18);
@@ -1667,7 +1677,7 @@ a,
   width:8px;
   height:8px;
   border-radius:99px;
-  background:linear-gradient(135deg,#ff2d55,#7c3aed,#2563eb);
+  background:linear-gradient(90deg,#0ea5e9,#2563eb,#1d4ed8,#0ea5e9);
   box-shadow:0 10px 24px rgba(124,58,237,.22);
 }
 
@@ -2209,7 +2219,7 @@ summary {
   height:10px;
   border-radius:999px;
   margin-top:7px;
-  background:linear-gradient(135deg,#ff2d55,#7c3aed,#2563eb);
+  background:linear-gradient(90deg,#0ea5e9,#2563eb,#1d4ed8,#0ea5e9);
   box-shadow:0 8px 18px rgba(124,58,237,.28);
 }
 
@@ -2278,7 +2288,7 @@ summary {
   height:10px;
   border-radius:999px;
   flex-shrink:0;
-  background:linear-gradient(135deg,#ff2d55,#7c3aed,#2563eb);
+  background:linear-gradient(90deg,#0ea5e9,#2563eb,#1d4ed8,#0ea5e9);
   box-shadow:0 8px 18px rgba(124,58,237,.24);
 }
 
