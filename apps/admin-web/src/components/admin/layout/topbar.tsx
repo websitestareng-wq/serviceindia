@@ -144,7 +144,7 @@ const displayInitials =
         <button
           type="button"
           onClick={onMenuClick}
-          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-slate-200 bg-white text-slate-700 shadow-sm transition hover:bg-slate-50 lg:hidden"
+          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-slate-200 bg-white text-slate-700 shadow-sm transition hover:bg-blue-50/60 lg:hidden"
         >
           <Menu className="h-5 w-5" />
         </button>
@@ -162,9 +162,9 @@ const displayInitials =
           <button
             type="button"
             onClick={() => setMenuOpen((prev) => !prev)}
-            className="group flex items-center gap-2 rounded-2xl border border-slate-200 bg-white px-2 py-1.5 shadow-sm transition hover:border-fuchsia-200 hover:bg-fuchsia-50/40"
+           className="group flex items-center gap-2 rounded-2xl border border-slate-200 bg-white px-2 py-1.5 shadow-sm transition hover:border-blue-200 hover:bg-blue-50/50"
           >
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[linear-gradient(135deg,#d946ef_0%,#7c3aed_100%)] text-xs font-bold text-white shadow-[0_10px_24px_rgba(168,85,247,0.22)]">
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[linear-gradient(135deg,#0ea5e9_0%,#2563eb_100%)] text-xs font-bold text-white shadow-[0_10px_24px_rgba(37,99,235,0.22)]">
               {displayInitials}
             </div>
 
@@ -195,9 +195,9 @@ const displayInitials =
                 transition={{ duration: 0.18 }}
                 className="absolute right-0 top-[calc(100%+10px)] z-50 w-[260px] overflow-hidden rounded-[24px] border border-slate-200 bg-white shadow-[0_20px_50px_rgba(15,23,42,0.14)]"
               >
-                <div className="border-b border-slate-100 bg-[radial-gradient(circle_at_top_left,rgba(192,132,252,0.16),transparent_34%),radial-gradient(circle_at_top_right,rgba(236,72,153,0.10),transparent_30%),linear-gradient(180deg,#ffffff_0%,#fcf7ff_100%)] px-4 py-4">
+                <div className="border-b border-slate-100 bg-[radial-gradient(circle_at_top_left,rgba(14,165,233,0.16),transparent_34%),radial-gradient(circle_at_top_right,rgba(37,99,235,0.10),transparent_30%),linear-gradient(180deg,#ffffff_0%,#f0f9ff_100%)] px-4 py-4">
                   <div className="flex items-center gap-3">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,#d946ef_0%,#7c3aed_100%)] text-sm font-bold text-white shadow-[0_10px_24px_rgba(168,85,247,0.22)]">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,#0ea5e9_0%,#2563eb_100%)] text-sm font-bold text-white shadow-[0_10px_24px_rgba(37,99,235,0.22)]">
                       {displayInitials}
                     </div>
 
@@ -206,7 +206,7 @@ const displayInitials =
                         {displayRole}
                       </p>
                       <p className="truncate text-xs text-slate-500">
-                        STAR ENGINEERING
+                        SERVICE INDIA
                       </p>
                     </div>
                   </div>
@@ -216,7 +216,7 @@ const displayInitials =
                   <Link
                     href="/admin/reminders"
                     onClick={() => setMenuOpen(false)}
-                    className="flex items-center gap-3 rounded-2xl px-3 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
+                    className="flex items-center gap-3 rounded-2xl px-3 py-3 text-sm font-medium text-slate-700 transition hover:bg-blue-50/60"
                   >
                     <ShieldCheck className="h-4 w-4 text-slate-500" />
                     Reminders
@@ -224,7 +224,7 @@ const displayInitials =
 <Link
   href="/admin/documents"
   onClick={() => setMenuOpen(false)}
-  className="flex items-center gap-3 rounded-2xl px-3 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
+  className="flex items-center gap-3 rounded-2xl px-3 py-3 text-sm font-medium text-slate-700 transition hover:bg-blue-50/60"
 >
   <FileText className="h-4 w-4 text-slate-500" />
   Documents

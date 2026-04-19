@@ -330,8 +330,8 @@ return;
           <div className="auth-brand">
             <div className="auth-logo">
               <Image
-                src="/logo/star-logo.png"
-                alt="STAR ENGINEERING"
+                src="/logo/service-india-logo.png"
+                alt="SERVICE INDIA"
                 width={44}
                 height={44}
                 className="auth-logo-image"
@@ -340,7 +340,7 @@ return;
             </div>
 
             <div>
-              <div className="auth-brand-title">STAR ENGINEERING</div>
+              <div className="auth-brand-title">SERVICE INDIA</div>
               <div className="auth-brand-subtitle">
                 Business access portal for customers, partners, and authorized users
               </div>
@@ -378,7 +378,7 @@ return;
 >
   This portal is designed to provide secure and structured access to
   transaction records, shared documents, account-related information,
-  and important business updates from STAR ENGINEERING.
+  and important business updates from SERVICE INDIA.
 </motion.p>
 
             <motion.p
@@ -676,7 +676,7 @@ return;
 
 <div className="auth-footer">
   Access to this portal is restricted to approved and verified business
-  accounts associated with STAR ENGINEERING.
+  accounts associated with SERVICE INDIA.
 </div>
             </motion.div>
           </div>
