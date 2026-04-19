@@ -63,11 +63,11 @@ body {
   background:
     linear-gradient(
       135deg,
-      #fff8fb 0%,
-      #f7f9ff 24%,
-      #f4f7ff 48%,
-      #fff7fb 74%,
-      #f8f5ff 100%
+      #f4f9ff 0%,
+      #f7fbff 24%,
+      #eef6ff 48%,
+      #f3f9ff 74%,
+      #f8fbff 100%
     );
   z-index: -5;
 }
@@ -86,7 +86,7 @@ body {
   left: -40px;
   width: 280px;
   height: 280px;
-  background: rgba(239, 68, 68, 0.14);
+  background: rgba(14, 165, 233, 0.14);
 }
 
 .auth-bg-orb-2 {
@@ -94,7 +94,7 @@ body {
   right: -40px;
   width: 320px;
   height: 320px;
-  background: rgba(59, 130, 246, 0.14);
+  background: rgba(37, 99, 235, 0.14);
 }
 
 .auth-bg-orb-3 {
@@ -102,7 +102,7 @@ body {
   right: 18%;
   width: 280px;
   height: 280px;
-  background: rgba(217, 70, 239, 0.12);
+  background: rgba(56, 189, 248, 0.12);
 }
 
 .auth-shell {
@@ -130,14 +130,14 @@ body {
   height: 42px;
   padding: 0 16px;
   border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(191, 219, 254, 0.72);
   background:
     linear-gradient(
       135deg,
-      rgba(255, 255, 255, 0.92) 0%,
-      rgba(248, 250, 252, 0.88) 35%,
-      rgba(254, 242, 242, 0.88) 70%,
-      rgba(250, 245, 255, 0.92) 100%
+      rgba(255, 255, 255, 0.96) 0%,
+      rgba(248, 251, 255, 0.94) 35%,
+      rgba(239, 246, 255, 0.92) 70%,
+      rgba(224, 242, 254, 0.94) 100%
     );
   color: #0f172a;
   font-size: 13px;
@@ -163,10 +163,10 @@ body {
   inset: 0;
   background: linear-gradient(
     90deg,
-    rgba(239, 68, 68, 0.10) 0%,
-    rgba(59, 130, 246, 0.10) 35%,
-    rgba(236, 72, 153, 0.10) 68%,
-    rgba(139, 92, 246, 0.10) 100%
+    rgba(14, 165, 233, 0.08) 0%,
+    rgba(37, 99, 235, 0.08) 35%,
+    rgba(29, 78, 216, 0.08) 68%,
+    rgba(56, 189, 248, 0.08) 100%
   );
   opacity: 0.9;
   pointer-events: none;
@@ -1548,8 +1548,8 @@ a,
 }
 
 .mmLink.active{
-  border-color:rgba(124,58,237,.35);
-  box-shadow:0 10px 26px rgba(124,58,237,.12);
+  border-color:rgba(37,99,235,.28);
+  box-shadow:0 10px 26px rgba(37,99,235,.12);
 }
 
 .mmBottom{
@@ -2039,8 +2039,8 @@ summary {
   position:relative;
   padding:20px 0 14px;
   overflow:hidden;
-  background:rgba(255,255,255,.55);
-  border-bottom:1px solid rgba(15,23,42,.06);
+  background:linear-gradient(180deg, rgba(247,251,255,.92), rgba(239,246,255,.72));
+  border-bottom:1px solid rgba(37,99,235,.08);
 }
 
 .aboutBand--blueprint{
@@ -2080,7 +2080,7 @@ summary {
   height:430px;
   left:-120px;
   top:-120px;
-  background:radial-gradient(circle at 30% 30%, rgba(255,45,85,.34), transparent 62%);
+  background:radial-gradient(circle at 30% 30%, rgba(14,165,233,.28), transparent 62%);
   animation:floatA 6.5s ease-in-out infinite;
 }
 
@@ -2089,7 +2089,7 @@ summary {
   height:430px;
   right:-150px;
   top:-100px;
-  background:radial-gradient(circle at 58% 28%, rgba(124,58,237,.30), transparent 62%);
+  background:radial-gradient(circle at 58% 28%, rgba(37,99,235,.26), transparent 62%);
   animation:floatB 7.2s ease-in-out infinite;
 }
 
@@ -2098,7 +2098,7 @@ summary {
   height:500px;
   right:-140px;
   bottom:-200px;
-  background:radial-gradient(circle at 40% 60%, rgba(37,99,235,.28), transparent 62%);
+  background:radial-gradient(circle at 40% 60%, rgba(56,189,248,.24), transparent 62%);
   animation:floatC 8s ease-in-out infinite;
 }
 
@@ -2138,8 +2138,8 @@ summary {
 .aboutStats{
   margin-top:18px;
   border-radius:22px;
-  border:1px solid rgba(15,23,42,.08);
-  background:rgba(255,255,255,.72);
+  border:1px solid rgba(37,99,235,.10);
+  background:linear-gradient(180deg, rgba(255,255,255,.82), rgba(239,246,255,.74));
   display:grid;
   grid-template-columns:repeat(4, minmax(0,1fr));
   overflow:hidden;
@@ -2147,7 +2147,7 @@ summary {
 
 .statBox{
   padding:16px 16px 14px;
-  border-right:1px solid rgba(15,23,42,.08);
+  border-right:1px solid rgba(37,99,235,.10);
 }
 
 .statBox:last-child{
@@ -2219,8 +2219,8 @@ summary {
   height:10px;
   border-radius:999px;
   margin-top:7px;
-  background:linear-gradient(90deg,#0ea5e9,#2563eb,#1d4ed8,#0ea5e9);
-  box-shadow:0 8px 18px rgba(124,58,237,.28);
+  background:linear-gradient(90deg,#0ea5e9,#2563eb,#1d4ed8,#38bdf8);
+  box-shadow:0 8px 18px rgba(37,99,235,.22);
 }
 
 .tlTitle{
@@ -2288,8 +2288,8 @@ summary {
   height:10px;
   border-radius:999px;
   flex-shrink:0;
-  background:linear-gradient(90deg,#0ea5e9,#2563eb,#1d4ed8,#0ea5e9);
-  box-shadow:0 8px 18px rgba(124,58,237,.24);
+  background:linear-gradient(90deg,#0ea5e9,#2563eb,#1d4ed8,#38bdf8);
+  box-shadow:0 8px 18px rgba(37,99,235,.20);
 }
 
 .whyTitle{
@@ -2310,7 +2310,7 @@ summary {
   height:2px;
   width:40%;
   border-radius:999px;
-  background:linear-gradient(90deg, rgba(255,45,85,.9), rgba(124,58,237,.9), rgba(37,99,235,.9));
+  background:linear-gradient(90deg, rgba(14,165,233,.9), rgba(37,99,235,.9), rgba(29,78,216,.9));
   opacity:.58;
   animation:starShift 6s ease-in-out infinite;
   background-size:300% 300%;
@@ -2371,8 +2371,8 @@ summary {
     grid-template-columns:1fr;
   }
 
-  .statBox{
-    border-bottom:1px solid rgba(15,23,42,.08);
+.statBox{
+    border-bottom:1px solid rgba(37,99,235,.10);
   }
 
   .statBox:last-child{
@@ -2530,8 +2530,8 @@ summary {
 }
 
 .input:focus{
-  border-color: rgba(124,58,237,.26);
-  box-shadow: 0 10px 22px rgba(124,58,237,.08);
+  border-color: rgba(37,99,235,.28);
+  box-shadow: 0 10px 22px rgba(37,99,235,.10);
   background: rgba(255,255,255,.98);
 }
 
