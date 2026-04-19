@@ -17,7 +17,7 @@ const AUTH_COOKIE_NAME = "access_token";
 const ROLE_COOKIE_NAME = "user_role";
 
 const isProduction = process.env.NODE_ENV === "production";
-const sharedCookieDomain = isProduction ? ".stareng.co.in" : undefined;
+const sharedCookieDomain = isProduction ? ".serviceind.co.in" : undefined;
 
 const authCookieOptions = {
   httpOnly: true,

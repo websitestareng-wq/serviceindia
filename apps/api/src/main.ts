@@ -10,8 +10,8 @@ app.enableCors({
   origin: [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
-    "https://stareng.co.in",
-    "https://www.stareng.co.in",
+    "https://serviceind.co.in",
+    "https://www.serviceind.co.in",
   ],
   credentials: true,
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
