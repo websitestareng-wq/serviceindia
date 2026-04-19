@@ -156,12 +156,12 @@ function SidebarSubmenu({
                 href={child.href}
                 className={`group relative flex items-center gap-2 overflow-hidden rounded-2xl px-3 py-2.5 text-sm font-medium transition-all duration-300 ${
                   childActive
-                    ? "sidebar-item-gradient text-white shadow-[0_12px_30px_rgba(99,102,241,0.22)]"
+                    ? "sidebar-item-gradient text-white shadow-[0_12px_30px_rgba(37,99,235,0.22)]"
                     : "text-slate-600 hover:bg-white hover:text-slate-900 hover:shadow-[0_10px_25px_rgba(15,23,42,0.08)]"
                 }`}
               >
                 {!childActive ? (
-                  <span className="pointer-events-none absolute inset-y-1 left-0 w-[3px] rounded-full bg-gradient-to-b from-rose-600 via-violet-600 to-blue-700 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  <span className="pointer-events-none absolute inset-y-1 left-0 w-[3px] rounded-full bg-gradient-to-b from-sky-500 via-blue-600 to-indigo-700 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 ) : null}
 
                 {ChildIcon ? <ChildIcon className="h-4 w-4 shrink-0" /> : null}
@@ -180,11 +180,11 @@ function SidebarSubmenu({
               onClick={() => toggleItem(child.href)}
               className={`group relative flex w-full items-center gap-2 overflow-hidden rounded-2xl px-3 py-2.5 text-left text-sm font-semibold transition-all duration-300 ${
                 childActive || nestedActive
-                  ? "bg-gradient-to-r from-fuchsia-50 via-violet-50 to-blue-50 text-slate-900 shadow-[0_10px_25px_rgba(99,102,241,0.10)]"
+                  ? "bg-gradient-to-r from-sky-50 via-blue-50 to-cyan-50 text-slate-900 shadow-[0_10px_25px_rgba(99,102,241,0.10)]"
                   : "text-slate-700 hover:bg-white hover:shadow-[0_10px_25px_rgba(15,23,42,0.08)]"
               }`}
             >
-              <span className="absolute inset-y-1 left-0 w-[3px] rounded-full bg-gradient-to-b from-rose-700 via-purple-700 to-blue-700 opacity-100" />
+              <span className="absolute inset-y-1 left-0 w-[3px] rounded-full bg-gradient-to-b from-sky-500 via-blue-600 to-indigo-700 opacity-100" />
               {ChildIcon ? <ChildIcon className="h-4 w-4 shrink-0" /> : null}
               <span className="truncate">{child.title}</span>
               <motion.span
@@ -219,12 +219,12 @@ function SidebarSubmenu({
                             href={sub.href}
                             className={`group relative flex items-center rounded-2xl px-3 py-2.5 text-sm transition-all duration-300 ${
                               subActive
-                                ? "sidebar-item-gradient font-semibold text-white shadow-[0_12px_30px_rgba(99,102,241,0.22)]"
+                                ? "sidebar-item-gradient font-semibold text-white shadow-[0_12px_30px_rgba(37,99,235,0.22)]"
                                 : "text-slate-600 hover:bg-white hover:text-slate-900 hover:shadow-[0_10px_25px_rgba(15,23,42,0.08)]"
                             }`}
                           >
                             {!subActive ? (
-                              <span className="pointer-events-none absolute inset-y-1 left-0 w-[3px] rounded-full bg-gradient-to-b from-rose-600 via-violet-600 to-blue-700 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                              <span className="pointer-events-none absolute inset-y-1 left-0 w-[3px] rounded-full bg-gradient-to-b from-sky-500 via-blue-600 to-indigo-700 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                             ) : null}
                             <span className="truncate">{sub.title}</span>
                           </Link>
@@ -286,7 +286,7 @@ const bottomItems = useMemo(() => bottomNavItems, []);
   };
 
   return (
-    <aside className="relative flex h-screen w-full flex-col overflow-hidden border-r border-slate-200/80 bg-[linear-gradient(180deg,#ffffff_0%,#f8fafc_100%)]">
+    <aside className="relative flex h-screen w-full flex-col overflow-hidden border-r border-slate-200/80 bg-[linear-gradient(180deg,#ffffff_0%,#eff6ff_100%)]">
       <div className="pointer-events-none absolute inset-0">
         <div className="sidebar-ambient absolute -left-20 top-0 h-56 w-56 rounded-full blur-3xl" />
         <div className="sidebar-ambient absolute right-[-80px] top-1/3 h-56 w-56 rounded-full blur-3xl [animation-delay:-5s]" />
@@ -299,7 +299,7 @@ const bottomItems = useMemo(() => bottomNavItems, []);
           <motion.div
             whileHover={{ scale: 1.06, rotate: -4 }}
             transition={{ duration: 0.28 }}
-            className="sidebar-gradient flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl text-white shadow-[0_14px_35px_rgba(91,33,182,0.28)]"
+            className="sidebar-gradient flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl text-white shadow-[0_14px_35px_rgba(37,99,235,0.28)]"
           >
             <BarChart3 className="h-5 w-5" />
           </motion.div>
@@ -309,7 +309,7 @@ const bottomItems = useMemo(() => bottomNavItems, []);
               User Portal
             </p>
             <h1 className="truncate text-lg font-bold text-slate-900">
-              STAR Engineering
+              SERVICE INDIA
             </h1>
             <p className="mt-1 text-sm text-slate-500">
               Secure account access
@@ -337,18 +337,18 @@ const bottomItems = useMemo(() => bottomNavItems, []);
             href={item.href}
             className={`group relative flex items-center gap-3 overflow-hidden rounded-[18px] px-3 py-2.5 transition-all duration-300 ${
               isActive
-                ? "sidebar-item-gradient text-white shadow-[0_16px_35px_rgba(99,102,241,0.25)]"
+                ? "sidebar-item-gradient text-white shadow-[0_16px_35px_rgba(37,99,235,0.25)]"
                 : "text-slate-700 hover:bg-white hover:shadow-[0_12px_30px_rgba(15,23,42,0.08)]"
             }`}
           >
             {!isActive ? (
-              <span className="pointer-events-none absolute inset-y-1 left-0 w-[3px] rounded-full bg-gradient-to-b from-rose-700 via-purple-700 to-blue-700 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              <span className="pointer-events-none absolute inset-y-1 left-0 w-[3px] rounded-full bg-gradient-to-b from-sky-500 via-blue-600 to-indigo-700 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
             ) : null}
 
 <span
   className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-[16px] transition-all duration-300 ${
     isActive
-      ? "bg-transparent text-white shadow-[0_16px_35px_rgba(99,102,241,0.25)]"
+      ? "bg-transparent text-white shadow-[0_16px_35px_rgba(37,99,235,0.25)]"
       : "bg-white text-slate-600 shadow-[0_10px_20px_rgba(15,23,42,0.06)] group-hover:scale-110 group-hover:text-slate-900"
   }`}
 >
@@ -378,12 +378,12 @@ const bottomItems = useMemo(() => bottomNavItems, []);
               : "text-slate-700 hover:bg-white hover:shadow-[0_12px_30px_rgba(15,23,42,0.08)]"
           }`}
         >
-          <span className="absolute inset-y-1 left-0 w-[3px] rounded-full bg-gradient-to-b from-rose-700 via-purple-700 to-blue-700" />
+          <span className="absolute inset-y-1 left-0 w-[3px] rounded-full bg-gradient-to-b from-sky-500 via-blue-600 to-indigo-700" />
 
           <span
             className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-[16px] transition-all duration-300 ${
              isActive || nestedActive
-  ? "bg-transparent text-violet-700 shadow-none"
+  ? "bg-transparent text-blue-700 shadow-none"
                 : "bg-white text-slate-600 shadow-[0_10px_20px_rgba(15,23,42,0.06)] group-hover:scale-110 group-hover:text-slate-900"
             }`}
           >
@@ -437,17 +437,17 @@ const bottomItems = useMemo(() => bottomNavItems, []);
           href={item.href}
           className={`group relative flex items-center gap-3 overflow-hidden rounded-[18px] px-3 py-2.5 transition-all duration-300 ${
             isActive
-              ? "sidebar-item-gradient text-white shadow-[0_16px_35px_rgba(99,102,241,0.25)]"
+              ? "sidebar-item-gradient text-white shadow-[0_16px_35px_rgba(37,99,235,0.25)]"
               : "text-slate-700 hover:bg-white hover:shadow-[0_12px_30px_rgba(15,23,42,0.08)]"
           }`}
         >
           {!isActive ? (
-            <span className="pointer-events-none absolute inset-y-1 left-0 w-[3px] rounded-full bg-gradient-to-b from-rose-700 via-purple-700 to-blue-700 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+            <span className="pointer-events-none absolute inset-y-1 left-0 w-[3px] rounded-full bg-gradient-to-b from-sky-500 via-blue-600 to-indigo-700 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
           ) : null}
 <span
   className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-[16px] transition-all duration-300 ${
     isActive
-      ? "bg-transparent text-white shadow-[0_16px_35px_rgba(99,102,241,0.25)]"
+      ? "bg-transparent text-white shadow-[0_16px_35px_rgba(37,99,235,0.25)]"
       : "bg-white text-slate-600 shadow-[0_10px_20px_rgba(15,23,42,0.06)] group-hover:scale-110 group-hover:text-slate-900"
   }`}
 >
@@ -488,17 +488,17 @@ const bottomItems = useMemo(() => bottomNavItems, []);
                       href={item.href}
                       className={`group relative flex items-center gap-3 overflow-hidden rounded-[18px] px-3 py-2.5 transition-all duration-300 ${
                         isActive
-                          ? "sidebar-item-gradient text-white shadow-[0_16px_35px_rgba(99,102,241,0.25)]"
+                          ? "sidebar-item-gradient text-white shadow-[0_16px_35px_rgba(37,99,235,0.25)]"
                           : "text-slate-700 hover:bg-white hover:shadow-[0_12px_30px_rgba(15,23,42,0.08)]"
                       }`}
                     >
                       {!isActive ? (
-                        <span className="pointer-events-none absolute inset-y-1 left-0 w-[3px] rounded-full bg-gradient-to-b from-rose-700 via-purple-700 to-blue-700 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                        <span className="pointer-events-none absolute inset-y-1 left-0 w-[3px] rounded-full bg-gradient-to-b from-sky-500 via-blue-600 to-indigo-700 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                       ) : null}
 <span
   className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-[16px] transition-all duration-300 ${
     isActive
-      ? "bg-transparent text-white shadow-[0_16px_35px_rgba(99,102,241,0.25)]"
+      ? "bg-transparent text-white shadow-[0_16px_35px_rgba(37,99,235,0.25)]"
       : "bg-white text-slate-600 shadow-[0_10px_20px_rgba(15,23,42,0.06)] group-hover:scale-110 group-hover:text-slate-900"
   }`}
 >

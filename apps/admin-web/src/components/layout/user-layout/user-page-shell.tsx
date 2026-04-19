@@ -14,7 +14,7 @@ export default function PageShell({ children }: PageShellProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[linear-gradient(180deg,#f8f5ff_0%,#f7f8fc_42%,#f5f7fb_100%)] text-slate-900">
+   <div className="min-h-screen bg-[linear-gradient(180deg,#f3f9ff_0%,#f6faff_42%,#eef6ff_100%)] text-slate-900">
       <div className="min-h-screen">
         <div className="hidden lg:fixed lg:inset-y-0 lg:left-0 lg:z-40 lg:block lg:w-[290px]">
           <Sidebar />
