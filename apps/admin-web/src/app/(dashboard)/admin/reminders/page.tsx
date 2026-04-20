@@ -603,10 +603,10 @@ const getTypeLabel = (type: ReminderType) => {
         transition={{ duration: 0.28 }}
         className="overflow-hidden rounded-[26px] border border-slate-200 bg-white shadow-[0_18px_50px_rgba(15,23,42,0.06)]"
       >
-       <div className="bg-[radial-gradient(circle_at_top_left,rgba(217,70,239,0.10),transparent_34%),radial-gradient(circle_at_top_right,rgba(168,85,247,0.10),transparent_30%),linear-gradient(180deg,#ffffff_0%,#fcf7ff_100%)] px-3 py-3.5 sm:px-5 sm:py-5">
+       <div className="bg-[radial-gradient(circle_at_top_left,rgba(14,165,233,0.10),transparent_34%),radial-gradient(circle_at_top_right,rgba(37,99,235,0.10),transparent_30%),linear-gradient(180deg,#ffffff_0%,#f4f8ff_100%)] px-3 py-3.5 sm:px-5 sm:py-5">
           <div className="flex flex-col gap-3.5 xl:flex-row xl:items-start xl:justify-between">
             <div className="max-w-2xl">
-              <div className="inline-flex items-center gap-2 rounded-full border border-fuchsia-100 bg-fuchsia-50 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.24em] text-fuchsia-700">
+              <div className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.24em] text-blue-700">
                 Reminder Center
               </div>
 
@@ -621,7 +621,7 @@ const getTypeLabel = (type: ReminderType) => {
                 <button
                   type="button"
                   onClick={openCreateModal}
-                 className="inline-flex h-10 items-center gap-2 rounded-2xl bg-[linear-gradient(135deg,#d946ef_0%,#7c3aed_100%)] px-3.5 text-sm font-semibold text-white shadow-[0_14px_28px_rgba(168,85,247,0.24)] transition hover:scale-[1.01] sm:px-4"
+                 className="inline-flex h-10 items-center gap-2 rounded-2xl bg-[linear-gradient(135deg,#0ea5e9_0%,#2563eb_100%)] px-3.5 text-sm font-semibold text-white shadow-[0_14px_28px_rgba(37,99,235,0.24)] transition hover:scale-[1.01] sm:px-4"
                 >
                   <Plus className="h-4 w-4" />
                   Add Reminder
@@ -650,7 +650,7 @@ const getTypeLabel = (type: ReminderType) => {
                   title: "Upcoming",
                   value: stats.upcoming,
                   icon: CalendarDays,
-                  tone: "bg-[linear-gradient(180deg,#fdf4ff_0%,#ffffff_100%)] border-fuchsia-100",
+                  tone: "bg-[linear-gradient(180deg,#eff6ff_0%,#ffffff_100%)] border-blue-100",
                 },
                 {
                   title: "Overdue",
@@ -724,7 +724,7 @@ const getTypeLabel = (type: ReminderType) => {
                   onClick={() => setTab(entry.value as FilterTab)}
                   className={`rounded-2xl px-3 py-1.5 text-[13px] font-medium transition sm:px-3.5 sm:py-2 sm:text-sm ${
                     active
-                      ? "border border-fuchsia-200 bg-fuchsia-50 text-fuchsia-700"
+                      ? "border border-blue-200 bg-blue-50 text-blue-700"
                       : "border border-slate-200 bg-white text-slate-700 hover:bg-slate-50"
                   }`}
                 >
@@ -744,7 +744,7 @@ const getTypeLabel = (type: ReminderType) => {
           </div>
         ) : filteredItems.length === 0 ? (
           <div className="flex min-h-[260px] flex-col items-center justify-center px-6 py-10 text-center">
-            <div className="flex h-16 w-16 items-center justify-center rounded-[22px] bg-[linear-gradient(135deg,#f5d0fe_0%,#e9d5ff_100%)] text-fuchsia-700 shadow-sm">
+            <div className="flex h-16 w-16 items-center justify-center rounded-[22px] bg-[linear-gradient(135deg,#dbeafe_0%,#bfdbfe_100%)] text-blue-700 shadow-sm">
               <Calendar className="h-8 w-8" />
             </div>
             <h3 className="mt-4 text-lg font-semibold text-slate-900">
@@ -939,7 +939,7 @@ onClick={(e) => {
                             <button
                               type="button"
                               onClick={() => markCompleted(item.id)}
-                              className="rounded-xl bg-fuchsia-600 px-3 text-xs font-semibold text-white transition hover:bg-fuchsia-700"
+                              className="rounded-xl bg-blue-600 px-3 text-xs font-semibold text-white transition hover:bg-blue-700"
                             >
                               Complete
                             </button>
@@ -976,7 +976,7 @@ onClick={(e) => {
       </motion.section>
 {mounted && openMenuId && (
   <div className="fixed inset-0 z-[135] flex items-end bg-slate-900/30 px-3 py-3 backdrop-blur-[2px] md:hidden">
-    <div className="w-full rounded-[28px] border border-fuchsia-100/80 bg-[linear-gradient(180deg,rgba(255,255,255,1),rgba(252,247,255,0.98))] p-3 shadow-[0_24px_60px_rgba(168,85,247,0.16)]">
+    <div className="w-full rounded-[28px] border border-blue-100/80 bg-[linear-gradient(180deg,rgba(255,255,255,1),rgba(244,248,255,0.98))] p-3 shadow-[0_24px_60px_rgba(168,85,247,0.16)]">
       <div className="mb-2 flex justify-center">
         <div className="h-1.5 w-12 rounded-full bg-slate-200" />
       </div>
@@ -1316,7 +1316,7 @@ onClick={(e) => {
                         emailEnabled: e.target.checked,
                       }))
                     }
-                    className="h-4 w-4 rounded border-slate-300 text-fuchsia-600 focus:ring-fuchsia-500"
+                    className="h-4 w-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
                   />
                   <span className="text-sm font-medium text-slate-700">
                     Send reminder email on due date
@@ -1342,7 +1342,7 @@ onClick={(e) => {
                 <button
                   type="button"
                   onClick={saveReminder}
-                  className="h-11 rounded-2xl bg-[linear-gradient(135deg,#d946ef_0%,#7c3aed_100%)] px-4 text-sm font-semibold text-white shadow-[0_14px_28px_rgba(168,85,247,0.24)]"
+                  className="h-11 rounded-2xl bg-[linear-gradient(135deg,#0ea5e9_0%,#2563eb_100%)] px-4 text-sm font-semibold text-white shadow-[0_14px_28px_rgba(37,99,235,0.24)]"
                 >
                   {form.id ? "Update Reminder" : "Save Reminder"}
                 </button>
