@@ -168,12 +168,12 @@ const isExpanded = openMap[child.href] ?? (childActive || nestedActive);
                 href={child.href}
                 className={`group relative flex items-center gap-2 overflow-hidden rounded-2xl px-3 py-2.5 text-sm font-medium transition-all duration-300 ${
                   childActive
-                    ? "sidebar-item-gradient text-white shadow-[0_12px_30px_rgba(99,102,241,0.22)]"
+                    ? "sidebar-item-gradient text-white shadow-[0_12px_30px_rgba(37,99,235,0.22)]"
                     : "text-slate-600 hover:bg-white hover:text-slate-900 hover:shadow-[0_10px_25px_rgba(15,23,42,0.08)]"
                 }`}
               >
                 {!childActive ? (
-                  <span className="pointer-events-none absolute inset-y-1 left-0 w-[3px] rounded-full bg-gradient-to-b from-rose-600 via-violet-600 to-blue-700 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                 <span className="pointer-events-none absolute inset-y-1 left-0 w-[3px] rounded-full bg-gradient-to-b from-sky-500 via-blue-600 to-indigo-700 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 ) : null}
 
                 {ChildIcon ? <ChildIcon className="h-4 w-4 shrink-0" /> : null}
@@ -192,7 +192,7 @@ const isExpanded = openMap[child.href] ?? (childActive || nestedActive);
   onClick={() => toggleItem(child.href)}
   className={`group relative flex w-full items-center gap-2 overflow-hidden rounded-2xl px-3 py-2.5 text-left text-sm font-semibold transition-all duration-300 ${
     childActive || nestedActive
-      ? "bg-gradient-to-r from-fuchsia-50 via-violet-50 to-blue-50 text-slate-900 shadow-[0_10px_25px_rgba(99,102,241,0.10)]"
+     ? "bg-gradient-to-r from-sky-50 via-blue-50 to-cyan-50 text-slate-900 shadow-[0_10px_25px_rgba(37,99,235,0.10)]"
       : "text-slate-700 hover:bg-white hover:shadow-[0_10px_25px_rgba(15,23,42,0.08)]"
   }`}
 >
@@ -231,7 +231,7 @@ const isExpanded = openMap[child.href] ?? (childActive || nestedActive);
                             href={sub.href}
                             className={`group relative flex items-center rounded-2xl px-3 py-2.5 text-sm transition-all duration-300 ${
                               subActive
-                                ? "sidebar-item-gradient font-semibold text-white shadow-[0_12px_30px_rgba(99,102,241,0.22)]"
+                               ? "sidebar-item-gradient font-semibold text-white shadow-[0_12px_30px_rgba(37,99,235,0.22)]"
                                 : "text-slate-600 hover:bg-white hover:text-slate-900 hover:shadow-[0_10px_25px_rgba(15,23,42,0.08)]"
                             }`}
                           >

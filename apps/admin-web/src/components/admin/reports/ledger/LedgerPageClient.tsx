@@ -503,7 +503,7 @@ useEffect(() => {
   transition={{ duration: 0.32, ease: "easeOut" }}
   className="overflow-hidden rounded-[26px] border border-blue-100/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(239,246,255,0.96))] shadow-[0_24px_70px_rgba(37,99,235,0.10)] backdrop-blur-xl"
 >
-  <div className="hidden border-b border-blue-100/80 bg-[linear-gradient(135deg,rgba(37,99,235,0.08),rgba(14,165,233,0.07),rgba(220,38,38,0.05))] px-5 py-5 sm:px-6 lg:block">
+  <div className="hidden border-b border-blue-100/80 bg-[linear-gradient(135deg,rgba(37,99,235,0.08),rgba(14,165,233,0.07),rgba(59,130,246,0.05))] px-5 py-5 sm:px-6 lg:block">
     <div className="flex flex-col gap-5">
       <div className="flex flex-col gap-4 xl:flex-row xl:items-start xl:justify-between">
         <div className="min-w-0 xl:max-w-[620px]">
@@ -511,14 +511,14 @@ useEffect(() => {
             variants={fadeUp}
             initial="initial"
             animate="animate"
-            className="mb-3 inline-flex h-12 w-12 items-center justify-center rounded-[18px] bg-gradient-to-br from-blue-700 via-blue-600 to-red-600 text-white shadow-[0_18px_38px_rgba(37,99,235,0.24)]"
+           className="mb-3 inline-flex h-12 w-12 items-center justify-center rounded-[18px] bg-gradient-to-br from-sky-500 via-blue-600 to-indigo-700 text-white shadow-[0_18px_38px_rgba(37,99,235,0.24)]"
           >
             <Layers className="h-5 w-5" />
           </motion.div>
 
-          <div className="h-12 w-full rounded-2xl border border-slate-200 bg-white px-4 text-sm font-medium text-slate-800 outline-none transition-all duration-200 focus:border-blue-400 focus:ring-4 focus:ring-blue-100">
-            Reports
-          </div>
+          <div className="inline-flex rounded-full border border-blue-100 bg-white/85 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-blue-700 shadow-sm">
+  Reports
+</div>
 
           <h2 className="mt-3 text-[2rem] font-semibold leading-[1.05] tracking-tight text-slate-900">
             Ledger

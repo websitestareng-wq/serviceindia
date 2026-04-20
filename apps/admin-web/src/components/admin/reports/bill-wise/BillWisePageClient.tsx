@@ -844,22 +844,22 @@ function applyFilters() {
         transition={{ duration: 0.32, ease: "easeOut" }}
        className="overflow-hidden rounded-[26px] border border-blue-100/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(239,246,255,0.96))] shadow-[0_24px_70px_rgba(37,99,235,0.10)] backdrop-blur-xl"
       >
-        <div className="hidden border-b border-blue-100/80 bg-[linear-gradient(135deg,rgba(37,99,235,0.08),rgba(14,165,233,0.07),rgba(220,38,38,0.05))] px-5 py-5 sm:px-6 lg:block">
+        <div className="hidden border-b border-blue-100/80 bg-[linear-gradient(135deg,rgba(37,99,235,0.08),rgba(14,165,233,0.07),rgba(59,130,246,0.05))] px-5 py-5 sm:px-6 lg:block">
           <div className="flex flex-col gap-5">
             <div className="flex flex-col gap-4 xl:flex-row xl:items-start xl:justify-between">
               <div className="min-w-0 xl:max-w-[620px]">
-                <motion.div
-                  variants={fadeUp}
-                  initial="initial"
-                  animate="animate"
-                  className="h-12 w-full rounded-2xl border border-slate-200 bg-white px-4 text-sm font-medium text-slate-800 outline-none transition-all duration-200 focus:border-violet-400 focus:ring-4 focus:ring-violet-100"
-                >
-                  <Layers className="h-5 w-5" />
-                </motion.div>
+            <motion.div
+  variants={fadeUp}
+  initial="initial"
+  animate="animate"
+  className="mb-3 inline-flex h-12 w-12 items-center justify-center rounded-[18px] bg-gradient-to-br from-sky-500 via-blue-600 to-indigo-700 text-white shadow-[0_18px_38px_rgba(37,99,235,0.24)]"
+>
+  <Layers className="h-5 w-5" />
+</motion.div>
 
-                <div className="inline-flex rounded-full border border-violet-100 bg-white/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-violet-700 shadow-sm">
-                  Reports
-                </div>
+               <div className="inline-flex rounded-full border border-blue-100 bg-white/85 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-700 shadow-sm">
+  Reports
+</div>
 
                 <h2 className="mt-3 text-[2rem] font-semibold leading-[1.05] tracking-tight text-slate-900">
                   {getPageTitle(type)}
@@ -920,7 +920,7 @@ function applyFilters() {
                       onChange={(e) =>
                         setFilters((prev) => ({ ...prev, partyId: e.target.value }))
                       }
-                      className="h-12 w-full rounded-2xl border border-slate-200 bg-white px-4 text-sm font-medium text-slate-800 outline-none transition-all duration-200 focus:border-violet-400 focus:ring-4 focus:ring-violet-100"
+                      className="h-12 w-full rounded-2xl border border-slate-200 bg-white px-4 text-sm font-medium text-slate-800 outline-none transition-all duration-200 focus:border-blue-400 focus:ring-4 focus:ring-blue-100"
                     >
                       {partyOptions.length === 0 ? (
                         <option value="">No parties found</option>
@@ -964,7 +964,7 @@ function applyFilters() {
                   <button
                     type="button"
                     onClick={openFilterModal}
-                   className="inline-flex h-12 items-center gap-2 rounded-2xl bg-gradient-to-r from-blue-700 via-blue-600 to-red-600 px-4 text-sm font-semibold text-white shadow-[0_18px_35px_rgba(37,99,235,0.24)] transition-all duration-200 hover:-translate-y-[1px] hover:shadow-[0_22px_42px_rgba(37,99,235,0.30)] active:translate-y-0"
+                   className="inline-flex h-12 items-center gap-2 rounded-2xl bg-gradient-to-r from-sky-500 via-blue-600 to-indigo-700 px-4 text-sm font-semibold text-white shadow-[0_18px_35px_rgba(37,99,235,0.24)] transition-all duration-200 hover:-translate-y-[1px] hover:shadow-[0_22px_42px_rgba(37,99,235,0.30)] active:translate-y-0"
                   >
                     <Filter className="h-4 w-4" />
                     Apply Filter
@@ -975,14 +975,14 @@ function applyFilters() {
           </div>
         </div>
 
-        <div className="border-b border-blue-100/80 bg-[linear-gradient(135deg,rgba(37,99,235,0.10),rgba(14,165,233,0.08),rgba(220,38,38,0.06))] px-4 py-4 sm:hidden">
+        <div className="border-b border-blue-100/80 bg-[linear-gradient(135deg,rgba(37,99,235,0.10),rgba(14,165,233,0.08),rgba(59,130,246,0.06))] px-4 py-4 sm:hidden">
 <div className="flex items-start justify-between gap-3">
   <div className="min-w-0">
     <motion.div
       initial={{ opacity: 0, y: 10, scale: 0.96 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.24, ease: "easeOut" }}
-      className="mb-3 inline-flex h-11 w-11 items-center justify-center rounded-[16px] bg-gradient-to-br from-blue-700 via-blue-600 to-red-600 text-white shadow-[0_16px_32px_rgba(37,99,235,0.24)]"
+     className="mb-3 inline-flex h-11 w-11 items-center justify-center rounded-[16px] bg-gradient-to-br from-sky-500 via-blue-600 to-indigo-700 text-white shadow-[0_16px_32px_rgba(37,99,235,0.24)]"
     >
       <Layers className="h-4.5 w-4.5" />
     </motion.div>
@@ -1037,7 +1037,7 @@ function applyFilters() {
             <button
               type="button"
               onClick={openFilterModal}
-              className="inline-flex h-11 items-center justify-center gap-2 rounded-[18px] bg-gradient-to-r from-blue-700 via-blue-600 to-red-600 px-3 text-sm font-semibold text-white shadow-[0_16px_32px_rgba(37,99,235,0.24)] transition-all duration-200 active:scale-[0.99]"
+              className="inline-flex h-11 items-center justify-center gap-2 rounded-[18px] bg-gradient-to-r from-sky-500 via-blue-600 to-indigo-700 px-3 text-sm font-semibold text-white shadow-[0_16px_32px_rgba(37,99,235,0.24)] transition-all duration-200 active:scale-[0.99]"
             >
               <Filter className="h-4 w-4" />
               Apply Filter
@@ -1186,7 +1186,7 @@ function applyFilters() {
   <col className="w-[8%]" />
 </colgroup>
 
-                  <thead className="border-b border-blue-100 bg-[linear-gradient(135deg,rgba(37,99,235,0.07),rgba(14,165,233,0.05),rgba(220,38,38,0.04))]">
+                  <thead className="border-b border-blue-100 bg-[linear-gradient(135deg,rgba(37,99,235,0.07),rgba(14,165,233,0.05),rgba(59,130,246,0.04))]">
   <tr className="text-left text-[11px] uppercase tracking-[0.16em] text-slate-500">
     <th className="px-4 py-3 font-semibold">Date</th>
     <th className="px-4 py-3 font-semibold">Ref</th>
@@ -1336,7 +1336,7 @@ function applyFilters() {
   transition={{ duration: 0.24, ease: "easeOut" }}
  className="my-auto flex w-full max-w-[500px] max-h-[calc(100dvh-32px)] flex-col overflow-hidden rounded-[22px] sm:max-h-[84vh] sm:rounded-[26px] border border-blue-100 bg-[linear-gradient(180deg,rgba(255,255,255,1),rgba(239,246,255,0.98))] shadow-[0_26px_70px_rgba(37,99,235,0.16)]"
 >
-                 <div className="flex items-start justify-between gap-4 border-b border-blue-100 bg-[linear-gradient(135deg,rgba(37,99,235,0.08),rgba(14,165,233,0.06),rgba(220,38,38,0.05))] px-4 py-4 sm:px-5">
+                <div className="flex items-start justify-between gap-4 border-b border-blue-100 bg-[linear-gradient(135deg,rgba(37,99,235,0.08),rgba(14,165,233,0.06),rgba(59,130,246,0.05))] px-4 py-4 sm:px-5">
                     <div className="min-w-0">
                       <h3 className="text-base font-bold text-slate-900 sm:text-lg">
                         Apply Filter
