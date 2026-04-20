@@ -41,13 +41,13 @@ export class MailService {
       userName: input.name,
       loginEmail: input.email,
       loginPassword: input.password,
-      loginUrl: input.loginUrl || "https://stareng.co.in/login",
+      loginUrl: input.loginUrl || "https://serviceind.co.in/login",
       role: "USER",
       phone: input.phone || "",
     });
 
     await this.resend.emails.send({
-      from: "STAR ENGINEERING <noreply@mail.stareng.co.in>",
+      from: "STAR ENGINEERING <noreply@mail.serviceind.co.in>",
       to: input.to,
       subject: "STAR ENGINEERING Credentials",
       html,
@@ -61,11 +61,11 @@ export class MailService {
       userName: input.name,
       loginEmail: input.email,
       loginPassword: input.password,
-      loginUrl: input.loginUrl || "https://stareng.co.in/login",
+      loginUrl: input.loginUrl || "https://serviceind.co.in/login",
     });
 
     await this.resend.emails.send({
-      from: "STAR ENGINEERING <noreply@mail.stareng.co.in>",
+      from: "STAR ENGINEERING <noreply@mail.serviceind.co.in>",
       to: input.to,
       subject: "STAR ENGINEERING Password Updated",
       html,
@@ -100,7 +100,7 @@ export class MailService {
     `;
 
     const response = await this.resend.emails.send({
-      from: "STAR ENGINEERING <noreply@mail.stareng.co.in>",
+      from: "STAR ENGINEERING <noreply@mail.serviceind.co.in>",
       to: input.to,
       subject: safeTitle,
       text,
