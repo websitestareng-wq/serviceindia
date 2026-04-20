@@ -101,7 +101,7 @@ const accountName = "SERVICE INDIA";
 const bankName = "ICICI Bank";
 const accountNumber = "101605002763";
 const ifscCode = "ICIC0001016";
-const branchName = "Borivali (W)), Mumbai";
+const branchName = "Borivali (W), Mumbai";
 
 const numericAmount = Number(amount || 0);
 
