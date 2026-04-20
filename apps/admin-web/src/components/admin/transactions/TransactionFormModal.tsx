@@ -250,7 +250,7 @@ setParsingMainPdf(false);
   if (!open) return;
 
   try {
-    const raw = localStorage.getItem("star-transaction-particulars");
+    const raw = localStorage.getItem("service-india-transaction-particulars");
     const parsed = raw ? JSON.parse(raw) : [];
     setParticularSuggestions(Array.isArray(parsed) ? parsed : []);
   } catch {
@@ -581,13 +581,13 @@ function rememberParticular(value: string) {
   if (!clean) return;
 
   try {
-    const raw = localStorage.getItem("star-transaction-particulars");
+    const raw = localStorage.getItem("service-india-transaction-particulars");
     const parsed = raw ? JSON.parse(raw) : [];
     const next = Array.from(
       new Set([clean, ...(Array.isArray(parsed) ? parsed : [])]),
     ).slice(0, 50);
 
-    localStorage.setItem("star-transaction-particulars", JSON.stringify(next));
+   localStorage.setItem("service-india-transaction-particulars", JSON.stringify(next));
     setParticularSuggestions(next);
   } catch {
     // ignore local storage errors
@@ -744,8 +744,8 @@ await onSuccess("Transaction updated successfully.");
 
   return (
     <div className="fixed inset-0 z-[120] flex items-center justify-center bg-slate-900/25 px-2 py-3 backdrop-blur-[1px]">
-     <div className="max-h-[94vh] w-full max-w-[1020px] overflow-hidden rounded-[28px] border border-violet-100/80 bg-[linear-gradient(180deg,rgba(255,255,255,1),rgba(250,245,255,0.98))] shadow-[0_26px_70px_rgba(124,58,237,0.16)]">
-        <div className="flex items-center justify-between border-b border-violet-100 bg-[linear-gradient(135deg,rgba(168,85,247,0.08),rgba(124,58,237,0.06),rgba(236,72,153,0.05))] px-4 py-3">
+     <div className="max-h-[94vh] w-full max-w-[1020px] overflow-hidden rounded-[28px] border border-blue-100/80 bg-[linear-gradient(180deg,rgba(255,255,255,1),rgba(239,246,255,0.98))] shadow-[0_26px_70px_rgba(37,99,235,0.16)]">
+        <div className="flex items-center justify-between border-b border-blue-100 bg-[linear-gradient(135deg,rgba(37,99,235,0.08),rgba(14,165,233,0.06),rgba(220,38,38,0.05))] px-4 py-3">
           <div>
             <h2 className="text-[18px] font-bold text-slate-900">
               {mode === "create"
@@ -757,7 +757,7 @@ await onSuccess("Transaction updated successfully.");
           <button
             type="button"
             onClick={onClose}
-           className="inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-slate-200 bg-white text-slate-500 transition hover:bg-violet-50 hover:text-violet-700"
+           className="inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-slate-200 bg-white text-slate-500 transition hover:bg-blue-50 hover:text-blue-700"
           >
             <XCircle size={18} />
           </button>
@@ -769,8 +769,8 @@ await onSuccess("Transaction updated successfully.");
               className={`mb-3 rounded-2xl border px-3 py-2.5 text-sm font-medium ${
                 message.type === "success"
                   ? "border-emerald-200 bg-emerald-50 text-emerald-700"
-                 : message.type === "info"
-  ? "border-violet-200 bg-violet-50 text-violet-700"
+                : message.type === "info"
+  ? "border-blue-200 bg-blue-50 text-blue-700"
                     : "border-rose-200 bg-rose-50 text-rose-700"
               }`}
             >
@@ -778,13 +778,13 @@ await onSuccess("Transaction updated successfully.");
             </div>
           )}
 
-          <div className="rounded-[18px] border border-violet-100/80 bg-white/95">
+          <div className="rounded-[18px] border border-blue-100/80 bg-white/95">
             <div className="grid grid-cols-1 gap-x-3 gap-y-3 p-3 md:grid-cols-2 xl:grid-cols-3">
               <Field label="Transaction Type">
                 <select
                   value={form.type}
                   onChange={(e) => setType(e.target.value as TransactionType)}
-                  className="h-10 w-full rounded-xl border border-slate-200 bg-white px-3 text-sm font-medium text-slate-700 outline-none transition focus:border-violet-400"
+                  className="h-10 w-full rounded-xl border border-slate-200 bg-white px-3 text-sm font-medium text-slate-700 outline-none transition focus:border-blue-400"
                 >
                   {transactionOptions.map((item) => (
                     <option key={item.value} value={item.value}>
@@ -803,7 +803,7 @@ await onSuccess("Transaction updated successfully.");
                       partyId: e.target.value,
                     }))
                   }
-                  className="h-10 w-full rounded-xl border border-slate-200 bg-white px-3 text-sm font-medium text-slate-700 outline-none transition focus:border-violet-400"
+                  className="h-10 w-full rounded-xl border border-slate-200 bg-white px-3 text-sm font-medium text-slate-700 outline-none transition focus:border-blue-400"
                 >
                   <option value="">Select party</option>
                   {users.map((user) => (
@@ -824,7 +824,7 @@ await onSuccess("Transaction updated successfully.");
                       voucherDate: e.target.value,
                     }))
                   }
-                  className="h-10 w-full rounded-xl border border-slate-200 bg-white px-3 text-sm text-slate-800 outline-none transition focus:border-violet-400"
+                  className="h-10 w-full rounded-xl border border-slate-200 bg-white px-3 text-sm text-slate-800 outline-none transition focus:border-blue-400"
                 />
               </Field>
 
@@ -838,7 +838,7 @@ await onSuccess("Transaction updated successfully.");
                     }))
                   }
                   placeholder="Optional (but recommended)"
-                  className="h-10 w-full rounded-xl border border-slate-200 bg-white px-3 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-violet-400"
+                  className="h-10 w-full rounded-xl border border-slate-200 bg-white px-3 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-blue-400"
                 />
               </Field>
 
@@ -855,7 +855,7 @@ await onSuccess("Transaction updated successfully.");
                     }))
                   }
                   placeholder="e.g. 5000"
-                  className="hide-number-arrows h-10 w-full rounded-xl border border-slate-200 bg-white px-3 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-violet-400"
+                  className="hide-number-arrows h-10 w-full rounded-xl border border-slate-200 bg-white px-3 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-blue-400"
                 />
               </Field>
 
@@ -884,7 +884,7 @@ form.side === "DR"
   onBlur={(e) => rememberParticular(e.target.value)}
   list="transaction-particular-suggestions"
   placeholder="e.g. Against refund issued for excess payment"
-  className="h-10 w-full rounded-xl border border-slate-200 bg-white px-3 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-violet-400"
+  className="h-10 w-full rounded-xl border border-slate-200 bg-white px-3 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-blue-400"
 />
 <datalist id="transaction-particular-suggestions">
   {particularSuggestions.map((item) => (

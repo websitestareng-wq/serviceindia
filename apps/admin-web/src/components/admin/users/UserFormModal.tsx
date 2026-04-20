@@ -161,8 +161,8 @@ export default function UserFormModal({
 
   return (
     <div className="fixed inset-0 z-[130] flex items-center justify-center bg-slate-900/30 px-4 py-5 backdrop-blur-[2px]">
-      <div className="w-full max-w-3xl overflow-hidden rounded-[30px] border border-violet-100/80 bg-[linear-gradient(180deg,rgba(255,255,255,1),rgba(250,245,255,0.98))] shadow-[0_26px_70px_rgba(124,58,237,0.16)]">
-       <div className="flex items-center justify-between border-b border-violet-100 bg-[linear-gradient(135deg,rgba(168,85,247,0.08),rgba(124,58,237,0.06),rgba(236,72,153,0.05))] px-5 py-4 sm:px-6">
+      <div className="w-full max-w-3xl overflow-hidden rounded-[30px] border border-blue-100/80 bg-[linear-gradient(180deg,rgba(255,255,255,1),rgba(239,246,255,0.98))] shadow-[0_26px_70px_rgba(37,99,235,0.16)]">
+       <div className="flex items-center justify-between border-b border-blue-100 bg-[linear-gradient(135deg,rgba(37,99,235,0.08),rgba(14,165,233,0.06),rgba(220,38,38,0.05))] px-5 py-4 sm:px-6">
           <div>
             <h2 className="text-xl font-bold text-slate-900">{title}</h2>
             <p className="mt-1 text-sm text-slate-500">
@@ -175,7 +175,7 @@ export default function UserFormModal({
           <button
             type="button"
             onClick={onClose}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500 transition duration-300 hover:bg-violet-50 hover:text-violet-700"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500 transition duration-300 hover:bg-blue-50 hover:text-blue-700"
           >
             <X size={18} />
           </button>
@@ -194,7 +194,7 @@ export default function UserFormModal({
                 value={values.name}
                 onChange={(e) => handleChange("name", e.target.value)}
                 placeholder="Enter full name"
-                className="h-12 w-full rounded-2xl border border-slate-200 bg-white px-4 text-sm text-slate-800 outline-none transition duration-300 placeholder:text-slate-400 focus:border-violet-400 focus:shadow-[0_0_0_4px_rgba(167,139,250,0.12)]"
+                className="h-12 w-full rounded-2xl border border-slate-200 bg-white px-4 text-sm text-slate-800 outline-none transition duration-300 placeholder:text-slate-400 focus:border-blue-400 focus:shadow-[0_0_0_4px_rgba(59,130,246,0.12)]"
               />
               {errors.name && (
                 <p className="mt-1 text-xs font-medium text-rose-600">
@@ -246,7 +246,7 @@ export default function UserFormModal({
                 onChange={(e) => handleChange("gstin", e.target.value)}
                 placeholder="22AAAAA0000A1Z5"
                 maxLength={15}
-                className="h-12 w-full rounded-2xl border border-slate-200 bg-white px-4 text-sm uppercase text-slate-800 outline-none transition duration-300 placeholder:text-slate-400 focus:border-violet-400 focus:shadow-[0_0_0_4px_rgba(167,139,250,0.12)]"
+                className="h-12 w-full rounded-2xl border border-slate-200 bg-white px-4 text-sm uppercase text-slate-800 outline-none transition duration-300 placeholder:text-slate-400 focus:border-blue-400 focus:shadow-[0_0_0_4px_rgba(59,130,246,0.12)]"
               />
               {errors.gstin && (
                 <p className="mt-1 text-xs font-medium text-rose-600">
@@ -293,7 +293,7 @@ export default function UserFormModal({
   value={values.address}
   onChange={(e) => handleChange("address", e.target.value)}
   placeholder="Enter full one-line address"
-  className="w-full resize-none rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 outline-none transition duration-300 placeholder:text-slate-400 focus:border-violet-400 focus:shadow-[0_0_0_4px_rgba(167,139,250,0.12)] font-[Arial]"
+  className="w-full resize-none rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 outline-none transition duration-300 placeholder:text-slate-400 focus:border-blue-400 focus:shadow-[0_0_0_4px_rgba(59,130,246,0.12)] font-[Arial]"
 />
             {errors.address && (
               <p className="mt-1 text-xs font-medium text-rose-600">
@@ -303,7 +303,7 @@ export default function UserFormModal({
           </div>
 
           {mode === "create" && (
-<div className="mt-5 rounded-[24px] border border-violet-100 bg-[linear-gradient(135deg,rgba(245,243,255,1),rgba(250,245,255,0.98))] p-4">
+<div className="mt-5 rounded-[24px] border border-blue-100 bg-[linear-gradient(135deg,rgba(239,246,255,1),rgba(255,255,255,0.98))] p-4">
   <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
     <div className="min-w-0 flex-1">
       <p className="text-sm font-bold text-slate-900">
@@ -326,7 +326,7 @@ export default function UserFormModal({
           handleChange("sendCredentials", !values.sendCredentials)
         }
         className={`relative h-7 w-14 shrink-0 rounded-full transition duration-300 ${
-          values.sendCredentials ? "bg-violet-600" : "bg-slate-300"
+          values.sendCredentials ? "bg-blue-700" : "bg-slate-300"
         }`}
       >
         <span
@@ -352,7 +352,7 @@ export default function UserFormModal({
             <button
               type="submit"
               disabled={loading}
-              className="rounded-2xl bg-gradient-to-r from-violet-600 to-indigo-600 px-5 py-3 text-sm font-semibold text-white shadow-[0_10px_24px_rgba(167,139,250,0.22)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_30px_rgba(167,139,250,0.28)] disabled:opacity-60"
+              className="rounded-2xl bg-gradient-to-r from-blue-700 to-red-600 px-5 py-3 text-sm font-semibold text-white shadow-[0_10px_24px_rgba(37,99,235,0.22)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_30px_rgba(37,99,235,0.28)] disabled:opacity-60"
             >
               {loading
                 ? mode === "create"

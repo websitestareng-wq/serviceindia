@@ -14,7 +14,7 @@ export default function GlobalPageLoader({
   return (
     <div className="flex min-h-[calc(100vh-140px)] w-full items-center justify-center px-4 py-8">
       <div className="flex flex-col items-center justify-center text-center">
-        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-violet-100/80 text-violet-700">
+        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-100/80 text-blue-700 shadow-[0_10px_24px_rgba(37,99,235,0.10)]">
           <Loader2 className="h-6 w-6 animate-spin" />
         </div>
 

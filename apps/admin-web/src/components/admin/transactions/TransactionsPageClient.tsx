@@ -448,10 +448,10 @@ function applyMobileFilters() {
   return (
     <div className="w-full px-0 py-0">
       <div className="w-full rounded-none border-0 bg-transparent p-0 shadow-none">
-       <div className="rounded-[26px] border border-violet-100/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(250,245,255,0.96))] p-4 shadow-[0_24px_70px_rgba(124,58,237,0.10)] backdrop-blur-xl md:p-5">
+       <div className="rounded-[26px] border border-blue-100/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(239,246,255,0.96))] p-4 shadow-[0_24px_70px_rgba(37,99,235,0.10)] backdrop-blur-xl md:p-5">
           <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
             <div className="min-w-0">
-              <div className="inline-flex items-center gap-2 rounded-full border border-violet-100 bg-white/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-violet-700 shadow-sm">
+              <div className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-700 shadow-sm">
   <Receipt size={14} />
   Accounts Transactions
 </div>
@@ -470,7 +470,7 @@ function applyMobileFilters() {
   <button
     type="button"
     onClick={() => setCreateOpen(true)}
-    className="inline-flex h-12 items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-fuchsia-600 via-violet-600 to-violet-700 px-4 text-sm font-semibold text-white shadow-[0_16px_32px_rgba(147,51,234,0.24)]"
+    className="inline-flex h-12 items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-blue-700 via-blue-600 to-red-600 px-4 text-sm font-semibold text-white shadow-[0_16px_32px_rgba(37,99,235,0.24)]"
   >
     <Plus size={17} />
     Add Transaction
@@ -479,7 +479,7 @@ function applyMobileFilters() {
   <button
     type="button"
     onClick={() => setMobileFilterOpen(true)}
-    className="inline-flex h-12 items-center justify-center gap-2 rounded-2xl border border-violet-100 bg-white/92 px-4 text-sm font-semibold text-slate-700 shadow-[0_8px_20px_rgba(15,23,42,0.04)]"
+    className="inline-flex h-12 items-center justify-center gap-2 rounded-2xl border border-blue-100 bg-white/92 px-4 text-sm font-semibold text-slate-700 shadow-[0_8px_20px_rgba(15,23,42,0.04)]"
   >
     <Filter size={16} />
     Apply Filter
@@ -488,7 +488,7 @@ function applyMobileFilters() {
             <button
               type="button"
               onClick={() => setCreateOpen(true)}
-            className="hidden items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-fuchsia-600 via-violet-600 to-violet-700 px-5 py-3 text-sm font-semibold text-white shadow-[0_16px_32px_rgba(147,51,234,0.24)] transition duration-300 hover:-translate-y-0.5 hover:opacity-95 active:scale-[0.98] xl:inline-flex"
+            className="hidden items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-blue-700 via-blue-600 to-red-600 px-5 py-3 text-sm font-semibold text-white shadow-[0_16px_32px_rgba(37,99,235,0.24)] transition duration-300 hover:-translate-y-0.5 hover:opacity-95 active:scale-[0.98] xl:inline-flex"
             >
               <Plus size={18} />
               Add Transaction
@@ -507,7 +507,7 @@ function applyMobileFilters() {
   </div>
 )}
 
-         <div className="mt-5 rounded-[26px] border border-violet-100/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(250,245,255,0.94))] p-4 shadow-[0_18px_46px_rgba(124,58,237,0.08)]">
+         <div className="mt-5 rounded-[26px] border border-blue-100/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(239,246,255,0.94))] p-4 shadow-[0_18px_46px_rgba(37,99,235,0.08)]">
            <div className="hidden flex-col gap-3 lg:flex">
               <div className="flex flex-col gap-3 xl:flex-row xl:items-center xl:justify-between">
                 <div className="relative w-full xl:max-w-xl">
@@ -519,7 +519,7 @@ function applyMobileFilters() {
                     value={searchInput}
                     onChange={(e) => setSearchInput(e.target.value)}
                     placeholder="Search by voucher no, particulars, party, reference..."
-                    className="h-12 w-full rounded-2xl border border-slate-200 bg-white pl-11 pr-4 text-sm text-slate-800 outline-none transition duration-300 placeholder:text-slate-400 focus:border-violet-400 focus:shadow-[0_0_0_4px_rgba(167,139,250,0.12)]"
+                    className="h-12 w-full rounded-2xl border border-slate-200 bg-white pl-11 pr-4 text-sm text-slate-800 outline-none transition duration-300 placeholder:text-slate-400 focus:border-blue-400 focus:shadow-[0_0_0_4px_rgba(59,130,246,0.12)]"
                   />
                 </div>
 
@@ -529,7 +529,7 @@ function applyMobileFilters() {
                     onChange={(e) =>
                       setType(e.target.value as TransactionType | "all")
                     }
-                    className="h-12 rounded-2xl border border-slate-200 bg-white px-4 text-sm font-medium text-slate-700 outline-none transition duration-300 focus:border-violet-400"
+                    className="h-12 rounded-2xl border border-slate-200 bg-white px-4 text-sm font-medium text-slate-700 outline-none transition duration-300 focus:border-blue-400"
                   >
                     <option value="all">All Types</option>
                     <option value="SALES">Sales</option>
@@ -545,7 +545,7 @@ function applyMobileFilters() {
                   <button
                     type="button"
                     onClick={() => loadData(true)}
-                   className="inline-flex h-12 items-center justify-center gap-2 rounded-2xl border border-violet-100 bg-white/90 px-5 text-sm font-semibold text-slate-700 shadow-[0_8px_20px_rgba(15,23,42,0.03)] transition duration-300 hover:-translate-y-0.5 hover:border-violet-200 hover:bg-violet-50/60"
+                   className="inline-flex h-12 items-center justify-center gap-2 rounded-2xl border border-blue-100 bg-white/90 px-5 text-sm font-semibold text-slate-700 shadow-[0_8px_20px_rgba(15,23,42,0.03)] transition duration-300 hover:-translate-y-0.5 hover:border-blue-200 hover:bg-blue-50/60"
                   >
                     <RefreshCcw size={16} />
                     Refresh
@@ -557,7 +557,7 @@ function applyMobileFilters() {
                 <select
                   value={datePreset}
                   onChange={(e) => setDatePreset(e.target.value as DatePreset)}
-                  className="h-12 rounded-2xl border border-slate-200 bg-white px-4 text-sm font-medium text-slate-700 outline-none transition focus:border-violet-400"
+                  className="h-12 rounded-2xl border border-slate-200 bg-white px-4 text-sm font-medium text-slate-700 outline-none transition focus:border-blue-400"
                 >
                   <option value="all">All Dates</option>
                   <option value="today">Today</option>
@@ -576,13 +576,13 @@ function applyMobileFilters() {
                       type="date"
                       value={customFrom}
                       onChange={(e) => setCustomFrom(e.target.value)}
-                      className="h-12 rounded-2xl border border-slate-200 bg-white px-4 text-sm text-slate-700 outline-none transition focus:border-violet-400"
+                      className="h-12 rounded-2xl border border-slate-200 bg-white px-4 text-sm text-slate-700 outline-none transition focus:border-blue-400"
                     />
                     <input
                       type="date"
                       value={customTo}
                       onChange={(e) => setCustomTo(e.target.value)}
-                      className="h-12 rounded-2xl border border-slate-200 bg-white px-4 text-sm text-slate-700 outline-none transition focus:border-violet-400"
+                      className="h-12 rounded-2xl border border-slate-200 bg-white px-4 text-sm text-slate-700 outline-none transition focus:border-blue-400"
                     />
                   </div>
                 ) : (
@@ -596,8 +596,8 @@ function applyMobileFilters() {
             </div>
 
             {selectedIds.length > 0 && (
-             <div className="mt-5 flex flex-col gap-3 rounded-[22px] border border-violet-100 bg-[linear-gradient(135deg,rgba(245,243,255,1),rgba(250,245,255,0.98))] p-4 lg:flex-row lg:items-center lg:justify-between">
-                <div className="text-sm font-semibold text-violet-800">
+             <div className="mt-5 flex flex-col gap-3 rounded-[22px] border border-blue-100 bg-[linear-gradient(135deg,rgba(239,246,255,1),rgba(255,255,255,0.98))] p-4 lg:flex-row lg:items-center lg:justify-between">
+                <div className="text-sm font-semibold text-blue-800">
                   {selectedIds.length} transaction(s) selected
                 </div>
 
@@ -606,7 +606,7 @@ function applyMobileFilters() {
   type="button"
   onClick={() => setConfirmBulkEmail(true)}
   disabled={bulkEmailLoading}
- className="inline-flex items-center justify-center gap-2 rounded-2xl border border-violet-100 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-violet-50 disabled:opacity-60"
+ className="inline-flex items-center justify-center gap-2 rounded-2xl border border-blue-100 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-blue-50 disabled:opacity-60"
 >
   <Mail size={16} />
   {bulkEmailLoading ? "Sending..." : "Send Email"}
@@ -640,8 +640,8 @@ function applyMobileFilters() {
     subtitle="Please wait while we fetch the latest transactions for you."
   />
 ) : transactions.length === 0 ? (
-               <div className="flex min-h-[280px] flex-col items-center justify-center rounded-[24px] border border-dashed border-violet-200 bg-white text-center">
-  <div className="rounded-full bg-violet-50 p-4 text-violet-600">
+               <div className="flex min-h-[280px] flex-col items-center justify-center rounded-[24px] border border-dashed border-blue-200 bg-white text-center">
+  <div className="rounded-full bg-blue-50 p-4 text-blue-600">
     <Receipt size={30} />
   </div>
                   <h3 className="mt-4 text-lg font-semibold text-slate-900">
@@ -653,7 +653,7 @@ function applyMobileFilters() {
                 </div>
               ) : (
                 <>
-                <div className="hidden overflow-hidden rounded-[24px] border border-violet-100/80 bg-white shadow-[0_12px_28px_rgba(124,58,237,0.05)] lg:block">
+                <div className="hidden overflow-hidden rounded-[24px] border border-blue-100/80 bg-white shadow-[0_12px_28px_rgba(37,99,235,0.05)] lg:block">
                     <div className="overflow-x-auto">
                       <table className="w-full table-fixed">
                         <colgroup>
@@ -666,14 +666,14 @@ function applyMobileFilters() {
                           <col className="w-[12%]" />
                         </colgroup>
 
-                        <thead className="border-b border-violet-100 bg-[linear-gradient(135deg,rgba(168,85,247,0.07),rgba(124,58,237,0.05),rgba(236,72,153,0.04))]">
+                        <thead className="border-b border-blue-100 bg-[linear-gradient(135deg,rgba(37,99,235,0.07),rgba(14,165,233,0.05),rgba(220,38,38,0.04))]">
                           <tr className="text-left text-[11px] uppercase tracking-[0.16em] text-slate-500">
                             <th className="px-4 py-4 font-semibold">
                               <input
                                 type="checkbox"
                                 checked={allVisibleSelected}
                                 onChange={toggleSelectAllVisible}
-                               className="h-4 w-4 rounded border-slate-300 text-blue-600 focus:ring-violet-500"
+                               className="h-4 w-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
                               />
                             </th>
                             <th className="px-4 py-4 font-semibold">Voucher</th>
@@ -693,7 +693,7 @@ function applyMobileFilters() {
                           {transactions.map((transaction, index) => (
   <tr
     key={transaction.id}
-    className={`transition duration-300 hover:bg-violet-50/40 ${
+    className={`transition duration-300 hover:bg-blue-50/40 ${
       index !== 0 ? "border-t border-slate-100" : ""
     }`}
   >
@@ -777,7 +777,7 @@ function applyMobileFilters() {
                   </div>
 
 <div className="lg:hidden">
-  <div className="overflow-hidden rounded-[22px] border border-violet-100/80 bg-white shadow-[0_10px_24px_rgba(124,58,237,0.05)]">
+  <div className="overflow-hidden rounded-[22px] border border-blue-100/80 bg-white shadow-[0_10px_24px_rgba(37,99,235,0.05)]">
     <table className="w-full table-fixed">
       <colgroup>
         <col className="w-[20%]" />
@@ -786,7 +786,7 @@ function applyMobileFilters() {
         <col className="w-[14%]" />
       </colgroup>
 
-      <thead className="border-b border-violet-100 bg-[linear-gradient(135deg,rgba(168,85,247,0.07),rgba(124,58,237,0.05),rgba(236,72,153,0.04))]">
+      <thead className="border-b border-blue-100 bg-[linear-gradient(135deg,rgba(37,99,235,0.07),rgba(14,165,233,0.05),rgba(220,38,38,0.04))]">
         <tr className="text-left text-[10px] uppercase tracking-[0.16em] text-slate-500">
           <th className="px-2 py-2.5 font-semibold">Date</th>
           <th className="px-2 py-2.5 font-semibold">Particulars</th>
@@ -892,7 +892,7 @@ function applyMobileFilters() {
                   value={mobileSearchDraft}
                   onChange={(e) => setMobileSearchDraft(e.target.value)}
                   placeholder="Search by voucher no, particulars..."
-                  className="h-12 w-full rounded-2xl border border-slate-200 bg-white px-4 text-sm text-slate-800 outline-none placeholder:text-slate-400 focus:border-violet-400 focus:shadow-[0_0_0_4px_rgba(167,139,250,0.12)]"
+                  className="h-12 w-full rounded-2xl border border-slate-200 bg-white px-4 text-sm text-slate-800 outline-none placeholder:text-slate-400 focus:border-blue-400 focus:shadow-[0_0_0_4px_rgba(59,130,246,0.12)]"
                 />
               </div>
 
@@ -905,7 +905,7 @@ function applyMobileFilters() {
                   onChange={(e) =>
                     setMobileTypeDraft(e.target.value as TransactionType | "all")
                   }
-                  className="h-12 w-full rounded-2xl border border-slate-200 bg-white px-4 text-sm font-medium text-slate-700 outline-none focus:border-violet-400 focus:shadow-[0_0_0_4px_rgba(167,139,250,0.10)]"
+                  className="h-12 w-full rounded-2xl border border-slate-200 bg-white px-4 text-sm font-medium text-slate-700 outline-none focus:border-blue-400 focus:shadow-[0_0_0_4px_rgba(167,139,250,0.10)]"
                 >
                   <option value="all">All Types</option>
                   <option value="SALES">Sales</option>
@@ -928,7 +928,7 @@ function applyMobileFilters() {
                   onChange={(e) =>
                     setMobileDatePresetDraft(e.target.value as DatePreset)
                   }
-                  className="h-12 w-full rounded-2xl border border-slate-200 bg-white px-4 text-sm font-medium text-slate-700 outline-none focus:border-violet-400 focus:shadow-[0_0_0_4px_rgba(167,139,250,0.10)]"
+                  className="h-12 w-full rounded-2xl border border-slate-200 bg-white px-4 text-sm font-medium text-slate-700 outline-none focus:border-blue-400 focus:shadow-[0_0_0_4px_rgba(167,139,250,0.10)]"
                 >
                   <option value="all">All Dates</option>
                   <option value="today">Today</option>
@@ -948,13 +948,13 @@ function applyMobileFilters() {
                     type="date"
                     value={mobileCustomFromDraft}
                     onChange={(e) => setMobileCustomFromDraft(e.target.value)}
-                    className="h-12 rounded-2xl border border-slate-200 bg-white px-4 text-sm text-slate-700 outline-none focus:border-violet-400"
+                    className="h-12 rounded-2xl border border-slate-200 bg-white px-4 text-sm text-slate-700 outline-none focus:border-blue-400"
                   />
                   <input
                     type="date"
                     value={mobileCustomToDraft}
                     onChange={(e) => setMobileCustomToDraft(e.target.value)}
-                    className="h-12 rounded-2xl border border-slate-200 bg-white px-4 text-sm text-slate-700 outline-none focus:border-violet-400"
+                    className="h-12 rounded-2xl border border-slate-200 bg-white px-4 text-sm text-slate-700 outline-none focus:border-blue-400"
                   />
                 </div>
               ) : null}

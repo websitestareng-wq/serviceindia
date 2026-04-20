@@ -2277,13 +2277,13 @@ const balancedAddress = splitAddressIntoTwoBalancedLines(
 );
 
       const gradient = doc.linearGradient(left, titleY, left + usableW, titleY);
-      gradient.stop(0, "#7f1d1d");
-      gradient.stop(0.28, "#b91c1c");
-      gradient.stop(0.62, "#9333ea");
-      gradient.stop(1, "#2563eb");
+gradient.stop(0, "#0f172a");
+gradient.stop(0.28, "#1d4ed8");
+gradient.stop(0.62, "#2563eb");
+gradient.stop(1, "#38bdf8");
 
       doc.font("Helvetica-Bold").fontSize(22).fill(gradient);
-      doc.text("STAR ENGINEERING", left, titleY, {
+      doc.text("SERVICE INDIA", left, titleY, {
         width: usableW,
         align: "center",
       });
@@ -2293,9 +2293,9 @@ const balancedAddress = splitAddressIntoTwoBalancedLines(
       doc.save();
       doc.lineWidth(2);
       const lineGrad = doc.linearGradient(left + 110, y, left + usableW - 110, y);
-      lineGrad.stop(0, "#b91c1c");
-      lineGrad.stop(0.5, "#a100ff");
-      lineGrad.stop(1, "#2563eb");
+lineGrad.stop(0, "#1e3a8a");
+lineGrad.stop(0.5, "#2563eb");
+lineGrad.stop(1, "#38bdf8");
       doc.strokeColor(lineGrad);
       doc.moveTo(left + 110, y).lineTo(left + usableW - 110, y).stroke();
       doc.restore();
@@ -2314,26 +2314,26 @@ const balancedAddress = splitAddressIntoTwoBalancedLines(
         align: "center",
       });
        y += 14;
-      doc.text("GSTIN: 27BAJPA0708B1ZG  |  Udyam No.: UDYAM-MH-19-0033964", left, y, {
+      doc.text("GSTIN: 27BHGPA5446L1Z7  |  Udyam No.: UDYAM-MH-18-0291543", left, y, {
         width: usableW,
         align: "center",
       });
 
       y += 14;
-      doc.text("Contact : +91-9702485922  |  E-Mail : corporate@stareng.co.in", left, y, {
+      doc.text("Contact : +91-9702485922  |  E-Mail : corporate@serviceind.co.in", left, y, {
         width: usableW,
         align: "center",
       });
 
       y += 14;
 
-      const webGrad = doc.linearGradient(left, y, left + usableW, y);
-      webGrad.stop(0, "#b91c1c");
-      webGrad.stop(0.4, "#9333ea");
-      webGrad.stop(1, "#2563eb");
+   const webGrad = doc.linearGradient(left, y, left + usableW, y);
+webGrad.stop(0, "#1e3a8a");
+webGrad.stop(0.45, "#2563eb");
+webGrad.stop(1, "#38bdf8");
 
       doc.font("Helvetica-Bold").fontSize(10).fill(webGrad);
-      doc.text("www.stareng.co.in", left, y, {
+      doc.text("www.serviceind.co.in", left, y, {
         width: usableW,
         align: "center",
       });
@@ -2406,7 +2406,7 @@ y += 18;
 
       doc.save();
       doc.lineWidth(1);
-      doc.strokeColor("#d1d5db");
+     doc.strokeColor("#cbd5e1");
       doc.moveTo(left, y).lineTo(left + usableW, y).stroke();
       doc.restore();
 
@@ -2435,7 +2435,7 @@ doc.text("Credit", X.credit, y, { width: col.credit, align: "right" });
 
       doc.save();
       doc.lineWidth(0.8);
-      doc.strokeColor("#94a3b8");
+      doc.strokeColor("#60a5fa");
       doc.moveTo(left, y).lineTo(left + usableW, y).stroke();
       doc.restore();
 
@@ -2531,7 +2531,7 @@ drawCompressedText(voucherNoText, voucherNoX, voucherNoY, voucherNoW, {
   fontSize: 9,
   minScale: 58,
   align: "right",
-  color: attachmentUrl ? "#2563eb" : "#111827",
+  color: attachmentUrl ? "#1d4ed8" : "#111827",
 });
 
 if (
@@ -3265,14 +3265,14 @@ const showOpeningRowInBillWise = false;
         usableW - 140,
       );
 
-      const gradient = doc.linearGradient(left, titleY, left + usableW, titleY);
-      gradient.stop(0, "#7f1d1d");
-      gradient.stop(0.28, "#b91c1c");
-      gradient.stop(0.62, "#9333ea");
-      gradient.stop(1, "#2563eb");
+     const gradient = doc.linearGradient(left, titleY, left + usableW, titleY);
+gradient.stop(0, "#0f172a");
+gradient.stop(0.28, "#1d4ed8");
+gradient.stop(0.62, "#2563eb");
+gradient.stop(1, "#38bdf8");
 
       doc.font("Helvetica-Bold").fontSize(22).fill(gradient);
-      doc.text("STAR ENGINEERING", left, titleY, {
+     doc.text("SERVICE INDIA", left, titleY, {
         width: usableW,
         align: "center",
       });
@@ -3281,15 +3281,15 @@ const showOpeningRowInBillWise = false;
 
       doc.save();
       doc.lineWidth(2);
-      const lineGrad = doc.linearGradient(
-        left + 110,
-        y,
-        left + usableW - 110,
-        y,
-      );
-      lineGrad.stop(0, "#b91c1c");
-      lineGrad.stop(0.5, "#a100ff");
-      lineGrad.stop(1, "#2563eb");
+     const lineGrad = doc.linearGradient(
+  left + 110,
+  y,
+  left + usableW - 110,
+  y,
+);
+lineGrad.stop(0, "#1e3a8a");
+lineGrad.stop(0.5, "#2563eb");
+lineGrad.stop(1, "#38bdf8");
       doc.strokeColor(lineGrad);
       doc.moveTo(left + 110, y).lineTo(left + usableW - 110, y).stroke();
       doc.restore();
@@ -3309,13 +3309,13 @@ const showOpeningRowInBillWise = false;
       });
 
       y += 14;
-      doc.text("GSTIN: 27BAJPA0708B1ZG  |  Udyam No.: UDYAM-MH-19-0033964", left, y, {
+      doc.text("GSTIN: 27BHGPA5446L1Z7  |  Udyam No.: UDYAM-MH-18-0291543", left, y, {
         width: usableW,
         align: "center",
       });
 
       y += 14;
-      doc.text("Contact : +91-9702485922  |  E-Mail : corporate@stareng.co.in", left, y, {
+      doc.text("Contact : +91-9702485922  |  E-Mail : corporate@serviceind.co.in", left, y, {
         width: usableW,
         align: "center",
       });
@@ -3323,12 +3323,12 @@ const showOpeningRowInBillWise = false;
       y += 14;
 
       const webGrad = doc.linearGradient(left, y, left + usableW, y);
-      webGrad.stop(0, "#b91c1c");
-      webGrad.stop(0.4, "#9333ea");
-      webGrad.stop(1, "#2563eb");
+webGrad.stop(0, "#1e3a8a");
+webGrad.stop(0.45, "#2563eb");
+webGrad.stop(1, "#38bdf8");
 
       doc.font("Helvetica-Bold").fontSize(10).fill(webGrad);
-      doc.text("www.stareng.co.in", left, y, {
+      doc.text("www.serviceind.co.in", left, y, {
         width: usableW,
         align: "center",
       });
@@ -3406,7 +3406,7 @@ if (!hidePeriodForStatus) {
 
       doc.save();
       doc.lineWidth(1);
-      doc.strokeColor("#d1d5db");
+    doc.strokeColor("#cbd5e1");
       doc.moveTo(left, y).lineTo(left + usableW, y).stroke();
       doc.restore();
 
@@ -3437,7 +3437,7 @@ if (!hidePeriodForStatus) {
 
       doc.save();
       doc.lineWidth(0.7);
-      doc.strokeColor("#94a3b8");
+      doc.strokeColor("#60a5fa");
       doc.moveTo(left, y).lineTo(left + usableW, y).stroke();
       doc.restore();
 
@@ -3491,7 +3491,7 @@ if (!hidePeriodForStatus) {
             : normalFont,
         fontSize: 9,
         minScale: 55,
-        color: attachmentUrl ? "#2563eb" : "#111827",
+       color: attachmentUrl ? "#1d4ed8" : "#111827",
       });
 
       if (
@@ -4016,14 +4016,14 @@ async generateOnAccountPdf(params: {
         usableW - 140,
       );
 
-      const gradient = doc.linearGradient(left, titleY, left + usableW, titleY);
-      gradient.stop(0, "#7f1d1d");
-      gradient.stop(0.28, "#b91c1c");
-      gradient.stop(0.62, "#9333ea");
-      gradient.stop(1, "#2563eb");
+    const gradient = doc.linearGradient(left, titleY, left + usableW, titleY);
+gradient.stop(0, "#0f172a");
+gradient.stop(0.28, "#1d4ed8");
+gradient.stop(0.62, "#2563eb");
+gradient.stop(1, "#38bdf8");
 
       doc.font("Helvetica-Bold").fontSize(22).fill(gradient);
-      doc.text("STAR ENGINEERING", left, titleY, {
+    doc.text("SERVICE INDIA", left, titleY, {
         width: usableW,
         align: "center",
       });
@@ -4033,15 +4033,14 @@ async generateOnAccountPdf(params: {
       doc.save();
       doc.lineWidth(2);
       const lineGrad = doc.linearGradient(
-        left + 110,
-        y,
-        left + usableW - 110,
-        y,
-      );
-      lineGrad.stop(0, "#b91c1c");
-      lineGrad.stop(0.5, "#a100ff");
-      lineGrad.stop(1, "#2563eb");
-      doc.strokeColor(lineGrad);
+  left + 110,
+  y,
+  left + usableW - 110,
+  y,
+);
+lineGrad.stop(0, "#1e3a8a");
+lineGrad.stop(0.5, "#2563eb");
+lineGrad.stop(1, "#38bdf8");
       doc.moveTo(left + 110, y).lineTo(left + usableW - 110, y).stroke();
       doc.restore();
 
@@ -4060,26 +4059,25 @@ async generateOnAccountPdf(params: {
       });
 
       y += 14;
-      doc.text("GSTIN: 27BAJPA0708B1ZG  |  Udyam No.: UDYAM-MH-19-0033964", left, y, {
+      doc.text("GSTIN: 27BHGPA5446L1Z7  |  Udyam No.: UDYAM-MH-18-0291543", left, y, {
         width: usableW,
         align: "center",
       });
 
       y += 14;
-      doc.text("Contact : +91-9702485922  |  E-Mail : corporate@stareng.co.in", left, y, {
+      doc.text("Contact : +91-9702485922  |  E-Mail : corporate@serviceind.co.in", left, y, {
         width: usableW,
         align: "center",
       });
 
       y += 14;
-
-      const webGrad = doc.linearGradient(left, y, left + usableW, y);
-      webGrad.stop(0, "#b91c1c");
-      webGrad.stop(0.4, "#9333ea");
-      webGrad.stop(1, "#2563eb");
+const webGrad = doc.linearGradient(left, y, left + usableW, y);
+webGrad.stop(0, "#1e3a8a");
+webGrad.stop(0.45, "#2563eb");
+webGrad.stop(1, "#38bdf8");
 
       doc.font("Helvetica-Bold").fontSize(10).fill(webGrad);
-      doc.text("www.stareng.co.in", left, y, {
+      doc.text("www.serviceind.co.in", left, y, {
         width: usableW,
         align: "center",
       });
@@ -4152,7 +4150,7 @@ async generateOnAccountPdf(params: {
 
       doc.save();
       doc.lineWidth(1);
-      doc.strokeColor("#d1d5db");
+      doc.strokeColor("#cbd5e1");
       doc.moveTo(left, y).lineTo(left + usableW, y).stroke();
       doc.restore();
 
@@ -4181,7 +4179,7 @@ async generateOnAccountPdf(params: {
 
       doc.save();
       doc.lineWidth(0.8);
-      doc.strokeColor("#94a3b8");
+      doc.strokeColor("#60a5fa");
       doc.moveTo(left, y).lineTo(left + usableW, y).stroke();
       doc.restore();
 
@@ -4280,7 +4278,7 @@ async generateOnAccountPdf(params: {
         fontSize: 9,
         minScale: 58,
         align: "right",
-        color: attachmentUrl ? "#2563eb" : "#111827",
+        color: attachmentUrl ? "#1d4ed8" : "#111827",
       });
 
       if (

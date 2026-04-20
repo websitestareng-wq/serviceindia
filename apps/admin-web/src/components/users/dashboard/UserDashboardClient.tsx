@@ -49,22 +49,22 @@ type TrendPoint = {
 
 const PIE_COLORS = [
   "#2563eb",
-  "#7c3aed",
-  "#ec4899",
-  "#ef4444",
-  "#14b8a6",
-  "#f59e0b",
-  "#8b5cf6",
+  "#dc2626",
   "#0ea5e9",
+  "#1d4ed8",
+  "#f97316",
+  "#14b8a6",
+  "#475569",
+  "#0284c7",
 ];
 
-const DONUT_COLORS = ["#2563eb", "#ef4444"];
+const DONUT_COLORS = ["#2563eb", "#dc2626"];
 
 const TREND_META = {
   sales: { label: "Sales", dot: "bg-blue-500", text: "text-blue-600" },
-  purchase: { label: "Purchase", dot: "bg-violet-500", text: "text-violet-600" },
-  receipt: { label: "Receipt", dot: "bg-emerald-500", text: "text-emerald-600" },
-  payment: { label: "Payment", dot: "bg-rose-500", text: "text-rose-600" },
+  purchase: { label: "Purchase", dot: "bg-red-500", text: "text-red-600" },
+  receipt: { label: "Receipt", dot: "bg-cyan-500", text: "text-cyan-600" },
+  payment: { label: "Payment", dot: "bg-slate-500", text: "text-slate-600" },
 } as const;
 
 function cn(...classes: Array<string | false | null | undefined>) {
@@ -286,9 +286,9 @@ function SmallStatCard({
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.24, ease: "easeOut" }}
       whileHover={{ y: -3 }}
-      className="group relative overflow-hidden rounded-[20px] border border-violet-100/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(250,245,255,0.92))] p-3.5 shadow-[0_14px_30px_rgba(124,58,237,0.06)] transition-all duration-300 hover:border-violet-200 hover:shadow-[0_18px_36px_rgba(124,58,237,0.09)] sm:p-4"
+      className="group relative overflow-hidden rounded-[20px] border border-blue-100/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(239,246,255,0.92))] p-3.5 shadow-[0_14px_30px_rgba(37,99,235,0.06)] transition-all duration-300 hover:border-red-200 hover:shadow-[0_18px_36px_rgba(220,38,38,0.08)] sm:p-4"
     >
-      <div className="absolute inset-x-0 top-0 h-16 bg-[linear-gradient(90deg,rgba(168,85,247,0.06),rgba(236,72,153,0.04),rgba(59,130,246,0.05))] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+      <div className="absolute inset-x-0 top-0 h-16 bg-[linear-gradient(90deg,rgba(37,99,235,0.06),rgba(14,165,233,0.04),rgba(220,38,38,0.05))] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
       <div className="relative flex items-start gap-3">
         <div
@@ -334,12 +334,12 @@ function Panel({
   return (
     <section
       className={cn(
-       "relative overflow-hidden rounded-[26px] border border-violet-100/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(250,245,255,0.94))] p-4 shadow-[0_18px_46px_rgba(124,58,237,0.08)] backdrop-blur-xl sm:p-5",
+       "relative overflow-hidden rounded-[26px] border border-blue-100/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(239,246,255,0.94))] p-4 shadow-[0_18px_46px_rgba(37,99,235,0.08)] backdrop-blur-xl sm:p-5",
         className,
       )}
     >
-     <div className="absolute left-0 top-0 h-24 w-24 rounded-full bg-fuchsia-100/30 blur-3xl" />
-<div className="absolute right-0 top-0 h-24 w-24 rounded-full bg-violet-100/30 blur-3xl" />
+<div className="absolute left-0 top-0 h-24 w-24 rounded-full bg-blue-100/30 blur-3xl" />
+<div className="absolute right-0 top-0 h-24 w-24 rounded-full bg-red-100/25 blur-3xl" />
 
       <div className="relative flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
         <div className="min-w-0">
@@ -617,11 +617,11 @@ if (error) {
                 exit={{ opacity: 0, y: 24, scale: 0.98 }}
                 transition={{ duration: 0.18, ease: "easeOut" }}
                 onClick={(e) => e.stopPropagation()}
-                className="absolute left-1/2 top-1/2 w-[calc(100vw-24px)] max-w-[460px] -translate-x-1/2 -translate-y-1/2 rounded-[26px] border border-violet-100 bg-white p-4 shadow-[0_30px_80px_rgba(15,23,42,0.20)] sm:p-5"
+               className="absolute left-1/2 top-1/2 w-[calc(100vw-24px)] max-w-[460px] -translate-x-1/2 -translate-y-1/2 rounded-[26px] border border-blue-100 bg-white p-4 shadow-[0_30px_80px_rgba(15,23,42,0.20)] sm:p-5"
               >
                 <div className="flex items-start justify-between gap-3">
                   <div>
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-violet-700">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-700">
                       Dashboard Filter
                     </p>
                     <h3 className="mt-2 text-xl font-bold tracking-tight text-slate-900">
@@ -655,7 +655,7 @@ if (error) {
                       className={cn(
                         "rounded-2xl px-4 py-2 text-sm font-semibold transition",
                         draftFilters.rangeKey === item.key
-                          ? "bg-gradient-to-r from-violet-600 to-fuchsia-500 text-white shadow-[0_8px_18px_rgba(124,58,237,0.22)]"
+                          ? "bg-gradient-to-r from-blue-700 to-red-600 text-white shadow-[0_8px_18px_rgba(37,99,235,0.22)]"
                           : "border border-slate-200 bg-white text-slate-700 hover:bg-slate-50",
                       )}
                     >
@@ -680,7 +680,7 @@ if (error) {
                             from: e.target.value,
                           }))
                         }
-                        className="h-11 w-full rounded-2xl border border-slate-200 bg-white px-3.5 text-sm font-medium text-slate-700 outline-none focus:border-violet-400 focus:ring-4 focus:ring-violet-100"
+                        className="h-11 w-full rounded-2xl border border-slate-200 bg-white px-3.5 text-sm font-medium text-slate-700 outline-none focus:border-blue-400 focus:ring-4 focus:ring-blue-100"
                       />
                     </div>
 
@@ -716,7 +716,7 @@ if (error) {
                   <button
                     type="button"
                     onClick={applyFilters}
-                    className="inline-flex h-11 flex-1 items-center justify-center rounded-2xl bg-violet-600 text-sm font-semibold text-white border border-violet-600"
+                    className="inline-flex h-11 flex-1 items-center justify-center rounded-2xl bg-blue-700 text-sm font-semibold text-white border border-blue-700"
                   >
                     Apply Filter
                   </button>
@@ -729,9 +729,9 @@ if (error) {
       : null;
   return (
     <div className="space-y-5">
-      <section className="relative overflow-hidden rounded-[26px] border border-violet-100/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(250,245,255,0.96))] p-4 shadow-[0_24px_70px_rgba(124,58,237,0.10)] backdrop-blur-xl sm:p-5">
-     <div className="absolute left-0 top-0 h-36 w-36 rounded-full bg-fuchsia-100/30 blur-3xl" />
-<div className="absolute right-0 top-0 h-36 w-36 rounded-full bg-violet-100/30 blur-3xl" />
+      <section className="relative overflow-hidden rounded-[26px] border border-blue-100/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(239,246,255,0.96))] p-4 shadow-[0_24px_70px_rgba(37,99,235,0.10)] backdrop-blur-xl sm:p-5">
+     <div className="absolute left-0 top-0 h-36 w-36 rounded-full bg-blue-100/30 blur-3xl" />
+<div className="absolute right-0 top-0 h-36 w-36 rounded-full bg-red-100/25 blur-3xl" />
 
        <motion.div
   initial={{ opacity: 0, y: 18 }}
@@ -741,11 +741,11 @@ if (error) {
 >
   <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_390px] xl:items-start">
     <div className="min-w-0">
-      <div className="inline-flex h-12 w-12 items-center justify-center rounded-[18px] bg-gradient-to-br from-violet-700 via-violet-600 to-fuchsia-600 text-white shadow-[0_16px_32px_rgba(147,51,234,0.24)]">
+      <div className="inline-flex h-12 w-12 items-center justify-center rounded-[18px] bg-gradient-to-br from-blue-700 via-blue-600 to-red-600 text-white shadow-[0_16px_32px_rgba(37,99,235,0.24)]">
   <BarChart3 className="h-5 w-5" />
 </div>
 
-      <span className="mt-4 inline-flex items-center rounded-full border border-violet-100 bg-white/80 px-4 py-1 text-[11px] font-semibold uppercase tracking-[0.22em] text-violet-700">
+      <span className="mt-4 inline-flex items-center rounded-full border border-blue-100 bg-white/80 px-4 py-1 text-[11px] font-semibold uppercase tracking-[0.22em] text-blue-700">
                 USER DASHBOARD
       </span>
 
@@ -762,7 +762,7 @@ if (error) {
       {compactTopSummary.map((item) => (
         <div
           key={item.label}
-        className="min-w-0 rounded-[24px] border border-[#e5dceb] bg-white/80 px-4 py-4 shadow-[0_4px_16px_rgba(15,23,42,0.04)]"
+        className="min-w-0 rounded-[24px] border border-blue-100 bg-white/80 px-4 py-4 shadow-[0_4px_16px_rgba(15,23,42,0.04)]"
         >
           <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400">
             {item.label}
@@ -787,7 +787,7 @@ if (error) {
            <button
       type="button"
       onClick={openFilterModal}
-      className="inline-flex h-11 items-center justify-center gap-2 rounded-[20px] bg-gradient-to-r from-fuchsia-600 via-violet-600 to-violet-700 px-4 text-sm font-semibold text-white shadow-[0_16px_32px_rgba(147,51,234,0.24)] transition-all duration-200 hover:-translate-y-[1px] hover:opacity-95"
+     className="inline-flex h-11 items-center justify-center gap-2 rounded-[20px] bg-gradient-to-r from-blue-700 via-blue-600 to-red-600 px-4 text-sm font-semibold text-white shadow-[0_16px_32px_rgba(37,99,235,0.24)] transition-all duration-200 hover:-translate-y-[1px] hover:opacity-95"
     >
       <Filter className="h-4 w-4" />
       Apply Filter
@@ -795,10 +795,10 @@ if (error) {
   </div>
 </motion.div>
       </section>
-<section className="rounded-[26px] border border-violet-100/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(250,245,255,0.96))] p-4 shadow-[0_24px_70px_rgba(124,58,237,0.10)] sm:p-5">
+<section className="rounded-[26px] border border-blue-100/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(239,246,255,0.96))] p-4 shadow-[0_24px_70px_rgba(37,99,235,0.10)] sm:p-5">
   <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
     <div className="min-w-0">
-      <div className="inline-flex rounded-full border border-violet-100 bg-white/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-violet-700">
+      <div className="inline-flex rounded-full border border-blue-100 bg-white/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-700">
         Closing Summary
       </div>
 
@@ -959,7 +959,7 @@ if (error) {
               <div className="mb-3 flex flex-wrap gap-2">
                 {[
                   { key: "sales", label: "Sales", dot: "bg-blue-500" },
-                  { key: "purchase", label: "Purchase", dot: "bg-violet-500" },
+                 { key: "purchase", label: "Purchase", dot: "bg-red-500" },
                   { key: "receipt", label: "Receipt", dot: "bg-emerald-500" },
                   { key: "payment", label: "Payment", dot: "bg-rose-500" },
                 ].map((item) => (
@@ -985,9 +985,9 @@ if (error) {
                         <stop offset="95%" stopColor="#2563eb" stopOpacity={0.02} />
                       </linearGradient>
                       <linearGradient id="purchaseGradient" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="#7c3aed" stopOpacity={0.22} />
-                        <stop offset="95%" stopColor="#7c3aed" stopOpacity={0.02} />
-                      </linearGradient>
+  <stop offset="5%" stopColor="#dc2626" stopOpacity={0.22} />
+  <stop offset="95%" stopColor="#dc2626" stopOpacity={0.02} />
+</linearGradient>
                       <linearGradient id="receiptGradient" x1="0" y1="0" x2="0" y2="1">
                         <stop offset="5%" stopColor="#10b981" stopOpacity={0.2} />
                         <stop offset="95%" stopColor="#10b981" stopOpacity={0.02} />
@@ -1031,7 +1031,7 @@ if (error) {
                       type="natural"
                       dataKey="purchase"
                       name="Purchase"
-                      stroke="#7c3aed"
+                      stroke="#dc2626"
                       fill="url(#purchaseGradient)"
                       strokeWidth={2.4}
                     />
@@ -1065,7 +1065,7 @@ if (error) {
     {
       label: "Purchase",
       rawValue: Number(data?.summary.totalPurchase || 0),
-      color: "bg-violet-500",
+      color: "bg-red-500",
     },
     {
       label: "Receipt",

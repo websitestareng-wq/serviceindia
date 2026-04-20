@@ -103,14 +103,14 @@ function Panel({
   children: React.ReactNode;
 }) {
   return (
-    <section className="relative overflow-hidden rounded-[26px] border border-violet-100/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(250,245,255,0.94))] p-5 shadow-[0_18px_46px_rgba(124,58,237,0.08)]">
-      <div className="absolute left-0 top-0 h-24 w-24 rounded-full bg-fuchsia-100/30 blur-3xl" />
-      <div className="absolute right-0 top-0 h-24 w-24 rounded-full bg-violet-100/30 blur-3xl" />
+   <section className="relative overflow-hidden rounded-[26px] border border-blue-100/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(239,246,255,0.94))] p-5 shadow-[0_18px_46px_rgba(37,99,235,0.08)]">
+      <div className="absolute left-0 top-0 h-24 w-24 rounded-full bg-blue-100/30 blur-3xl" />
+<div className="absolute right-0 top-0 h-24 w-24 rounded-full bg-red-100/25 blur-3xl" />
 
       <div className="relative">
         <div className="flex items-start gap-3">
           {icon ? (
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[18px] bg-gradient-to-br from-violet-700 via-violet-600 to-fuchsia-600 text-white shadow-[0_16px_32px_rgba(147,51,234,0.24)]">
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[18px] bg-gradient-to-br from-blue-700 via-blue-600 to-red-600 text-white shadow-[0_16px_32px_rgba(37,99,235,0.24)]">
               {icon}
             </div>
           ) : null}
@@ -177,7 +177,7 @@ function PasswordDisplayBlock({
     "inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-[20px] px-4 text-sm font-semibold transition-all duration-200",
     disabled
       ? "cursor-not-allowed border border-slate-200 bg-slate-100 text-slate-400"
-      : "bg-gradient-to-r from-fuchsia-600 via-violet-600 to-violet-700 text-white shadow-[0_16px_32px_rgba(147,51,234,0.24)] hover:-translate-y-[1px] hover:opacity-95",
+     : "bg-gradient-to-r from-blue-700 via-blue-600 to-red-600 text-white shadow-[0_16px_32px_rgba(37,99,235,0.24)] hover:-translate-y-[1px] hover:opacity-95",
   )}
 >
   <Pencil className="h-4 w-4" />
@@ -224,16 +224,16 @@ function ModalShell({
             exit={{ opacity: 0, y: 22, scale: 0.985 }}
             transition={{ duration: 0.18, ease: "easeOut" }}
             onClick={(e) => e.stopPropagation()}
-            className="absolute left-1/2 top-1/2 w-[calc(100vw-24px)] max-w-[520px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[28px] border border-violet-100 bg-[linear-gradient(180deg,#ffffff_0%,#fcf8ff_100%)] p-5 shadow-[0_30px_80px_rgba(15,23,42,0.20)] sm:p-6"
+           className="absolute left-1/2 top-1/2 w-[calc(100vw-24px)] max-w-[520px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[28px] border border-blue-100 bg-[linear-gradient(180deg,#ffffff_0%,#f8fbff_100%)] p-5 shadow-[0_30px_80px_rgba(15,23,42,0.20)] sm:p-6"
           >
-            <div className="absolute left-0 top-0 h-28 w-28 rounded-full bg-fuchsia-100/40 blur-3xl" />
-            <div className="absolute right-0 top-0 h-28 w-28 rounded-full bg-violet-100/40 blur-3xl" />
+           <div className="absolute left-0 top-0 h-28 w-28 rounded-full bg-blue-100/30 blur-3xl" />
+<div className="absolute right-0 top-0 h-28 w-28 rounded-full bg-red-100/25 blur-3xl" />
 
             <div className="relative">
               <div className="flex items-start justify-between gap-3">
                 <div className="min-w-0">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-violet-700">
-                    STAR ENGINEERING
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-700">
+                    SERVICE INDIA
                   </p>
                   <h3 className="mt-2 text-[1.35rem] font-bold tracking-tight text-slate-900">
                     {title}
@@ -563,9 +563,9 @@ const passwordLockInfo = getPasswordLockInfo(data?.lastPasswordChangedAt);
   return (
     <>
       <div className="space-y-5">
-        <section className="relative overflow-hidden rounded-[26px] border border-violet-100 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(250,245,255,0.96))] p-5 shadow-[0_24px_70px_rgba(124,58,237,0.10)]">
-          <div className="absolute left-0 top-0 h-36 w-36 rounded-full bg-fuchsia-100/30 blur-3xl" />
-          <div className="absolute right-0 top-0 h-36 w-36 rounded-full bg-violet-100/30 blur-3xl" />
+        <section className="relative overflow-hidden rounded-[26px] border border-blue-100 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(239,246,255,0.96))] p-5 shadow-[0_24px_70px_rgba(37,99,235,0.10)]">
+          <div className="absolute left-0 top-0 h-36 w-36 rounded-full bg-blue-100/30 blur-3xl" />
+<div className="absolute right-0 top-0 h-36 w-36 rounded-full bg-red-100/25 blur-3xl" />
 
           <motion.div
             initial={{ opacity: 0, y: 18 }}
@@ -600,7 +600,7 @@ const passwordLockInfo = getPasswordLockInfo(data?.lastPasswordChangedAt);
 
               {editMode ? (
                 <textarea
-                  className="mt-1.5 min-h-[110px] w-full rounded-[18px] border border-slate-200 bg-white px-3.5 py-3 text-sm text-slate-700 outline-none transition focus:border-violet-400 focus:ring-4 focus:ring-violet-100"
+                  className="mt-1.5 min-h-[110px] w-full rounded-[18px] border border-slate-200 bg-white px-3.5 py-3 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-4 focus:ring-blue-100"
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}
                 />
@@ -617,7 +617,7 @@ const passwordLockInfo = getPasswordLockInfo(data?.lastPasswordChangedAt);
               <button
                 type="button"
                 onClick={openAddressEditConfirm}
-                className="inline-flex h-11 items-center justify-center rounded-[20px] bg-gradient-to-r from-fuchsia-600 via-violet-600 to-violet-700 px-4 text-sm font-semibold text-white shadow-[0_16px_32px_rgba(147,51,234,0.24)] transition-all duration-200 hover:-translate-y-[1px] hover:opacity-95"
+                className="inline-flex h-11 items-center justify-center rounded-[20px] bg-gradient-to-r from-blue-700 via-blue-600 to-red-600 px-4 text-sm font-semibold text-white shadow-[0_16px_32px_rgba(37,99,235,0.24)] transition-all duration-200 hover:-translate-y-[1px] hover:opacity-95"
               >
                 Edit Address
               </button>
@@ -687,7 +687,7 @@ const passwordLockInfo = getPasswordLockInfo(data?.lastPasswordChangedAt);
             <button
               type="button"
               onClick={confirmAddressEdit}
-              className="inline-flex h-11 flex-1 items-center justify-center rounded-[20px] bg-violet-600 text-sm font-semibold text-white"
+             className="inline-flex h-11 flex-1 items-center justify-center rounded-[20px] bg-blue-700 text-sm font-semibold text-white"
             >
               Continue
             </button>
@@ -749,7 +749,7 @@ const passwordLockInfo = getPasswordLockInfo(data?.lastPasswordChangedAt);
             <button
               type="button"
               onClick={goToCurrentPasswordCheck}
-              className="inline-flex h-11 flex-1 items-center justify-center rounded-[20px] bg-violet-600 text-sm font-semibold text-white"
+              className="inline-flex h-11 flex-1 items-center justify-center rounded-[20px] bg-blue-700 text-sm font-semibold text-white"
             >
               Continue
             </button>
@@ -770,7 +770,7 @@ const passwordLockInfo = getPasswordLockInfo(data?.lastPasswordChangedAt);
             </label>
             <input
               type="password"
-              className="mt-1.5 h-12 w-full rounded-[18px] border border-slate-200 bg-white px-3.5 text-sm text-slate-700 outline-none transition focus:border-violet-400 focus:ring-4 focus:ring-violet-100"
+             className="mt-1.5 h-12 w-full rounded-[18px] border border-slate-200 bg-white px-3.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-4 focus:ring-blue-100"
               value={currentPasswordCheck}
               onChange={(e) => setCurrentPasswordCheck(e.target.value)}
               placeholder="Enter current password"
@@ -793,7 +793,7 @@ const passwordLockInfo = getPasswordLockInfo(data?.lastPasswordChangedAt);
   type="button"
   onClick={continueToNewPassword}
   disabled={passwordSaving}
-  className="inline-flex h-11 flex-1 items-center justify-center gap-2 rounded-[20px] bg-violet-600 text-sm font-semibold text-white disabled:opacity-70"
+  className="inline-flex h-11 flex-1 items-center justify-center gap-2 rounded-[20px] bg-blue-700 text-sm font-semibold text-white disabled:opacity-70"
 >
   {passwordSaving ? (
     <Loader2 className="h-4 w-4 animate-spin" />
@@ -819,7 +819,7 @@ const passwordLockInfo = getPasswordLockInfo(data?.lastPasswordChangedAt);
         </label>
         <input
           type="password"
-          className="mt-1.5 h-12 w-full rounded-[18px] border border-slate-200 bg-white px-3.5 text-sm text-slate-700 outline-none transition focus:border-violet-400 focus:ring-4 focus:ring-violet-100"
+         className="mt-1.5 h-12 w-full rounded-[18px] border border-slate-200 bg-white px-3.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-4 focus:ring-blue-100"
           value={newPassword}
           onChange={(e) => setNewPassword(e.target.value)}
           placeholder="Enter new password"
@@ -832,7 +832,7 @@ const passwordLockInfo = getPasswordLockInfo(data?.lastPasswordChangedAt);
         </label>
         <input
           type="password"
-          className="mt-1.5 h-12 w-full rounded-[18px] border border-slate-200 bg-white px-3.5 text-sm text-slate-700 outline-none transition focus:border-violet-400 focus:ring-4 focus:ring-violet-100"
+         className="mt-1.5 h-12 w-full rounded-[18px] border border-slate-200 bg-white px-3.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-4 focus:ring-blue-100"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
           placeholder="Confirm new password"
@@ -960,7 +960,7 @@ const passwordLockInfo = getPasswordLockInfo(data?.lastPasswordChangedAt);
       router.replace("/login");
     }
   }}
-  className="inline-flex h-11 w-full items-center justify-center rounded-[20px] bg-violet-600 text-sm font-semibold text-white"
+  className="inline-flex h-11 w-full items-center justify-center rounded-[20px] bg-blue-700 text-sm font-semibold text-white"
 >
   Close
 </button>

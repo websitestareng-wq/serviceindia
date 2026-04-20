@@ -647,13 +647,13 @@ export default function DocumentsPageClient() {
         initial={{ opacity: 0, y: 18 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.28 }}
-        className="overflow-hidden rounded-[30px] border border-slate-200/80 bg-white/95 shadow-[0_24px_70px_rgba(15,23,42,0.08)] backdrop-blur-xl"
+        className="overflow-hidden rounded-[30px] border border-blue-100/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(239,246,255,0.96))] shadow-[0_24px_70px_rgba(37,99,235,0.10)] backdrop-blur-xl"
       >
-        <div className="border-b border-slate-200/80 bg-[linear-gradient(135deg,rgba(244,63,94,0.04),rgba(139,92,246,0.05),rgba(59,130,246,0.03))] px-4 py-4 sm:px-5 sm:py-5">
+        <div className="border-b border-blue-100/80 bg-[linear-gradient(135deg,rgba(37,99,235,0.06),rgba(14,165,233,0.05),rgba(220,38,38,0.04))] px-4 py-4 sm:px-5 sm:py-5">
           <div className="flex flex-col gap-4">
             <div className="flex flex-col gap-4 xl:flex-row xl:items-start xl:justify-between">
               <div className="min-w-0 flex-1">
-                <div className="mb-3 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-fuchsia-600 via-violet-600 to-blue-600 text-white shadow-[0_18px_35px_rgba(99,102,241,0.22)]">
+                <div className="mb-3 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-700 via-blue-600 to-red-600 text-white shadow-[0_18px_35px_rgba(37,99,235,0.22)]">
                   <FolderKanban className="h-5 w-5" />
                 </div>
 
@@ -681,7 +681,7 @@ export default function DocumentsPageClient() {
                       }}
                       onFocus={() => setSearchOpen(true)}
                       placeholder="Search files..."
-                      className="h-11 w-full rounded-2xl border border-slate-200 bg-white pl-11 pr-4 text-sm text-slate-700 outline-none transition-all duration-200 placeholder:text-slate-400 focus:border-violet-400 focus:ring-4 focus:ring-violet-100"
+                      className="h-11 w-full rounded-2xl border border-slate-200 bg-white pl-11 pr-4 text-sm text-slate-700 outline-none transition-all duration-200 placeholder:text-slate-400 focus:border-blue-400 focus:ring-4 focus:ring-blue-100"
                     />
 
                     <AnimatePresence>
@@ -698,7 +698,7 @@ export default function DocumentsPageClient() {
                                 onClick={() => handleSearchSelect(item)}
                                 className="flex w-full cursor-pointer items-start gap-3 border-b border-slate-100 px-4 py-3 text-left transition hover:bg-slate-50"
                               >
-                                <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-violet-50 text-violet-700">
+                                <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-700">
                                   <FileText className="h-4 w-4" />
                                 </div>
 
@@ -731,7 +731,7 @@ export default function DocumentsPageClient() {
                       setSearchOpen(false);
                       fileInputRef.current?.click();
                     }}
-                    className="inline-flex h-11 shrink-0 cursor-pointer items-center gap-2 rounded-2xl bg-gradient-to-r from-fuchsia-600 via-violet-600 to-blue-600 px-4 text-sm font-semibold text-white shadow-[0_16px_30px_rgba(99,102,241,0.22)] transition-all duration-200 hover:shadow-[0_20px_34px_rgba(99,102,241,0.28)]"
+                    className="inline-flex h-11 shrink-0 cursor-pointer items-center gap-2 rounded-2xl bg-gradient-to-r from-blue-700 via-blue-600 to-red-600 px-4 text-sm font-semibold text-white shadow-[0_16px_30px_rgba(37,99,235,0.22)] transition-all duration-200 hover:shadow-[0_20px_34px_rgba(37,99,235,0.28)]"
                   >
                     <UploadCloud className="h-4 w-4" />
                     Upload
@@ -803,7 +803,7 @@ export default function DocumentsPageClient() {
                                   onClick={() => handleSearchSelect(item)}
                                   className="flex w-full cursor-pointer items-start gap-3 border-b border-slate-100 px-4 py-3 text-left transition hover:bg-slate-50"
                                 >
-                                  <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-violet-50 text-violet-700">
+                                  <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-700">
                                     <FileText className="h-4 w-4" />
                                   </div>
 
@@ -835,7 +835,7 @@ export default function DocumentsPageClient() {
                         setSearchOpen(false);
                         fileInputRef.current?.click();
                       }}
-                      className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-r from-fuchsia-600 via-violet-600 to-blue-600 text-white shadow-[0_12px_24px_rgba(99,102,241,0.22)]"
+                      className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-r from-blue-700 via-blue-600 to-red-600 text-white shadow-[0_12px_24px_rgba(37,99,235,0.22)]"
                     >
                       <UploadCloud className="h-4 w-4" />
                     </motion.button>
@@ -947,7 +947,7 @@ export default function DocumentsPageClient() {
                       value={newCategoryName}
                       onChange={(e) => setNewCategoryName(e.target.value)}
                       placeholder="Enter category name"
-                      className="h-12 w-full rounded-2xl border border-slate-200 bg-white px-4 text-sm text-slate-700 outline-none transition-all duration-200 placeholder:text-slate-400 focus:border-violet-400 focus:ring-4 focus:ring-violet-100"
+                      className="h-12 w-full rounded-2xl border border-slate-200 bg-white px-4 text-sm text-slate-700 outline-none transition-all duration-200 placeholder:text-slate-400 focus:border-blue-400 focus:ring-4 focus:ring-blue-100"
                     />
 
                     <div className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
@@ -1058,7 +1058,7 @@ export default function DocumentsPageClient() {
                     value={renameValue}
                     onChange={(e) => setRenameValue(e.target.value)}
                     placeholder={`Enter ${renameTarget.type} name`}
-                    className="h-12 w-full rounded-2xl border border-slate-200 bg-white px-4 text-sm text-slate-700 outline-none transition-all duration-200 focus:border-violet-400 focus:ring-4 focus:ring-violet-100"
+                    className="h-12 w-full rounded-2xl border border-slate-200 bg-white px-4 text-sm text-slate-700 outline-none transition-all duration-200 focus:border-blue-400 focus:ring-4 focus:ring-blue-100"
                   />
 
                   <div className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
@@ -1212,7 +1212,7 @@ export default function DocumentsPageClient() {
                       }
                     }}
                     className={`grid cursor-pointer grid-cols-[minmax(0,1fr)_auto] items-center gap-3 border-b border-slate-100 px-4 py-3 transition-all duration-200 hover:bg-[linear-gradient(90deg,rgba(248,250,252,0.95),rgba(245,243,255,0.65),rgba(239,246,255,0.7))] md:grid-cols-[minmax(0,1.4fr)_140px_120px] md:gap-4 ${
-                      selectedExplorerItemId === item.id ? "bg-violet-50/70" : ""
+                      selectedExplorerItemId === item.id ? "bg-blue-50/70" : ""
                     }`}
                   >
                     <div className="flex min-w-0 items-center gap-3">
@@ -1281,7 +1281,7 @@ export default function DocumentsPageClient() {
                         className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 border-b border-slate-100 px-4 py-3 transition-all duration-200 hover:bg-[linear-gradient(90deg,rgba(248,250,252,0.95),rgba(245,243,255,0.65),rgba(239,246,255,0.7))] md:grid-cols-[minmax(0,1.4fr)_140px_120px] md:gap-4"
                       >
                         <div className="flex min-w-0 items-center gap-3">
-                          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-slate-50 text-violet-700 ring-1 ring-slate-200/70">
+                          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-slate-50 text-blue-700 ring-1 ring-slate-200/70">
                             <FileText className="h-5 w-5" />
                           </div>
 

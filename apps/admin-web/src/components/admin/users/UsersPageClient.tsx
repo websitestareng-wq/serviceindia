@@ -102,13 +102,13 @@ function UserActionMenu({
           e.stopPropagation();
           onToggle();
         }}
-        className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-600 transition duration-200 hover:border-violet-200 hover:bg-violet-50 hover:text-violet-700"
+        className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-600 transition duration-200 hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700"
       >
         <MoreHorizontal size={18} />
       </button>
 
 {open && !mobile && (
-  <div className="absolute right-0 top-full z-[100] mt-2 w-52 rounded-[20px] border border-violet-100/80 bg-white p-2 shadow-[0_18px_48px_rgba(124,58,237,0.12)] lg:right-full lg:top-1/2 lg:mt-0 lg:mr-3 lg:-translate-y-1/2">
+  <div className="absolute right-0 top-full z-[100] mt-2 w-52 rounded-[20px] border border-blue-100/80 bg-white p-2 shadow-[0_18px_48px_rgba(37,99,235,0.12)] lg:right-full lg:top-1/2 lg:mt-0 lg:mr-3 lg:-translate-y-1/2">
     <button
       type="button"
       onClick={(e) => {
@@ -141,7 +141,7 @@ function UserActionMenu({
         runAction(onSendEmail);
       }}
       disabled={loading}
-      className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm font-medium text-slate-700 transition hover:bg-violet-50 disabled:opacity-60"
+     className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm font-medium text-slate-700 transition hover:bg-blue-50 disabled:opacity-60"
     >
       <Mail size={15} />
       Send Email
@@ -396,10 +396,10 @@ const applyMobileFilters = () => {
   return (
     <div className="w-full px-0 py-0">
       <div className="w-full rounded-none border-0 bg-transparent p-0 shadow-none">
-       <div className="rounded-[26px] border border-violet-100/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(250,245,255,0.96))] p-4 shadow-[0_24px_70px_rgba(124,58,237,0.10)] backdrop-blur-xl md:p-5">
+       <div className="rounded-[26px] border border-blue-100/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(239,246,255,0.96))] p-4 shadow-[0_24px_70px_rgba(37,99,235,0.10)] backdrop-blur-xl md:p-5">
           <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
             <div className="min-w-0">
-             <div className="inline-flex items-center gap-2 rounded-full border border-violet-100 bg-white/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-violet-700 shadow-sm">
+             <div className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-700 shadow-sm">
   <Users size={14} />
  User Portal
 </div>
@@ -417,7 +417,7 @@ const applyMobileFilters = () => {
             <button
   type="button"
   onClick={() => setCreateOpen(true)}
-  className="hidden items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-fuchsia-600 via-violet-600 to-violet-700 px-5 py-3 text-sm font-semibold text-white shadow-[0_16px_32px_rgba(147,51,234,0.24)] transition duration-300 hover:-translate-y-0.5 hover:opacity-95 active:scale-[0.98] xl:inline-flex"
+  className="hidden items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-blue-700 via-blue-600 to-red-600 px-5 py-3 text-sm font-semibold text-white shadow-[0_16px_32px_rgba(37,99,235,0.24)] transition duration-300 hover:-translate-y-0.5 hover:opacity-95 active:scale-[0.98] xl:inline-flex"
 >
               <Plus size={18} />
               Add User
@@ -440,7 +440,7 @@ const applyMobileFilters = () => {
   <button
     type="button"
     onClick={() => setCreateOpen(true)}
-    className="inline-flex h-12 items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-fuchsia-600 via-violet-600 to-violet-700 px-4 text-sm font-semibold text-white shadow-[0_16px_32px_rgba(147,51,234,0.24)]"
+    className="inline-flex h-12 items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-blue-700 via-blue-600 to-red-600 px-4 text-sm font-semibold text-white shadow-[0_16px_32px_rgba(37,99,235,0.24)]"
   >
     <Plus size={17} />
     Add User
@@ -449,13 +449,13 @@ const applyMobileFilters = () => {
   <button
     type="button"
     onClick={() => setMobileFilterOpen(true)}
-    className="inline-flex h-12 items-center justify-center gap-2 rounded-2xl border border-violet-100 bg-white/92 px-4 text-sm font-semibold text-slate-700 shadow-[0_8px_20px_rgba(15,23,42,0.04)]"
+    className="inline-flex h-12 items-center justify-center gap-2 rounded-2xl border border-blue-100 bg-white/92 px-4 text-sm font-semibold text-slate-700 shadow-[0_8px_20px_rgba(15,23,42,0.04)]"
   >
     <Filter size={16} />
     Apply Filter
   </button>
 </div>
-          <div className="mt-5 rounded-[26px] border border-violet-100/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(250,245,255,0.94))] p-4 shadow-[0_18px_46px_rgba(124,58,237,0.08)]">
+          <div className="mt-5 rounded-[26px] border border-blue-100/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(239,246,255,0.94))] p-4 shadow-[0_18px_46px_rgba(37,99,235,0.08)]">
             <div className="hidden flex-col gap-3 lg:flex-row lg:items-center lg:justify-between lg:flex">
               <div className="relative w-full lg:max-w-xl">
                 <Search
@@ -466,7 +466,7 @@ const applyMobileFilters = () => {
                   value={searchInput}
                   onChange={(e) => setSearchInput(e.target.value)}
                   placeholder="Search by name, email, phone, GSTIN, PAN..."
-                 className="h-12 w-full rounded-2xl border border-slate-200 bg-white pl-11 pr-4 text-sm text-slate-800 outline-none transition duration-300 placeholder:text-slate-400 focus:border-violet-400 focus:shadow-[0_0_0_4px_rgba(167,139,250,0.12)]"
+                 className="h-12 w-full rounded-2xl border border-slate-200 bg-white pl-11 pr-4 text-sm text-slate-800 outline-none transition duration-300 placeholder:text-slate-400 focus:border-blue-400 focus:shadow-[0_0_0_4px_rgba(59,130,246,0.12)]"
                 />
               </div>
 
@@ -474,7 +474,7 @@ const applyMobileFilters = () => {
                 <select
                   value={status}
                   onChange={(e) => setStatus(e.target.value as UserStatusFilter)}
-                 className="h-12 rounded-2xl border border-slate-200 bg-white px-4 text-sm font-medium text-slate-700 outline-none transition duration-300 focus:border-violet-400 focus:shadow-[0_0_0_4px_rgba(167,139,250,0.10)]"
+                className="h-12 rounded-2xl border border-slate-200 bg-white px-4 text-sm font-medium text-slate-700 outline-none transition duration-300 focus:border-blue-400 focus:shadow-[0_0_0_4px_rgba(59,130,246,0.10)]"
                 >
                   <option value="all">All Status</option>
                   <option value="active">Active</option>
@@ -492,9 +492,9 @@ const applyMobileFilters = () => {
             </div>
             <div className="mt-5">
 {loading ? (
-  <div className="flex min-h-[280px] items-center justify-center rounded-[24px] border border-dashed border-violet-200 bg-white">
+  <div className="flex min-h-[280px] items-center justify-center rounded-[24px] border border-dashed border-blue-200 bg-white">
     <div className="text-center">
-      <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-violet-50 text-violet-700">
+     <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-50 text-blue-700">
         <Loader2 className="h-7 w-7 animate-spin" />
       </div>
 
@@ -508,8 +508,8 @@ const applyMobileFilters = () => {
     </div>
   </div>
 ) : users.length === 0 ? (
-                <div className="flex min-h-[280px] flex-col items-center justify-center rounded-[24px] border border-dashed border-violet-200 bg-white text-center">
-  <div className="rounded-full bg-violet-50 p-4 text-violet-600">
+                <div className="flex min-h-[280px] flex-col items-center justify-center rounded-[24px] border border-dashed border-blue-200 bg-white text-center">
+<div className="rounded-full bg-blue-50 p-4 text-blue-600">
     <UserPlus2 size={30} />
   </div>
                   <h3 className="mt-4 text-lg font-semibold text-slate-900">
@@ -521,7 +521,7 @@ const applyMobileFilters = () => {
                 </div>
               ) : (
                 <>
-                 <div className="hidden overflow-visible rounded-[24px] border border-violet-100/80 bg-white lg:block shadow-[0_12px_28px_rgba(124,58,237,0.05)] lg:block">
+                <div className="hidden overflow-visible rounded-[24px] border border-blue-100/80 bg-white lg:block shadow-[0_12px_28px_rgba(37,99,235,0.05)] lg:block">
                     <div className="overflow-visible">
                       <table className="w-full table-fixed">
                         <colgroup>
@@ -532,7 +532,7 @@ const applyMobileFilters = () => {
                           <col className="w-[10%]" />
                         </colgroup>
 
-                        <thead className="border-b border-violet-100 bg-[linear-gradient(135deg,rgba(168,85,247,0.07),rgba(124,58,237,0.05),rgba(236,72,153,0.04))]">
+                        <thead className="border-b border-blue-100 bg-[linear-gradient(135deg,rgba(37,99,235,0.07),rgba(14,165,233,0.05),rgba(220,38,38,0.04))]">
                           <tr className="text-left text-[11px] uppercase tracking-[0.16em] text-slate-500">
                             <th className="px-4 py-4 font-semibold">User</th>
                             <th className="px-4 py-4 font-semibold">Contact</th>
@@ -546,7 +546,7 @@ const applyMobileFilters = () => {
                           {users.map((user, index) => (
                             <tr
                               key={user.id}
-                              className={`transition duration-300 hover:bg-violet-50/40 ${
+                             className={`transition duration-300 hover:bg-blue-50/40 ${
                                 index !== users.length - 1 ? "border-t border-slate-100" : ""
                               }`}
                             >
@@ -628,7 +628,7 @@ const applyMobileFilters = () => {
                   </div>
 
 <div className="lg:hidden">
-  <table className="w-full table-fixed overflow-hidden rounded-[20px] border border-violet-100/80 bg-white">
+ <table className="w-full table-fixed overflow-hidden rounded-[20px] border border-blue-100/80 bg-white">
     <colgroup>
       <col className="w-[76%]" />
       <col className="w-[24%]" />
@@ -686,10 +686,10 @@ const applyMobileFilters = () => {
       </div>
 {mounted && mobileFilterOpen && (
   <div className="fixed inset-0 z-[130] flex items-center justify-center bg-slate-900/30 px-4 py-5 backdrop-blur-[2px] lg:hidden">
-    <div className="w-full max-w-md overflow-hidden rounded-[28px] border border-violet-100/80 bg-[linear-gradient(180deg,rgba(255,255,255,1),rgba(250,245,255,0.98))] shadow-[0_24px_60px_rgba(124,58,237,0.14)]">
-      <div className="flex items-center justify-between border-b border-violet-100 bg-[linear-gradient(135deg,rgba(168,85,247,0.08),rgba(124,58,237,0.06),rgba(236,72,153,0.05))] px-5 py-4">
+   <div className="w-full max-w-md overflow-hidden rounded-[28px] border border-blue-100/80 bg-[linear-gradient(180deg,rgba(255,255,255,1),rgba(239,246,255,0.98))] shadow-[0_24px_60px_rgba(37,99,235,0.14)]">
+     <div className="flex items-center justify-between border-b border-blue-100 bg-[linear-gradient(135deg,rgba(37,99,235,0.08),rgba(14,165,233,0.06),rgba(220,38,38,0.05))] px-5 py-4">
         <div>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-violet-700">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-700">
             User Filter
           </p>
           <h3 className="mt-1 text-lg font-bold text-slate-900">
@@ -715,7 +715,7 @@ const applyMobileFilters = () => {
             value={mobileSearchDraft}
             onChange={(e) => setMobileSearchDraft(e.target.value)}
             placeholder="Search by name, email, phone..."
-            className="h-12 w-full rounded-2xl border border-slate-200 bg-white px-4 text-sm text-slate-800 outline-none placeholder:text-slate-400 focus:border-violet-400 focus:shadow-[0_0_0_4px_rgba(167,139,250,0.12)]"
+           className="h-12 w-full rounded-2xl border border-slate-200 bg-white px-4 text-sm text-slate-800 outline-none placeholder:text-slate-400 focus:border-blue-400 focus:shadow-[0_0_0_4px_rgba(59,130,246,0.12)]"
           />
         </div>
 
@@ -728,7 +728,7 @@ const applyMobileFilters = () => {
             onChange={(e) =>
               setMobileStatusDraft(e.target.value as UserStatusFilter)
             }
-            className="h-12 w-full rounded-2xl border border-slate-200 bg-white px-4 text-sm font-medium text-slate-700 outline-none focus:border-violet-400 focus:shadow-[0_0_0_4px_rgba(167,139,250,0.10)]"
+           className="h-12 w-full rounded-2xl border border-slate-200 bg-white px-4 text-sm font-medium text-slate-700 outline-none focus:border-blue-400 focus:shadow-[0_0_0_4px_rgba(59,130,246,0.10)]"
           >
             <option value="all">All Status</option>
             <option value="active">Active</option>
@@ -748,7 +748,7 @@ const applyMobileFilters = () => {
           <button
             type="button"
             onClick={applyMobileFilters}
-            className="h-11 rounded-2xl bg-gradient-to-r from-fuchsia-600 via-violet-600 to-violet-700 text-sm font-semibold text-white shadow-[0_16px_32px_rgba(147,51,234,0.24)]"
+            className="h-11 rounded-2xl bg-gradient-to-r from-blue-700 via-blue-600 to-red-600 text-sm font-semibold text-white shadow-[0_16px_32px_rgba(37,99,235,0.24)]"
           >
             Apply Filter
           </button>
@@ -759,7 +759,7 @@ const applyMobileFilters = () => {
 )}
 {mounted && openActionMenuId && (
   <div className="fixed inset-0 z-[135] flex items-end bg-slate-900/30 px-3 py-3 backdrop-blur-[2px] lg:hidden">
-    <div className="w-full rounded-[28px] border border-violet-100/80 bg-[linear-gradient(180deg,rgba(255,255,255,1),rgba(250,245,255,0.98))] p-3 shadow-[0_24px_60px_rgba(124,58,237,0.16)]">
+   <div className="w-full rounded-[28px] border border-blue-100/80 bg-[linear-gradient(180deg,rgba(255,255,255,1),rgba(239,246,255,0.98))] p-3 shadow-[0_24px_60px_rgba(37,99,235,0.16)]">
       <div className="mb-2 flex justify-center">
         <div className="h-1.5 w-12 rounded-full bg-slate-200" />
       </div>
@@ -802,7 +802,7 @@ const applyMobileFilters = () => {
                 void onSendCredentials(selectedUser);
                 setOpenActionMenuId(null);
               }}
-              className="flex w-full items-center gap-3 rounded-[18px] px-4 py-3 text-left text-sm font-medium text-slate-700 transition hover:bg-violet-50"
+              className="flex w-full items-center gap-3 rounded-[18px] px-4 py-3 text-left text-sm font-medium text-slate-700 transition hover:bg-blue-50"
             >
               <Mail size={16} />
               Send Email

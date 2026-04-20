@@ -2,22 +2,17 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { QRCodeSVG } from "qrcode.react";
 import {
-  ArrowRight,
   CheckCircle2,
   Copy,
-  CreditCard,
   FileText,
   Landmark,
-  QrCode,
-  WalletCards,
   ShieldCheck,
   X,
   ChevronRight,
   CircleDollarSign,
 } from "lucide-react";
-type PaymentMethod = "upi" | "qr" | "bank" | "cheque";
+type PaymentMethod = "bank" | "cheque";
 
 function formatIndianCurrency(value: string) {
   if (!value) return "0";
@@ -97,28 +92,19 @@ function CopyRow({ label, value }: { label: string; value: string }) {
 export default function PaymentCentrePageClient() {
   const [step, setStep] = useState(0);
   const [amount, setAmount] = useState("");
-  const [selectedMethod, setSelectedMethod] = useState<PaymentMethod>("upi");
+const [selectedMethod, setSelectedMethod] = useState<PaymentMethod>("bank");
 
   const [gatewayOpen, setGatewayOpen] = useState(false);
 const [gatewayStep, setGatewayStep] = useState<1 | 2 | 3 | 4>(1);
 
-const upiId = "9702485922@ptaxis";
-const accountName = "STAR ENGINEERING";
-const bankName = "Punjab National Bank";
-const accountNumber = "05211011003149";
-const ifscCode = "PUNB0052110";
-const branchName = "Goregaon (E), Mumbai";
+const accountName = "SERVICE INDIA";
+const bankName = "ICICI Bank";
+const accountNumber = "101605002763";
+const ifscCode = "ICIC0001016";
+const branchName = "Borivali (W)), Mumbai";
 
 const numericAmount = Number(amount || 0);
 
-const upiLink = useMemo(() => {
-  const base = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(accountName)}&cu=INR`;
-  return numericAmount > 0 ? `${base}&am=${numericAmount}` : base;
-}, [upiId, accountName, numericAmount]);
-const upiQrValue = useMemo(() => {
-  const base = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(accountName)}&cu=INR`;
-  return numericAmount > 0 ? `${base}&am=${numericAmount}` : base;
-}, [upiId, accountName, numericAmount]);
 const chequeAmountWords = useMemo(() => {
   return amountToWords(numericAmount);
 }, [numericAmount]);
@@ -206,20 +192,20 @@ const today = useMemo(() => {
 
       <h1 className="mt-4 text-[2rem] font-bold tracking-tight text-slate-900 sm:text-[2.7rem] sm:leading-[1.02]">
         Fast, Secure & Premium
-        <span className="block bg-[linear-gradient(135deg,#7c3aed_0%,#4f46e5_45%,#2563eb_100%)] bg-clip-text text-transparent">
+        <span className="block bg-[linear-gradient(135deg,#2563eb_0%,#1d4ed8_55%,#dc2626_100%)] bg-clip-text text-transparent">
           Payment Experience
         </span>
       </h1>
 
       <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-600 sm:text-[15px]">
-        Pay with UPI, QR, bank transfer, or cheque through a guided premium flow. Enter amount, confirm, choose payment mode, and complete payment from a secure popup experience.
+        Pay through bank transfer or cheque with a guided premium flow. Enter amount, confirm, choose payment mode, and complete payment from a secure popup experience.
       </p>
 
       <div className="mt-6 flex flex-col gap-3 sm:flex-row">
         <button
           type="button"
           onClick={openGateway}
-         className="inline-flex items-center justify-center gap-2 rounded-[20px] bg-[linear-gradient(135deg,#7c3aed_0%,#4f46e5_50%,#2563eb_100%)] px-5 py-3.5 text-sm font-semibold text-white !text-white shadow-[0_18px_34px_rgba(79,70,229,0.28)] transition-all duration-300 hover:-translate-y-0.5"
+         className="inline-flex items-center justify-center gap-2 rounded-[20px] bg-[linear-gradient(135deg,#2563eb_0%,#1d4ed8_55%,#dc2626_100%)] px-5 py-3.5 text-sm font-semibold text-white !text-white shadow-[0_18px_34px_rgba(79,70,229,0.28)] transition-all duration-300 hover:-translate-y-0.5"
         >
           Start Payment
           <ChevronRight className="h-4 w-4" />
@@ -254,17 +240,17 @@ const today = useMemo(() => {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-        <div className="rounded-2xl border border-slate-200/70 bg-white/85 p-4 shadow-sm">
-          <p className="text-xs text-slate-500">UPI ID</p>
-          <p className="mt-1 text-sm font-semibold text-slate-900">{upiId}</p>
-        </div>
+<div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+  <div className="rounded-2xl border border-slate-200/70 bg-white/85 p-4 shadow-sm">
+    <p className="text-xs text-slate-500">Methods</p>
+    <p className="mt-1 text-sm font-semibold text-slate-900">Bank Transfer · Cheque</p>
+  </div>
 
-        <div className="rounded-2xl border border-slate-200/70 bg-white/85 p-4 shadow-sm">
-          <p className="text-xs text-slate-500">Methods</p>
-          <p className="mt-1 text-sm font-semibold text-slate-900">UPI · QR · Bank · Cheque</p>
-        </div>
-      </div>
+  <div className="rounded-2xl border border-slate-200/70 bg-white/85 p-4 shadow-sm">
+    <p className="text-xs text-slate-500">Bank</p>
+    <p className="mt-1 text-sm font-semibold text-slate-900">{bankName}</p>
+  </div>
+</div>
     </div>
   </div>
 </div>
@@ -330,7 +316,7 @@ const today = useMemo(() => {
           <div
            className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-[11px] font-bold transition-all duration-300 sm:h-9 sm:w-9 sm:text-sm ${
               active
-                ? "bg-[linear-gradient(135deg,#7c3aed_0%,#4f46e5_55%,#2563eb_100%)] text-white shadow-[0_10px_20px_rgba(79,70,229,0.22)]"
+                ? "bg-[linear-gradient(135deg,#2563eb_0%,#1d4ed8_55%,#dc2626_100%)] text-white shadow-[0_10px_20px_rgba(37,99,235,0.22)]"
                 : "bg-slate-100 text-slate-500"
             }`}
           >
@@ -381,7 +367,7 @@ const today = useMemo(() => {
                         <p className="mt-3 text-sm text-slate-500">
                           {numericAmount > 0
                             ? `You are about to pay ₹ ${formatIndianCurrency(amount)}`
-                            : "You can continue with open amount for QR, UPI, bank, or cheque."}
+                            : "You can continue with open amount for bank transfer or cheque."}
                         </p>
                       </div>
                     </div>
@@ -398,7 +384,7 @@ const today = useMemo(() => {
                       <button
                         type="button"
                         onClick={continueFromAmount}
-                        className="inline-flex items-center justify-center gap-2 rounded-[18px] bg-[linear-gradient(135deg,#7c3aed_0%,#4f46e5_55%,#2563eb_100%)] px-5 py-3 text-sm font-semibold text-white !text-white shadow-[0_16px_32px_rgba(79,70,229,0.24)] transition-all duration-200 hover:-translate-y-0.5"
+                        className="inline-flex items-center justify-center gap-2 rounded-[18px] bg-[linear-gradient(135deg,#2563eb_0%,#1d4ed8_55%,#dc2626_100%)] px-5 py-3 text-sm font-semibold text-white !text-white shadow-[0_16px_32px_rgba(79,70,229,0.24)] transition-all duration-200 hover:-translate-y-0.5"
                       >
                         Continue
                         <ChevronRight className="h-4 w-4" />
@@ -439,7 +425,7 @@ const today = useMemo(() => {
                       <button
                         type="button"
                         onClick={continueToMethodSelection}
-                        className="inline-flex items-center justify-center gap-2 rounded-[18px] bg-[linear-gradient(135deg,#7c3aed_0%,#4f46e5_55%,#2563eb_100%)] px-5 py-3 text-sm font-semibold text-white !text-white shadow-[0_16px_32px_rgba(79,70,229,0.24)] transition-all duration-200 hover:-translate-y-0.5"
+                        className="inline-flex items-center justify-center gap-2 rounded-[18px] bg-[linear-gradient(135deg,#2563eb_0%,#1d4ed8_55%,#dc2626_100%)] px-5 py-3 text-sm font-semibold text-white !text-white shadow-[0_16px_32px_rgba(79,70,229,0.24)] transition-all duration-200 hover:-translate-y-0.5"
                       >
                         Select Payment Method
                         <ChevronRight className="h-4 w-4" />
@@ -457,11 +443,9 @@ const today = useMemo(() => {
 
       <div className="mt-4 space-y-3">
         {[
-          { key: "upi", label: "UPI Payment", sub: "Pay directly with your UPI app", icon: CreditCard },
-          { key: "qr", label: "QR Payment", sub: "Scan and pay with supported apps", icon: QrCode },
-          { key: "bank", label: "Bank Transfer", sub: "Use account details for transfer", icon: Landmark },
-          { key: "cheque", label: "Cheque Payment", sub: "View premium cheque writing preview", icon: FileText },
-        ].map((item) => {
+  { key: "bank", label: "Bank Transfer", sub: "Use account details for transfer", icon: Landmark },
+  { key: "cheque", label: "Cheque Payment", sub: "View premium cheque writing preview", icon: FileText },
+].map((item) => {
           const Icon = item.icon;
           const active = selectedMethod === item.key;
 
@@ -479,7 +463,7 @@ const today = useMemo(() => {
               <span
                 className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl ${
                   active
-                    ? "bg-[linear-gradient(135deg,#7c3aed_0%,#4f46e5_55%,#2563eb_100%)] text-white !text-white shadow-[0_12px_24px_rgba(79,70,229,0.22)]"
+                    ? "bg-[linear-gradient(135deg,#2563eb_0%,#1d4ed8_55%,#dc2626_100%)] text-white !text-white shadow-[0_12px_24px_rgba(79,70,229,0.22)]"
                     : "bg-slate-100 text-slate-700"
                 }`}
               >
@@ -529,7 +513,7 @@ const today = useMemo(() => {
       <button
         type="button"
         onClick={continueToMethodDetails}
-        className="inline-flex items-center justify-center gap-2 rounded-[18px] bg-[linear-gradient(135deg,#7c3aed_0%,#4f46e5_55%,#2563eb_100%)] px-5 py-3 text-sm font-semibold text-white shadow-[0_16px_32px_rgba(79,70,229,0.24)] transition-all duration-200 hover:-translate-y-0.5"
+        className="inline-flex items-center justify-center gap-2 rounded-[18px] bg-[linear-gradient(135deg,#2563eb_0%,#1d4ed8_55%,#dc2626_100%)] px-5 py-3 text-sm font-semibold text-white shadow-[0_16px_32px_rgba(79,70,229,0.24)] transition-all duration-200 hover:-translate-y-0.5"
       >
         Continue
         <ChevronRight className="h-4 w-4" />
@@ -545,9 +529,7 @@ const today = useMemo(() => {
           Selected Method
         </p>
         <p className="mt-1 text-sm font-bold capitalize text-slate-900">
-          {selectedMethod === "upi" && "UPI Payment"}
-          {selectedMethod === "qr" && "QR Payment"}
-          {selectedMethod === "bank" && "Bank Transfer"}
+        {selectedMethod === "bank" && "Bank Transfer"}
           {selectedMethod === "cheque" && "Cheque Payment"}
         </p>
       </div>
@@ -560,53 +542,6 @@ const today = useMemo(() => {
         Change Method
       </button>
     </div>
-
-    {selectedMethod === "upi" ? (
-      <div className="rounded-[24px] border border-violet-100/70 bg-[linear-gradient(135deg,#ffffff_0%,#faf5ff_52%,#eff6ff_100%)] p-5 shadow-sm">
-        <div className="space-y-3">
-          <CopyRow label="UPI ID" value={upiId} />
-          <CopyRow label="Payee Name" value={accountName} />
-        </div>
-
-        <div className="mt-4 rounded-[20px] border border-white/80 bg-white/90 p-4">
-          <p className="text-xs text-slate-500">Amount</p>
-          <p className="mt-1 text-xl font-bold text-slate-900">
-            {numericAmount > 0 ? `₹ ${formatIndianCurrency(amount)}` : "Open Amount"}
-          </p>
-
-          <a
-            href={upiLink}
-            className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-[18px] bg-[linear-gradient(135deg,#7c3aed_0%,#4f46e5_55%,#2563eb_100%)] px-4 py-3 text-sm font-semibold text-white shadow-[0_16px_30px_rgba(79,70,229,0.24)] transition-all duration-200 hover:-translate-y-0.5"
-          >
-            Pay via UPI App
-            <ArrowRight className="h-4 w-4" />
-          </a>
-        </div>
-      </div>
-    ) : null}
-
-    {selectedMethod === "qr" ? (
-      <div className="rounded-[24px] border border-sky-100 bg-[linear-gradient(135deg,#ffffff_0%,#f8fbff_50%,#eff6ff_100%)] p-5 shadow-sm">
-        <div className="mx-auto flex w-full max-w-[260px] flex-col items-center rounded-[24px] border border-slate-200/70 bg-white p-5 shadow-[0_16px_30px_rgba(37,99,235,0.08)]">
-          <QRCodeSVG
-            value={upiQrValue}
-            size={190}
-            includeMargin
-            className="rounded-xl"
-          />
-
-          <p className="mt-4 text-center text-sm font-semibold text-slate-900">
-            {numericAmount > 0
-              ? `Scan to pay ₹ ${formatIndianCurrency(amount)}`
-              : "Scan to pay with editable amount"}
-          </p>
-        </div>
-
-        <div className="mt-4">
-          <CopyRow label="Linked UPI ID" value={upiId} />
-        </div>
-      </div>
-    ) : null}
 
     {selectedMethod === "bank" ? (
       <div className="overflow-hidden rounded-[28px] border border-emerald-100 bg-[linear-gradient(135deg,#ffffff_0%,#f0fdf4_42%,#ecfeff_100%)] shadow-[0_18px_40px_rgba(16,185,129,0.08)]">
@@ -773,7 +708,7 @@ const today = useMemo(() => {
               className="absolute left-[10%] top-[23%] w-[58%]"
             >
               <p className="truncate text-[18px] font-bold uppercase tracking-[0.03em] text-slate-900">
-                STAR ENGINEERING
+                SERVICE INDIA
               </p>
             </motion.div>
 
