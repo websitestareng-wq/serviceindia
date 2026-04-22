@@ -2435,7 +2435,7 @@ doc.text("Credit", X.credit, y, { width: col.credit, align: "right" });
 
       doc.save();
       doc.lineWidth(0.8);
-      doc.strokeColor("#60a5fa");
+      doc.strokeColor("#cbd5e1");
       doc.moveTo(left, y).lineTo(left + usableW, y).stroke();
       doc.restore();
 
@@ -3437,7 +3437,7 @@ if (!hidePeriodForStatus) {
 
       doc.save();
       doc.lineWidth(0.7);
-      doc.strokeColor("#60a5fa");
+      doc.strokeColor("#cbd5e1");
       doc.moveTo(left, y).lineTo(left + usableW, y).stroke();
       doc.restore();
 
@@ -4179,7 +4179,7 @@ webGrad.stop(1, "#38bdf8");
 
       doc.save();
       doc.lineWidth(0.8);
-      doc.strokeColor("#60a5fa");
+      doc.strokeColor("#cbd5e1");
       doc.moveTo(left, y).lineTo(left + usableW, y).stroke();
       doc.restore();
 
