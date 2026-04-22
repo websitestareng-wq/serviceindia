@@ -99,14 +99,16 @@ export function buildWelcomeCredentialsEmail(
         ">
           Email
         </td>
-        <td style="
-          padding:14px 16px;
-          border-bottom:1px solid #bfdbfe;
-          color:#111827;
-          vertical-align:top;
-        ">
-          ${loginEmail}
-        </td>
+       <td style="
+  padding:14px 16px;
+  border-bottom:1px solid #bfdbfe;
+  color:#111827;
+  vertical-align:top;
+  word-break: break-all;
+  overflow-wrap: anywhere;
+">
+  ${loginEmail}
+</td>
       </tr>
 
       <tr>
