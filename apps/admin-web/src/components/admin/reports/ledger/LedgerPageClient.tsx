@@ -5,7 +5,9 @@ import GlobalPageLoader from "@/components/admin/GlobalPageLoader";
 import {
   CalendarRange,
   Download,
+  Eye,
   FileSearch,
+  FileText,
   Filter,
   Layers,
   Loader2,
@@ -44,6 +46,16 @@ type LedgerFilters = {
   skipOpeningBalance: boolean;
   voucherTypes: string[];
   search: string;
+};
+type PdfActionTarget = {
+  url: string;
+  fileName: string;
+  title: string;
+};
+
+type PdfActionModalState = {
+  open: boolean;
+  target: PdfActionTarget | null;
 };
 const fadeUp = {
   initial: { opacity: 0, y: 14 },
@@ -153,11 +165,44 @@ function readPortalUser() {
 
   return null;
 }
-function openAttachmentInNewTab(
-  attachment?: TransactionAttachmentRecord | null,
-) {
-  if (!attachment?.fileUrl) return;
-  window.open(attachment.fileUrl, "_blank", "noopener,noreferrer");
+function openUrlInNewTab(url?: string | null) {
+  if (!url) return;
+  window.open(url, "_blank", "noopener,noreferrer");
+}
+
+async function downloadFileFromUrl(url?: string | null, fileName = "document.pdf") {
+  if (!url) return;
+
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`Failed to download file: ${response.status}`);
+    }
+
+    const blob = await response.blob();
+    const blobUrl = window.URL.createObjectURL(blob);
+
+    const anchor = document.createElement("a");
+    anchor.href = blobUrl;
+    anchor.download = fileName;
+    document.body.appendChild(anchor);
+    anchor.click();
+    anchor.remove();
+
+    window.URL.revokeObjectURL(blobUrl);
+  } catch (error) {
+    console.error("File download failed:", error);
+  }
+}
+
+function buildSafePdfFileName(name?: string | null, fallback = "document.pdf") {
+  const safe = String(name || fallback)
+    .trim()
+    .replace(/[\\/:*?"<>|]+/g, "-")
+    .replace(/\s+/g, " ");
+
+  if (!safe) return fallback;
+  return safe.toLowerCase().endsWith(".pdf") ? safe : `${safe}.pdf`;
 }
 function getTransactionAmounts(transaction: TransactionRecord) {
   let debit = 0;
@@ -237,6 +282,10 @@ const [searchInput, setSearchInput] = useState("");
 const [filters, setFilters] = useState<LedgerFilters>(defaultFilters);
 const [draftFilters, setDraftFilters] = useState<LedgerFilters>(defaultFilters);
 const [filterOpen, setFilterOpen] = useState(false);
+const [pdfActionModal, setPdfActionModal] = useState<PdfActionModalState>({
+  open: false,
+  target: null,
+});
 const [mounted, setMounted] = useState(false);
 const [portalUser, setPortalUser] = useState<{
   id?: string;
@@ -262,7 +311,9 @@ useEffect(() => {
   setPortalUser(readPortalUser());
 }, []);
 useEffect(() => {
-  if (!filterOpen) {
+  const shouldLock = filterOpen || pdfActionModal.open;
+
+  if (!shouldLock) {
     document.body.style.overflow = "";
     document.documentElement.style.overflow = "";
     return;
@@ -275,7 +326,7 @@ useEffect(() => {
     document.body.style.overflow = "";
     document.documentElement.style.overflow = "";
   };
-}, [filterOpen]);
+}, [filterOpen, pdfActionModal.open]);
   useEffect(() => {
     void loadData();
   }, []);
@@ -464,8 +515,52 @@ useEffect(() => {
         : [...prev.voucherTypes, type],
     }));
   }
+  function openPdfActionModal(target: PdfActionTarget) {
+    setPdfActionModal({
+      open: true,
+      target,
+    });
+  }
 
-  function exportPdf() {
+  function closePdfActionModal() {
+    setPdfActionModal({
+      open: false,
+      target: null,
+    });
+  }
+
+  function handlePdfView() {
+    if (!pdfActionModal.target?.url) return;
+    openUrlInNewTab(pdfActionModal.target.url);
+    closePdfActionModal();
+  }
+
+  async function handlePdfDownload() {
+    if (!pdfActionModal.target?.url) return;
+    await downloadFileFromUrl(
+      pdfActionModal.target.url,
+      pdfActionModal.target.fileName,
+    );
+    closePdfActionModal();
+  }
+
+  function openVoucherAttachmentAction(
+    attachment?: TransactionAttachmentRecord | null,
+    voucherNo?: string | null,
+  ) {
+    if (!attachment?.fileUrl) return;
+
+    openPdfActionModal({
+      url: attachment.fileUrl,
+      title: voucherNo
+        ? `Voucher ${voucherNo}`
+        : "Voucher Attachment",
+      fileName: buildSafePdfFileName(
+        voucherNo ? `Voucher-${voucherNo}` : "voucher-attachment.pdf",
+      ),
+    });
+  }
+   function exportPdf() {
     if (!partyId) return;
     if (!filters.fromDate || !filters.toDate) return;
     if (!API_BASE_URL) {
@@ -485,7 +580,16 @@ useEffect(() => {
       url.searchParams.set("skipOpeningBalance", "true");
     }
 
-    window.open(url.toString(), "_blank", "noopener,noreferrer");
+    const partyNameForFile =
+      selectedPartyName?.trim() || "party-ledger";
+
+    openPdfActionModal({
+      url: url.toString(),
+      title: "Ledger PDF",
+      fileName: buildSafePdfFileName(
+        `${partyNameForFile} Ledger ${filters.fromDate} to ${filters.toDate}.pdf`,
+      ),
+    });
   }
 
   const hasActiveFilters =
@@ -589,13 +693,13 @@ useEffect(() => {
             </div>
 
             <button
-              type="button"
-              onClick={exportPdf}
-              className="inline-flex h-12 items-center gap-2 rounded-2xl border border-blue-100 bg-white/90 px-4 text-sm font-semibold text-slate-700 shadow-[0_8px_20px_rgba(15,23,42,0.03)] transition-all duration-200 hover:-translate-y-[1px] hover:border-blue-200 hover:bg-blue-50/60"
-            >
-              <Download className="h-4 w-4" />
-              Export PDF
-            </button>
+  type="button"
+  onClick={exportPdf}
+  className="inline-flex h-12 items-center gap-2 rounded-2xl border border-blue-100 bg-white/90 px-4 text-sm font-semibold text-slate-700 shadow-[0_8px_20px_rgba(15,23,42,0.03)] transition-all duration-200 hover:-translate-y-[1px] hover:border-blue-200 hover:bg-blue-50/60"
+>
+  <FileText className="h-4 w-4" />
+  Export PDF
+</button>
 
             <button
               type="button"
@@ -663,13 +767,13 @@ useEffect(() => {
       </button>
 
       <button
-        type="button"
-        onClick={exportPdf}
-        className="inline-flex h-11 items-center justify-center gap-2 rounded-[18px] border border-blue-100 bg-white/92 px-3 text-sm font-semibold text-slate-700 shadow-[0_10px_24px_rgba(15,23,42,0.05)] transition-all duration-200 active:scale-[0.99]"
-      >
-        <Download className="h-4 w-4" />
-        Export PDF
-      </button>
+  type="button"
+  onClick={exportPdf}
+  className="inline-flex h-11 items-center justify-center gap-2 rounded-[18px] border border-blue-100 bg-white/92 px-3 text-sm font-semibold text-slate-700 shadow-[0_10px_24px_rgba(15,23,42,0.05)] transition-all duration-200 active:scale-[0.99]"
+>
+  <FileText className="h-4 w-4" />
+  Export PDF
+</button>
     </div>
   </div>
 </motion.div>
@@ -766,9 +870,11 @@ useEffect(() => {
   {row.attachments?.[0]?.fileUrl ? (
     <button
       type="button"
-      onClick={() => openAttachmentInNewTab(row.attachments[0])}
+      onClick={() =>
+        openVoucherAttachmentAction(row.attachments[0], row.voucherNo)
+      }
       className="cursor-pointer font-semibold text-blue-700 underline-offset-4 transition hover:text-red-600 hover:underline"
-      title="Open voucher attachment"
+      title="Voucher options"
     >
       {row.voucherNo || "—"}
     </button>
@@ -844,16 +950,18 @@ useEffect(() => {
           <span>{formatTypeLabel(String(row.voucherType))}</span>
           <span>•</span>
           {row.attachments?.[0]?.fileUrl ? (
-            <button
-              type="button"
-              onClick={() => openAttachmentInNewTab(row.attachments[0])}
-             className="cursor-pointer font-semibold text-blue-700 underline-offset-4 hover:text-red-600 hover:underline"
-            >
-              {row.voucherNo || "—"}
-            </button>
-          ) : (
-            <span>{row.voucherNo || "—"}</span>
-          )}
+  <button
+    type="button"
+    onClick={() =>
+      openVoucherAttachmentAction(row.attachments[0], row.voucherNo)
+    }
+    className="cursor-pointer font-semibold text-blue-700 underline-offset-4 hover:text-red-600 hover:underline"
+  >
+    {row.voucherNo || "—"}
+  </button>
+) : (
+  <span>{row.voucherNo || "—"}</span>
+)}
         </div>
       </td>
 
@@ -1079,6 +1187,163 @@ useEffect(() => {
       document.body,
     )
   : null}
+  {mounted && pdfActionModal.open && pdfActionModal.target
+  ? createPortal(
+      <AnimatePresence>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.18 }}
+          className="fixed inset-0 z-[150] bg-[rgba(15,23,42,0.34)] backdrop-blur-[6px]"
+          onClick={closePdfActionModal}
+        >
+          <div className="hidden min-h-screen items-center justify-center p-4 sm:flex">
+            <motion.div
+              initial={{ opacity: 0, y: 22, scale: 0.97 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 18, scale: 0.98 }}
+              transition={{ duration: 0.24, ease: "easeOut" }}
+              onClick={(e) => e.stopPropagation()}
+              className="w-full max-w-[430px] overflow-hidden rounded-[28px] border border-blue-100 bg-[linear-gradient(180deg,rgba(255,255,255,1),rgba(239,246,255,0.98))] shadow-[0_26px_70px_rgba(37,99,235,0.18)]"
+            >
+              <div className="border-b border-blue-100 bg-[linear-gradient(135deg,rgba(37,99,235,0.08),rgba(14,165,233,0.06),rgba(220,38,38,0.05))] px-5 py-5">
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-700">
+                      PDF Action
+                    </p>
+                    <h3 className="mt-2 text-xl font-semibold text-slate-900">
+                      {pdfActionModal.target.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-6 text-slate-500">
+                      Choose how you want to continue with this PDF.
+                    </p>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={closePdfActionModal}
+                    className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-slate-200 bg-white text-slate-600 transition hover:bg-slate-50"
+                  >
+                    <X className="h-4 w-4" />
+                  </button>
+                </div>
+              </div>
+
+              <div className="space-y-3 px-5 py-5">
+                <button
+                  type="button"
+                  onClick={handlePdfView}
+                  className="flex w-full items-center justify-between rounded-[22px] border border-blue-100 bg-white px-4 py-4 text-left transition hover:border-blue-200 hover:bg-blue-50/60"
+                >
+                  <div>
+                    <p className="text-sm font-semibold text-slate-900">View</p>
+                    <p className="mt-1 text-xs text-slate-500">
+                      Open the PDF in a new browser tab.
+                    </p>
+                  </div>
+                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-blue-50 text-blue-700">
+                    <Eye className="h-5 w-5" />
+                  </span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={handlePdfDownload}
+                  className="flex w-full items-center justify-between rounded-[22px] border border-blue-100 bg-white px-4 py-4 text-left transition hover:border-blue-200 hover:bg-blue-50/60"
+                >
+                  <div>
+                    <p className="text-sm font-semibold text-slate-900">Download</p>
+                    <p className="mt-1 text-xs text-slate-500">
+                      Download directly to this device without opening it.
+                    </p>
+                  </div>
+                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-blue-50 text-blue-700">
+                    <Download className="h-5 w-5" />
+                  </span>
+                </button>
+              </div>
+            </motion.div>
+          </div>
+
+          <div className="sm:hidden">
+            <motion.div
+              initial={{ opacity: 0, y: 60 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 60 }}
+              transition={{ duration: 0.24, ease: "easeOut" }}
+              onClick={(e) => e.stopPropagation()}
+              className="fixed inset-x-0 bottom-0 overflow-hidden rounded-t-[28px] border-t border-blue-100 bg-[linear-gradient(180deg,rgba(255,255,255,1),rgba(239,246,255,0.98))] shadow-[0_-18px_50px_rgba(37,99,235,0.16)]"
+            >
+              <div className="flex justify-center pt-3">
+                <div className="h-1.5 w-12 rounded-full bg-slate-300" />
+              </div>
+
+              <div className="px-4 pb-6 pt-4">
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-700">
+                      PDF Action
+                    </p>
+                    <h3 className="mt-2 text-[1.1rem] font-semibold text-slate-900">
+                      {pdfActionModal.target.title}
+                    </h3>
+                    <p className="mt-2 text-[13px] leading-5 text-slate-500">
+                      Choose how you want to continue with this PDF.
+                    </p>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={closePdfActionModal}
+                    className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-slate-200 bg-white text-slate-600"
+                  >
+                    <X className="h-4 w-4" />
+                  </button>
+                </div>
+
+                <div className="mt-4 grid grid-cols-1 gap-3">
+                  <button
+                    type="button"
+                    onClick={handlePdfView}
+                    className="flex w-full items-center justify-between rounded-[22px] border border-blue-100 bg-white px-4 py-4 text-left"
+                  >
+                    <div>
+                      <p className="text-sm font-semibold text-slate-900">View</p>
+                      <p className="mt-1 text-xs text-slate-500">
+                        Open the PDF in a new browser tab.
+                      </p>
+                    </div>
+                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-blue-50 text-blue-700">
+                      <Eye className="h-5 w-5" />
+                    </span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={handlePdfDownload}
+                    className="flex w-full items-center justify-between rounded-[22px] border border-blue-100 bg-white px-4 py-4 text-left"
+                  >
+                    <div>
+                      <p className="text-sm font-semibold text-slate-900">Download</p>
+                      <p className="mt-1 text-xs text-slate-500">
+                        Download directly to this device without opening it.
+                      </p>
+                    </div>
+                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-blue-50 text-blue-700">
+                      <Download className="h-5 w-5" />
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </motion.div>
+      </AnimatePresence>,
+      document.body,
+    )
+  : null}
     </div>
   );
 }
@@ -1144,11 +1409,14 @@ function AttachmentIconButton({
     <button
       type="button"
       disabled={disabled || !attachment?.fileUrl}
-      onClick={() => openAttachmentInNewTab(attachment)}
+      onClick={() => {
+  if (!attachment?.fileUrl) return;
+  openUrlInNewTab(attachment.fileUrl);
+}}
       className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-600 transition hover:bg-blue-50 hover:text-blue-700 disabled:cursor-not-allowed disabled:opacity-35"
       title="Open attachment"
     >
-      <Download className="h-4 w-4" />
+      <Eye className="h-4 w-4" />
     </button>
   );
 }
