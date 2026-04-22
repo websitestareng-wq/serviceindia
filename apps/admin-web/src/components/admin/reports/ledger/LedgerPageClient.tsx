@@ -170,11 +170,21 @@ function openUrlInNewTab(url?: string | null) {
   window.open(url, "_blank", "noopener,noreferrer");
 }
 
-async function downloadFileFromUrl(url?: string | null, fileName = "document.pdf") {
+async function downloadFileFromUrl(
+  url?: string | null,
+  fileName = "document.pdf",
+) {
   if (!url) return;
 
+  const safeFileName = buildSafePdfFileName(fileName);
+
   try {
-    const response = await fetch(url);
+    const response = await fetch(url, {
+      method: "GET",
+      mode: "cors",
+      credentials: "omit",
+    });
+
     if (!response.ok) {
       throw new Error(`Failed to download file: ${response.status}`);
     }
@@ -182,16 +192,29 @@ async function downloadFileFromUrl(url?: string | null, fileName = "document.pdf
     const blob = await response.blob();
     const blobUrl = window.URL.createObjectURL(blob);
 
-    const anchor = document.createElement("a");
-    anchor.href = blobUrl;
-    anchor.download = fileName;
-    document.body.appendChild(anchor);
-    anchor.click();
-    anchor.remove();
+    const a = document.createElement("a");
+    a.href = blobUrl;
+    a.download = safeFileName;
+    a.style.display = "none";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
 
-    window.URL.revokeObjectURL(blobUrl);
+    window.setTimeout(() => {
+      window.URL.revokeObjectURL(blobUrl);
+    }, 1500);
   } catch (error) {
-    console.error("File download failed:", error);
+    console.error("Download failed, falling back to direct link:", error);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = safeFileName;
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+    a.style.display = "none";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
   }
 }
 

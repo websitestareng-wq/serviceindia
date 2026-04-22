@@ -241,22 +241,45 @@ async function downloadFileFromUrl(
 ) {
   if (!url) return;
 
-  try {
-    const response = await fetch(url);
-    const blob = await response.blob();
+  const safeFileName = buildSafePdfFileName(fileName);
 
+  try {
+    const response = await fetch(url, {
+      method: "GET",
+      mode: "cors",
+      credentials: "omit",
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to download file: ${response.status}`);
+    }
+
+    const blob = await response.blob();
     const blobUrl = window.URL.createObjectURL(blob);
 
     const a = document.createElement("a");
     a.href = blobUrl;
-    a.download = fileName;
+    a.download = safeFileName;
+    a.style.display = "none";
     document.body.appendChild(a);
     a.click();
-    a.remove();
+    document.body.removeChild(a);
 
-    window.URL.revokeObjectURL(blobUrl);
-  } catch (e) {
-    console.error("Download failed", e);
+    window.setTimeout(() => {
+      window.URL.revokeObjectURL(blobUrl);
+    }, 1500);
+  } catch (error) {
+    console.error("Download failed, falling back to direct link:", error);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = safeFileName;
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+    a.style.display = "none";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
   }
 }
 
