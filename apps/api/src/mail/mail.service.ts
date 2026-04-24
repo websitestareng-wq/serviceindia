@@ -47,9 +47,9 @@ export class MailService {
     });
 
     await this.resend.emails.send({
-      from: "STAR ENGINEERING <noreply@mail.serviceind.co.in>",
+      from: "SERVICE INDIA <noreply@mail.serviceind.co.in>",
       to: input.to,
-      subject: "STAR ENGINEERING Credentials",
+      subject: "Your Login Credentials",
       html,
     });
   }
