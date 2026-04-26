@@ -9,14 +9,15 @@ import { LoginDto } from "./dto/login.dto";
 import { CaptchaService } from "../../common/services/captcha.service";
 import * as bcrypt from "bcrypt";
 import { randomUUID } from "crypto";
-
+import { MailService } from "../../mail/mail.service";
 @Injectable()
 export class AuthService {
-  constructor(
-    private readonly prisma: PrismaService,
-    private readonly jwtService: JwtService,
-    private readonly captchaService: CaptchaService,
-  ) {}
+constructor(
+  private readonly prisma: PrismaService,
+  private readonly jwtService: JwtService,
+  private readonly captchaService: CaptchaService,
+  private readonly mailService: MailService,
+) {}
 
   private async findActiveUser(emailOrPhone: string) {
     const value = emailOrPhone?.trim();
@@ -280,4 +281,87 @@ export class AuthService {
       },
     });
   }
+  async recoverCredential(payload: { emailOrPhone: string }) {
+  const value = payload.emailOrPhone?.trim();
+
+  if (!value) {
+    throw new BadRequestException("Email or phone is required.");
+  }
+
+  // 🔍 Find user
+  const user = await this.prisma.user.findFirst({
+    where: {
+      OR: [{ email: value }, { phone: value }],
+    },
+  });
+
+  // ❌ VALIDATION (IMPORTANT)
+  if (!user || !user.isActive) {
+    throw new BadRequestException("No user found with provided details.");
+  }
+
+  if (!user.email) {
+    throw new BadRequestException("User email not available for recovery.");
+  }
+
+  // 🔐 Generate temp password
+  const tempPassword = this.generateTemporaryPassword(8);
+  const passwordHash = await bcrypt.hash(tempPassword, 10);
+
+  // 🔓 Update password + UNLOCK restriction
+  await this.prisma.user.update({
+    where: { id: user.id },
+    data: {
+      passwordHash,
+      lastPasswordChangedAt: null, // 🔥 unlock 24h restriction
+    },
+  });
+
+  // 🔥 Logout all sessions
+  await this.prisma.userSession.updateMany({
+    where: {
+      userId: user.id,
+      isActive: true,
+    },
+    data: {
+      isActive: false,
+    },
+  });
+
+  // 📧 Send email
+  await this.mailService.sendWelcomeCredentialsEmail({
+    to: user.email,
+    name: user.name,
+    email: user.email,
+    phone: user.phone || "",
+    password: tempPassword,
+  });
+
+  return {
+    message: "Temporary password sent to your registered email.",
+  };
+}
+private generateTemporaryPassword(length = 8) {
+  const uppercase = "ABCDEFGHJKLMNPQRSTUVWXYZ";
+  const lowercase = "abcdefghijkmnopqrstuvwxyz";
+  const numbers = "23456789";
+  const symbols = "!@#%";
+  const allChars = uppercase + lowercase + numbers + symbols;
+
+  const pick = (chars: string) =>
+    chars.charAt(Math.floor(Math.random() * chars.length));
+
+  const passwordChars = [
+    pick(uppercase),
+    pick(lowercase),
+    pick(numbers),
+    pick(symbols),
+  ];
+
+  for (let i = passwordChars.length; i < length; i++) {
+    passwordChars.push(pick(allChars));
+  }
+
+  return passwordChars.join("").slice(0, length);
+}
 }

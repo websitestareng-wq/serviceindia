@@ -22,7 +22,7 @@ import {
 } from "lucide-react";
 
 import CaptchaField from "@/components/ui/CaptchaField";
-import { identifyPortalUser, loginAdmin, loginUser } from "@/lib/auth";
+import { identifyPortalUser, loginAdmin, loginUser, recoverCredential } from "@/lib/auth";
 import { ADMIN_ROUTES, USER_ROUTES } from "@/lib/routes";
 import type { PortalRole } from "@/lib/types";
 
@@ -47,6 +47,10 @@ const initialVerificationForm: VerificationFormState = {
 };
 
 export default function LoginPageClient() {
+  const [showRecover, setShowRecover] = useState(false);
+const [recoverInput, setRecoverInput] = useState("");
+const [recoverLoading, setRecoverLoading] = useState(false);
+const [recoverMessage, setRecoverMessage] = useState("");
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -554,9 +558,22 @@ return;
                         placeholder="Enter your password"
                         className="auth-input-element"
                       />
-                    </FieldShell>
+                 </FieldShell>
 
-                    {errorMessage ? (
+<div className="flex justify-end">
+  <button
+    type="button"
+    onClick={() => {
+      setShowRecover(true);
+      setRecoverMessage("");
+    }}
+    className="text-xs font-medium text-blue-700 hover:underline"
+  >
+    Recover Credential
+  </button>
+</div>
+
+{errorMessage ? (
                       <div className="auth-alert auth-alert-inline">
                         <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
                         <span>{errorMessage}</span>
@@ -682,6 +699,81 @@ return;
           </div>
         </section>
       </div>
+      <AnimatePresence>
+  {showRecover && (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-[200] bg-black/40 backdrop-blur-sm flex items-center justify-center"
+    >
+      <motion.div
+        initial={{ scale: 0.95, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.95, opacity: 0 }}
+        className="w-[95%] max-w-md rounded-[20px] bg-white p-5 shadow-xl"
+      >
+        <h3 className="text-lg font-semibold text-slate-900">
+          Recover Credential
+        </h3>
+
+        <p className="mt-1 text-sm text-slate-500">
+          Enter your registered email or phone number.
+        </p>
+
+        <input
+          type="text"
+          value={recoverInput}
+          onChange={(e) => setRecoverInput(e.target.value)}
+          placeholder="Email or phone"
+          className="mt-4 w-full rounded-[14px] border border-slate-200 px-3 py-2 text-sm outline-none focus:border-blue-400"
+        />
+
+        {recoverMessage ? (
+          <p className="mt-2 text-sm text-green-600">{recoverMessage}</p>
+        ) : null}
+
+        <div className="mt-4 flex gap-2">
+          <button
+            onClick={() => setShowRecover(false)}
+            className="flex-1 h-10 rounded-[14px] border border-slate-200 text-sm"
+          >
+            Cancel
+          </button>
+
+          <button
+            onClick={async () => {
+              if (!recoverInput.trim()) {
+                setRecoverMessage("Please enter email or phone.");
+                return;
+              }
+
+              try {
+                setRecoverLoading(true);
+                setRecoverMessage("");
+
+                const res = await recoverCredential({
+                  emailOrPhone: recoverInput.trim(),
+                });
+
+                setRecoverMessage(res.message || "Recovery email sent.");
+              } catch (err) {
+                setRecoverMessage(
+                  err instanceof Error ? err.message : "Recovery failed."
+                );
+              } finally {
+                setRecoverLoading(false);
+              }
+            }}
+            className="flex-1 h-10 rounded-[14px] bg-blue-700 text-white text-sm"
+          >
+            {recoverLoading ? "Sending..." : "Send"}
+          </button>
+        </div>
+      </motion.div>
+    </motion.div>
+  )}
+</AnimatePresence>
     </main>
   );
 }

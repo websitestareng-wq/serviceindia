@@ -11,7 +11,24 @@ const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 if (!API_BASE_URL) {
   throw new Error("NEXT_PUBLIC_API_BASE_URL is not defined.");
 }
+export async function recoverCredential(payload: { emailOrPhone: string }) {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/recover-credential`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify(payload),
+  });
 
+  const json = await res.json();
+
+  if (!res.ok) {
+    throw new Error(json?.message || "Recovery failed.");
+  }
+
+  return json;
+}
 async function parseJson<T>(response: Response): Promise<T> {
   const data = await response.json().catch(() => null);
 

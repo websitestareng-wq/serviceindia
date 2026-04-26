@@ -52,7 +52,15 @@ export class AuthController {
   ) {
     return this.authService.identify(body);
   }
-
+  @Post("recover-credential")
+  async recoverCredential(
+    @Body()
+    body: {
+      emailOrPhone: string;
+    },
+  ) {
+    return this.authService.recoverCredential(body);
+  }
 @Post("user/login")
 async loginUser(
   @Body() body: LoginDto,
