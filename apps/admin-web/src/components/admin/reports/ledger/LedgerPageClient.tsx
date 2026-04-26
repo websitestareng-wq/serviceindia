@@ -834,7 +834,7 @@ function openVoucherAttachmentAction(
             <div className="space-y-4">
               <EmptyState
                 title="No matching ledger rows"
-                description="Current filter ke hisaab se koi ledger entry nahi mili. Opening aur closing summary upar accurate dikh rahi hai."
+                description="Please try to change filter"
               />
 
             </div>
