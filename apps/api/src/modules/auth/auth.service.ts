@@ -299,7 +299,18 @@ constructor(
   if (!user || !user.isActive) {
     throw new BadRequestException("No user found with provided details.");
   }
+// ⛔ 24 HOURS RECOVERY LIMIT
+if (user.lastCredentialRecoveredAt) {
+  const last = new Date(user.lastCredentialRecoveredAt);
+  const nextAllowed = new Date(last);
+  nextAllowed.setHours(nextAllowed.getHours() + 24);
 
+  if (new Date() < nextAllowed) {
+    throw new BadRequestException(
+      "You can request credential recovery only once every 24 hours."
+    );
+  }
+}
   if (!user.email) {
     throw new BadRequestException("User email not available for recovery.");
   }
@@ -311,10 +322,11 @@ constructor(
   // 🔓 Update password + UNLOCK restriction
   await this.prisma.user.update({
     where: { id: user.id },
-    data: {
-      passwordHash,
-      lastPasswordChangedAt: null, // 🔥 unlock 24h restriction
-    },
+   data: {
+  passwordHash,
+  lastPasswordChangedAt: null,
+  lastCredentialRecoveredAt: new Date(), // 🔥 important
+},
   });
 
   // 🔥 Logout all sessions

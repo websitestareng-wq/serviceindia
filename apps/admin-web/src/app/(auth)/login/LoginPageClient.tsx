@@ -780,7 +780,9 @@ return;
       });
 
       setRecoverStatus("success");
-      setRecoverMessage(res.message || "Temporary password sent to your registered email.");
+     setRecoverMessage(
+  res.message || "Temporary password sent to your registered email.",
+);
     } catch (err) {
       setRecoverStatus("error");
       setRecoverMessage(
