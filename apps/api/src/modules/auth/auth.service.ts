@@ -329,13 +329,13 @@ constructor(
   });
 
   // 📧 Send email
-  await this.mailService.sendWelcomeCredentialsEmail({
-    to: user.email,
-    name: user.name,
-    email: user.email,
-    phone: user.phone || "",
-    password: tempPassword,
-  });
+ await this.mailService.sendRecoverCredentialEmail({
+  to: user.email,
+  name: user.name,
+  email: user.email,
+  phone: user.phone || "",
+  password: tempPassword,
+});
 
   return {
     message: "Temporary password sent to your registered email.",

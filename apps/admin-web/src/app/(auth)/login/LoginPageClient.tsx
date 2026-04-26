@@ -5,7 +5,8 @@ import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import {
-  AlertCircle,
+ AlertCircle,
+CheckCircle2,
   ArrowLeft,
   ArrowRight,
   BadgeCheck,
@@ -51,6 +52,7 @@ export default function LoginPageClient() {
 const [recoverInput, setRecoverInput] = useState("");
 const [recoverLoading, setRecoverLoading] = useState(false);
 const [recoverMessage, setRecoverMessage] = useState("");
+const [recoverStatus, setRecoverStatus] = useState<"idle" | "success" | "error">("idle");
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -563,10 +565,12 @@ return;
 <div className="flex justify-end">
   <button
     type="button"
-    onClick={() => {
-      setShowRecover(true);
-      setRecoverMessage("");
-    }}
+  onClick={() => {
+  setShowRecover(true);
+  setRecoverInput("");
+  setRecoverMessage("");
+  setRecoverStatus("idle");
+}}
     className="text-xs font-medium text-blue-700 hover:underline"
   >
     Recover Credential
@@ -720,55 +724,88 @@ return;
         <p className="mt-1 text-sm text-slate-500">
           Enter your registered email or phone number.
         </p>
+<input
+  type="text"
+  value={recoverInput}
+  disabled={recoverLoading || recoverStatus === "success"}
+  onChange={(e) => {
+    setRecoverInput(e.target.value);
+    setRecoverMessage("");
+    setRecoverStatus("idle");
+  }}
+  placeholder="Email or phone"
+  className="mt-4 w-full rounded-[14px] border border-slate-200 px-3 py-2 text-sm outline-none transition focus:border-blue-400 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500"
+/>
 
-        <input
-          type="text"
-          value={recoverInput}
-          onChange={(e) => setRecoverInput(e.target.value)}
-          placeholder="Email or phone"
-          className="mt-4 w-full rounded-[14px] border border-slate-200 px-3 py-2 text-sm outline-none focus:border-blue-400"
-        />
-
-        {recoverMessage ? (
-          <p className="mt-2 text-sm text-green-600">{recoverMessage}</p>
-        ) : null}
+       {recoverMessage ? (
+  <p
+    className={`mt-2 text-sm ${
+      recoverStatus === "success" ? "text-emerald-600" : "text-rose-600"
+    }`}
+  >
+    {recoverMessage}
+  </p>
+) : null}
 
         <div className="mt-4 flex gap-2">
           <button
-            onClick={() => setShowRecover(false)}
+           onClick={() => {
+  setShowRecover(false);
+  setRecoverInput("");
+  setRecoverMessage("");
+  setRecoverStatus("idle");
+}}
             className="flex-1 h-10 rounded-[14px] border border-slate-200 text-sm"
           >
             Cancel
           </button>
 
-          <button
-            onClick={async () => {
-              if (!recoverInput.trim()) {
-                setRecoverMessage("Please enter email or phone.");
-                return;
-              }
+<button
+  type="button"
+  disabled={recoverLoading || recoverStatus === "success"}
+  onClick={async () => {
+    if (!recoverInput.trim()) {
+      setRecoverStatus("error");
+      setRecoverMessage("Please enter email or phone.");
+      return;
+    }
 
-              try {
-                setRecoverLoading(true);
-                setRecoverMessage("");
+    try {
+      setRecoverLoading(true);
+      setRecoverStatus("idle");
+      setRecoverMessage("");
 
-                const res = await recoverCredential({
-                  emailOrPhone: recoverInput.trim(),
-                });
+      const res = await recoverCredential({
+        emailOrPhone: recoverInput.trim(),
+      });
 
-                setRecoverMessage(res.message || "Recovery email sent.");
-              } catch (err) {
-                setRecoverMessage(
-                  err instanceof Error ? err.message : "Recovery failed."
-                );
-              } finally {
-                setRecoverLoading(false);
-              }
-            }}
-            className="flex-1 h-10 rounded-[14px] bg-blue-700 text-white text-sm"
-          >
-            {recoverLoading ? "Sending..." : "Send"}
-          </button>
+      setRecoverStatus("success");
+      setRecoverMessage(res.message || "Temporary password sent to your registered email.");
+    } catch (err) {
+      setRecoverStatus("error");
+      setRecoverMessage(
+        err instanceof Error ? err.message : "Recovery failed."
+      );
+    } finally {
+      setRecoverLoading(false);
+    }
+  }}
+  className="flex-1 h-10 rounded-[14px] bg-blue-700 text-white text-sm disabled:cursor-not-allowed disabled:opacity-80"
+>
+  {recoverLoading ? (
+    <span className="inline-flex items-center justify-center gap-2">
+      <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/40 border-t-white" />
+      Sending...
+    </span>
+  ) : recoverStatus === "success" ? (
+    <span className="inline-flex items-center justify-center gap-2">
+      <CheckCircle2 className="h-4 w-4" />
+      Sent
+    </span>
+  ) : (
+    "Send"
+  )}
+</button>
         </div>
       </motion.div>
     </motion.div>

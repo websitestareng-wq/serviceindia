@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { Resend } from "resend";
 import { buildWelcomeCredentialsEmail } from "./templates/welcome-credentials-email";
-import { buildPasswordUpdatedEmail } from "./templates/password-updated-email";
+import { buildRecoverCredentialEmail } from "./templates/recover-credential-email";
 
 type SendWelcomeCredentialsEmailInput = {
   to: string;
@@ -12,14 +12,14 @@ type SendWelcomeCredentialsEmailInput = {
   loginUrl?: string;
 };
 
-type SendPasswordUpdatedEmailInput = {
+type SendRecoverCredentialEmailInput = {
   to: string;
   name: string;
   email: string;
+  phone?: string;
   password: string;
   loginUrl?: string;
 };
-
 type SendReminderEmailInput = {
   to: string;
   title: string;
@@ -53,25 +53,24 @@ export class MailService {
       html,
     });
   }
+async sendRecoverCredentialEmail(
+  input: SendRecoverCredentialEmailInput,
+): Promise<void> {
+  const html = buildRecoverCredentialEmail({
+    userName: input.name,
+    loginEmail: input.email,
+    temporaryPassword: input.password,
+    loginUrl: input.loginUrl || "https://serviceind.co.in/login",
+    phone: input.phone || "",
+  });
 
-  async sendPasswordUpdatedEmail(
-    input: SendPasswordUpdatedEmailInput,
-  ): Promise<void> {
-    const html = buildPasswordUpdatedEmail({
-      userName: input.name,
-      loginEmail: input.email,
-      loginPassword: input.password,
-      loginUrl: input.loginUrl || "https://serviceind.co.in/login",
-    });
-
-    await this.resend.emails.send({
-      from: "STAR ENGINEERING <noreply@mail.serviceind.co.in>",
-      to: input.to,
-      subject: "STAR ENGINEERING Password Updated",
-      html,
-    });
-  }
-
+  await this.resend.emails.send({
+    from: "SERVICE INDIA <noreply@mail.serviceind.co.in>",
+    to: input.to,
+    subject: "Credential Recovery Request",
+    html,
+  });
+}
   async sendReminderEmail(
     input: SendReminderEmailInput,
   ): Promise<void> {
