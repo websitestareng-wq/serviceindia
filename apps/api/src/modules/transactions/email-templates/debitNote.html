@@ -18,7 +18,8 @@
   </p>
 
   <p style="margin:0 0 16px 0;">
-    This is to inform you that a <strong>Debit Note</strong> has been issued for your account. Kindly find the details below for your reference and records.
+    This is to inform you that a <strong>Debit Note</strong> has been issued for your account.
+    Kindly find the reference details below for your records.
   </p>
 
   <div style="
@@ -32,6 +33,7 @@
     overflow:hidden;
   ">
     <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse; width:100%;">
+
       <tr>
         <td style="
           width:42%;
@@ -41,13 +43,15 @@
           color:#1f2937;
           vertical-align:top;
         ">
-          Debit Note
+          Debit Note No
         </td>
         <td style="
           padding:14px 16px;
           border-bottom:1px solid #bfdbfe;
           color:#111827;
           vertical-align:top;
+          word-break:break-word;
+          overflow-wrap:anywhere;
         ">
           {{note_no}}
         </td>
@@ -62,7 +66,7 @@
           color:#1f2937;
           vertical-align:top;
         ">
-          Dated
+          Date
         </td>
         <td style="
           padding:14px 16px;
@@ -82,7 +86,7 @@
           color:#1f2937;
           vertical-align:top;
         ">
-          Amount
+          Total Amount
         </td>
         <td style="
           padding:14px 16px;
@@ -94,6 +98,7 @@
           </span>
         </td>
       </tr>
+
     </table>
   </div>
 
