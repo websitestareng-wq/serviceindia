@@ -250,19 +250,35 @@ export default function DocumentsPageClient() {
     return null;
   };
 
-  const openActionMenu = (
+    const openActionMenu = (
     event: React.MouseEvent<HTMLButtonElement>,
     fileId: string,
   ) => {
     const rect = event.currentTarget.getBoundingClientRect();
+
+    const menuWidth = 192;
+    const menuHeight = 150;
+    const gap = 10;
+    const padding = 12;
+
+    const nextX = Math.min(
+      Math.max(padding, rect.right - menuWidth),
+      window.innerWidth - menuWidth - padding,
+    );
+
+    const hasSpaceBelow = rect.bottom + gap + menuHeight <= window.innerHeight - padding;
+
+    const nextY = hasSpaceBelow
+      ? rect.bottom + gap
+      : Math.max(padding, rect.top - menuHeight - gap);
 
     setActionMenu((prev) =>
       prev?.fileId === fileId
         ? null
         : {
             fileId,
-            x: Math.max(12, rect.right - 192),
-            y: rect.bottom + 10,
+            x: nextX,
+            y: nextY,
           },
     );
   };
@@ -1359,7 +1375,7 @@ export default function DocumentsPageClient() {
                 <motion.div
                   {...listMotion}
                   onClick={(e) => e.stopPropagation()}
-                  className="fixed z-[120] w-48 max-w-[calc(100vw-24px)] overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_20px_50px_rgba(15,23,42,0.14)]"
+                 className="fixed z-[120] w-48 max-w-[calc(100vw-24px)] overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_20px_50px_rgba(15,23,42,0.14)]"
                   style={{
                     left: actionMenu.x,
                     top: actionMenu.y,
