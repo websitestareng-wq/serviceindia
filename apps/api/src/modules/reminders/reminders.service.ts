@@ -286,7 +286,7 @@ async processDueReminders() {
 
     try {
       await this.mailService.sendReminderEmail({
-        to: "corporate@stareng.co.in",
+        to: "corporate@serviceind.co.in",
         title: reminder.title,
         notes: reminder.notes || "",
       });
