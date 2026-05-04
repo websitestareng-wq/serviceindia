@@ -128,9 +128,11 @@ export default function DocumentsPageClient() {
     categories: [],
   });
 
-  const [loading, setLoading] = useState(true);
-  const [submitting, setSubmitting] = useState(false);
-  const [openActionId, setOpenActionId] = useState<string | null>(null);
+const [loading, setLoading] = useState(true);
+const [submitting, setSubmitting] = useState(false);
+const [uploading, setUploading] = useState(false);
+const [uploadProgress, setUploadProgress] = useState(0);
+const [openActionId, setOpenActionId] = useState<string | null>(null);
   const [currentNode, setCurrentNode] = useState<ExplorerNode | null>(null);
 
   const [message, setMessage] = useState<{
@@ -619,46 +621,92 @@ export default function DocumentsPageClient() {
   };
 
   const handleUpload = async (incoming: FileList | null) => {
-    if (!incoming?.length) return;
+  if (!incoming?.length || uploading) return;
 
-    const files = Array.from(incoming);
+  const files = Array.from(incoming);
+  const MAX_FILE_SIZE = 75 * 1024 * 1024;
 
-    try {
-      setSubmitting(true);
+  const oversizedFile = files.find((file) => file.size > MAX_FILE_SIZE);
 
-      if (currentNode?.type === "folder") {
-        await uploadDocumentFiles({
-          files,
-          folderId: currentNode.id,
-        });
-      } else if (currentNode?.type === "category") {
-        await uploadDocumentFiles({
-          files,
-          categoryId: currentNode.id,
-        });
-      } else {
-        await uploadDocumentFiles({
-          files,
-        });
-      }
+  if (oversizedFile) {
+    setMessage({
+      type: "error",
+      text: `${oversizedFile.name} is too large (Max 75MB).`,
+    });
 
-      setMessage({ type: "success", text: "Files uploaded successfully." });
-      await loadTree();
-    } catch (error) {
-      setMessage({
-        type: "error",
-        text: error instanceof Error ? error.message : "Failed to upload files.",
-      });
-    } finally {
-      setSubmitting(false);
-      if (fileInputRef.current) {
-        fileInputRef.current.value = "";
-      }
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
     }
-  };
+
+    return;
+  }
+
+  try {
+    setUploading(true);
+    setUploadProgress(10);
+
+    const payload =
+      currentNode?.type === "folder"
+        ? { files, folderId: currentNode.id }
+        : currentNode?.type === "category"
+        ? { files, categoryId: currentNode.id }
+        : { files };
+
+    await uploadDocumentFiles(payload, {
+      onProgress: (progress) => {
+        setUploadProgress(progress);
+      },
+    });
+
+    setUploadProgress(100);
+    setMessage({ type: "success", text: "Files uploaded successfully." });
+
+    await new Promise((res) => setTimeout(res, 300));
+    await loadTree();
+
+  } catch (error) {
+    setMessage({
+      type: "error",
+      text: error instanceof Error ? error.message : "Upload failed.",
+    });
+  } finally {
+    setTimeout(() => {
+      setUploading(false);
+      setUploadProgress(0);
+    }, 500);
+
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
+  }
+};
 
   return (
     <div className="space-y-6">
+      {uploading ? (
+  <div className="fixed inset-0 z-[200] flex items-center justify-center bg-white/75 px-4 backdrop-blur-sm">
+    <div className="w-full max-w-sm rounded-[28px] border border-slate-200 bg-white p-5 text-center shadow-[0_30px_90px_rgba(15,23,42,0.18)]">
+      <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-700 via-blue-600 to-red-600 text-white">
+        <Loader2 className="h-5 w-5 animate-spin" />
+      </div>
+
+      <p className="text-sm font-semibold text-slate-900">
+        Uploading documents...
+      </p>
+
+      <div className="mt-4 h-2.5 overflow-hidden rounded-full bg-slate-100">
+        <div
+          className="h-full bg-gradient-to-r from-blue-700 via-blue-600 to-red-600 transition-all"
+          style={{ width: `${uploadProgress}%` }}
+        />
+      </div>
+
+      <p className="mt-2 text-xs text-slate-500">
+        {Math.round(uploadProgress)}%
+      </p>
+    </div>
+  </div>
+) : null}
       <motion.div
         initial={{ opacity: 0, y: 18 }}
         animate={{ opacity: 1, y: 0 }}
@@ -739,16 +787,18 @@ export default function DocumentsPageClient() {
                     </AnimatePresence>
                   </div>
 
-                  <motion.button
-                    whileHover={{ y: -1, scale: 1.01 }}
-                    whileTap={{ scale: 0.985 }}
-                    type="button"
-                    onClick={() => {
-                      setSearchOpen(false);
-                      fileInputRef.current?.click();
-                    }}
-                    className="inline-flex h-11 shrink-0 cursor-pointer items-center gap-2 rounded-2xl bg-gradient-to-r from-blue-700 via-blue-600 to-red-600 px-4 text-sm font-semibold text-white shadow-[0_16px_30px_rgba(37,99,235,0.22)] transition-all duration-200 hover:shadow-[0_20px_34px_rgba(37,99,235,0.28)]"
-                  >
+                 <motion.button
+  whileHover={uploading ? undefined : { y: -1, scale: 1.01 }}
+  whileTap={uploading ? undefined : { scale: 0.985 }}
+  type="button"
+  disabled={uploading}
+  onClick={() => {
+    if (uploading) return;
+    setSearchOpen(false);
+    fileInputRef.current?.click();
+  }}
+  className="inline-flex h-11 shrink-0 cursor-pointer items-center gap-2 rounded-2xl bg-gradient-to-r from-blue-700 via-blue-600 to-red-600 px-4 text-sm font-semibold text-white shadow-[0_16px_30px_rgba(37,99,235,0.22)] transition-all duration-200 hover:shadow-[0_20px_34px_rgba(37,99,235,0.28)] disabled:cursor-not-allowed disabled:opacity-70"
+>
                     <UploadCloud className="h-4 w-4" />
                     Upload
                   </motion.button>
@@ -844,15 +894,17 @@ export default function DocumentsPageClient() {
                       </AnimatePresence>
                     </div>
 
-                    <motion.button
-                      whileTap={{ scale: 0.96 }}
-                      type="button"
-                      onClick={() => {
-                        setSearchOpen(false);
-                        fileInputRef.current?.click();
-                      }}
-                      className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-r from-blue-700 via-blue-600 to-red-600 text-white shadow-[0_12px_24px_rgba(37,99,235,0.22)]"
-                    >
+                   <motion.button
+  whileTap={uploading ? undefined : { scale: 0.96 }}
+  type="button"
+  disabled={uploading}
+  onClick={() => {
+    if (uploading) return;
+    setSearchOpen(false);
+    fileInputRef.current?.click();
+  }}
+  className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-r from-blue-700 via-blue-600 to-red-600 text-white shadow-[0_12px_24px_rgba(37,99,235,0.22)] disabled:cursor-not-allowed disabled:opacity-70"
+>
                       <UploadCloud className="h-4 w-4" />
                     </motion.button>
 
@@ -890,13 +942,14 @@ export default function DocumentsPageClient() {
             </div>
           </div>
 
-          <input
-            ref={fileInputRef}
-            type="file"
-            multiple
-            className="hidden"
-            onChange={(e) => handleUpload(e.target.files)}
-          />
+         <input
+  ref={fileInputRef}
+  type="file"
+  multiple
+  disabled={uploading}
+  className="hidden"
+  onChange={(e) => handleUpload(e.target.files)}
+/>
         </div>
 
         {message ? (

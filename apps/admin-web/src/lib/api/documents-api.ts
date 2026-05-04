@@ -113,8 +113,13 @@ export type UploadDocumentFilesPayload = {
   folderId?: string;
 };
 
+export type UploadDocumentFilesOptions = {
+  onProgress?: (progress: number) => void;
+};
+
 export async function uploadDocumentFiles(
   payload: UploadDocumentFilesPayload,
+  options?: UploadDocumentFilesOptions,
 ): Promise<DocumentFileRecord[]> {
   const formData = new FormData();
 
@@ -130,9 +135,62 @@ export async function uploadDocumentFiles(
     formData.append("files", file);
   }
 
-  return apiRequest<DocumentFileRecord[]>("/documents/files", {
-    method: "POST",
-    body: formData,
+  return new Promise<DocumentFileRecord[]>((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+
+    xhr.open("POST", `${API_BASE_URL}/documents/files`, true);
+    xhr.withCredentials = true;
+    xhr.timeout = 120000;
+
+    xhr.upload.onprogress = (event) => {
+      if (!event.lengthComputable) return;
+
+      const progress = Math.min(
+        95,
+        Math.round((event.loaded / event.total) * 100),
+      );
+
+      options?.onProgress?.(progress);
+    };
+
+    xhr.onload = () => {
+      let data: unknown = null;
+
+      try {
+        data = xhr.responseText ? JSON.parse(xhr.responseText) : null;
+      } catch {
+        reject(new Error("Upload completed, but server response was invalid."));
+        return;
+      }
+
+      if (xhr.status >= 200 && xhr.status < 300) {
+        options?.onProgress?.(100);
+        resolve(data as DocumentFileRecord[]);
+        return;
+      }
+
+      const message =
+        data &&
+        typeof data === "object" &&
+        "message" in data &&
+        data.message
+          ? Array.isArray(data.message)
+            ? data.message.join(", ")
+            : String(data.message)
+          : "Failed to upload files.";
+
+      reject(new Error(message));
+    };
+
+    xhr.onerror = () => {
+      reject(new Error("Network error while uploading files."));
+    };
+
+    xhr.ontimeout = () => {
+      reject(new Error("Upload timed out. Please try a smaller file or check your internet."));
+    };
+
+    xhr.send(formData);
   });
 }
 

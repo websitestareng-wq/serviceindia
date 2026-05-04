@@ -395,26 +395,25 @@ async renameFolder(id: string, name: string) {
       .replace(/\.[^.]+$/, "")
       .trim();
   }
+private async optimizeFile(file: Express.Multer.File) {
+  const originalName = file.originalname;
 
-  private async optimizeFile(file: Express.Multer.File) {
-    const originalName = file.originalname;
-
-    if (this.isPdf(file)) {
-      const compressed = await this.compressPdfBufferStrong(file.buffer);
-
-      return {
-        buffer: compressed,
-        fileName: this.ensureExtension(originalName, ".pdf"),
-        mimeType: "application/pdf",
-      };
-    }
-
+  // 🔥 IMPORTANT: PDF ko bilkul compress nahi karna
+  if (this.isPdf(file)) {
     return {
       buffer: file.buffer,
-      fileName: originalName,
-      mimeType: file.mimetype || "application/octet-stream",
+      fileName: this.ensureExtension(originalName, ".pdf"),
+      mimeType: "application/pdf",
     };
   }
+
+  // future me images compress kar sakte ho (abhi skip)
+  return {
+    buffer: file.buffer,
+    fileName: originalName,
+    mimeType: file.mimetype || "application/octet-stream",
+  };
+}
 
   private isPdf(file: Express.Multer.File) {
     return (

@@ -71,17 +71,43 @@ deleteFolder(@Param("id") id: string) {
 }
   /* ---------------- FILE UPLOAD ---------------- */
 
-  @Post("files")
-  @UseInterceptors(
-    FilesInterceptor("files", 50, {
-      storage: memoryStorage(),
-      limits: {
-        fileSize: 50 * 1024 * 1024,
-        files: 50,
-      },
-    }),
-  )
-  uploadFiles(
+@Post("files")
+@UseInterceptors(
+  FilesInterceptor("files", 20, {
+    storage: memoryStorage(),
+    limits: {
+      fileSize: 75 * 1024 * 1024,
+      files: 20,
+      fields: 5,
+    },
+    fileFilter: (_req, file, callback) => {
+      const allowedMimeTypes = [
+        "application/pdf",
+        "image/jpeg",
+        "image/png",
+        "image/webp",
+        "application/msword",
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        "application/vnd.ms-excel",
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      ];
+
+      if (
+        allowedMimeTypes.includes(file.mimetype) ||
+        file.originalname.toLowerCase().endsWith(".pdf")
+      ) {
+        callback(null, true);
+        return;
+      }
+
+      callback(
+        new BadRequestException("Only PDF, image, Word, and Excel files are allowed."),
+        false,
+      );
+    },
+  }),
+)
+uploadFiles(
     @Body("categoryId") categoryId: string | undefined,
     @Body("folderId") folderId: string | undefined,
     @UploadedFiles() files: Express.Multer.File[],
