@@ -13,18 +13,30 @@ import * as path from "path";
 @Injectable()
 export class TransactionsEmailService {
   private readonly resend: Resend;
-  private readonly mailFrom: string;
   private readonly portalUrl: string;
   private readonly logger = new Logger(TransactionsEmailService.name);
+private readonly MAIL_FROM = {
+  SALES: "SERVICE INDIA <sales@mail.serviceind.co.in>",
+  PURCHASE: "SERVICE INDIA <purchase@mail.serviceind.co.in>",
 
+  PAYMENT: "SERVICE INDIA <payment@mail.serviceind.co.in>",
+  RECEIPT: "SERVICE INDIA <receipt@mail.serviceind.co.in>",
+
+  DEBIT_NOTE: "SERVICE INDIA <debitnote@mail.serviceind.co.in>",
+  CREDIT_NOTE: "SERVICE INDIA <creditnote@mail.serviceind.co.in>",
+
+  JOURNAL_DR: "SERVICE INDIA <journal@mail.serviceind.co.in>",
+  JOURNAL_CR: "SERVICE INDIA <journal@mail.serviceind.co.in>",
+};
+private getSender(type: TransactionType) {
+  return this.MAIL_FROM[type] || "SERVICE INDIA <notifications@mail.serviceind.co.in>";
+}
   constructor(private readonly prisma: PrismaService) {
     const apiKey = process.env.RESEND_API_KEY;
 
     if (!apiKey) {
       throw new Error("RESEND_API_KEY is not configured.");
     }
-
-    this.mailFrom = process.env.MAIL_FROM || "noreply@mail.stareng.co.in";
     this.portalUrl = process.env.PORTAL_URL || "https://www.stareng.co.in";
 
     this.resend = new Resend(apiKey);
@@ -44,7 +56,7 @@ export class TransactionsEmailService {
 
     try {
       const { error } = await this.resend.emails.send({
-        from: this.mailFrom,
+       from: this.getSender(transaction.type),
         to: [transaction.party.email.trim()],
         subject,
         html,
@@ -99,7 +111,7 @@ export class TransactionsEmailService {
       const attachments = this.buildAttachments(transaction);
 
       await this.resend.emails.send({
-        from: this.mailFrom,
+        from: this.getSender(transaction.type),
         to: [transaction.party.email.trim()],
         subject,
         html,

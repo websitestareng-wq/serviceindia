@@ -313,7 +313,7 @@ export default function UserFormModal({
         Default off. When enabled, welcome credentials mail will be sent via
         Resend from{" "}
         <span className="font-semibold">
-          noreply@mail.stareng.co.in
+         welcome@mail.serviceind.co.in
         </span>
         .
       </p>
