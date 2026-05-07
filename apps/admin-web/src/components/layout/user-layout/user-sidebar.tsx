@@ -64,14 +64,6 @@ const primaryNavItems: NavItem[] = [
   },
 ];
 
-const secondaryNavItems: NavItem[] = [
-  {
-    title: "Payment Centre",
-    href: "/user/payment-centre",
-    icon: ArrowLeftRight,
-  },
-];
-
 const bottomNavItems: NavItem[] = [
   {
     title: "Profile",
@@ -251,7 +243,6 @@ export default function Sidebar() {
   }, []);
 
   const filteredNavItems = useMemo(() => primaryNavItems, []);
- const secondaryItems = useMemo(() => secondaryNavItems, []);
 const bottomItems = useMemo(() => bottomNavItems, []);
 
   const initialOpenState = useMemo(() => {
@@ -420,47 +411,6 @@ const bottomItems = useMemo(() => bottomNavItems, []);
           ) : null}
         </AnimatePresence>
       </div>
-    );
-  })}
-
-  {secondaryItems.map((item) => {
-    const Icon = item.icon;
-    const isActive = isPathActive(pathname, item.href, item.matchPrefix);
-
-    return (
-      <motion.div
-        key={item.href}
-        whileHover={{ x: 4 }}
-        transition={{ duration: 0.22, ease: "easeOut" }}
-      >
-        <Link
-          href={item.href}
-          className={`group relative flex items-center gap-3 overflow-hidden rounded-[18px] px-3 py-2.5 transition-all duration-300 ${
-            isActive
-              ? "sidebar-item-gradient text-white shadow-[0_16px_35px_rgba(37,99,235,0.25)]"
-              : "text-slate-700 hover:bg-white hover:shadow-[0_12px_30px_rgba(15,23,42,0.08)]"
-          }`}
-        >
-          {!isActive ? (
-            <span className="pointer-events-none absolute inset-y-1 left-0 w-[3px] rounded-full bg-gradient-to-b from-sky-500 via-blue-600 to-indigo-700 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-          ) : null}
-<span
-  className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-[16px] transition-all duration-300 ${
-    isActive
-      ? "bg-transparent text-white shadow-[0_16px_35px_rgba(37,99,235,0.25)]"
-      : "bg-white text-slate-600 shadow-[0_10px_20px_rgba(15,23,42,0.06)] group-hover:scale-110 group-hover:text-slate-900"
-  }`}
->
-  <Icon
-    className={`h-[18px] w-[18px] ${
-      isActive ? "fill-none stroke-[2.2]" : "fill-none"
-    }`}
-  />
-</span>
-
-          <span className="truncate text-sm font-semibold">{item.title}</span>
-        </Link>
-      </motion.div>
     );
   })}
 </div>
