@@ -1148,7 +1148,7 @@ function openVoucherAttachmentAction(
                         Skip Opening Balance
                       </p>
                       <p className="mt-1 text-xs leading-5 text-slate-500">
-                        Opening type entries ko report se skip karega.
+                        Balance before period will be skipped. Useful when you want to focus only on transactions within the selected date range.
                       </p>
                     </div>
                   </label>
